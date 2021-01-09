@@ -224,6 +224,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                     spPosition3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            Log.d("에러난다고 ", memberPosition[position]);
                             positioinStr.add(memberPosition[position]);
                         }
                         @Override
@@ -299,6 +300,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                             }
                                         }
 
+                                        Log.d("방키 끝", "");
                                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 //                                        intent.putExtra("userid",SEVER_USERID_LOGGED_IN); //팀장 userid
 //                                        intent.putExtra("destinationRoom",roomkey); //룸키
@@ -323,6 +325,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         //시/시도, 시/군/구 입력
                                         String state = etState.getText().toString();
                                         String county = etCounty.getText().toString();
+                                        Log.d("시군구", "후");
 
                                         //라디오 버튼 입력 받기
                                         int id = radioGroup.getCheckedRadioButtonId();
@@ -332,17 +335,26 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         if(univ.equals("자대") ) univType=true;
                                         else univType=false;
 
-                                        try {
+
                                             Toast.makeText(getApplicationContext(), "3 트라이", Toast.LENGTH_LONG);
 
 
                                             List<ProjectMembers> pmList = new ArrayList<>();
                                             pmList.add(new ProjectMembers(myId, timgle));
                                             for(int i =0; i < memberList.size(); i++){
+                                                Toast.makeText(getApplicationContext(), "4", Toast.LENGTH_LONG);
+
                                                 pmList.add(new ProjectMembers(memberList.get(i), null));
                                             }
                                             List<ProjectPositions> ppList = new ArrayList<>();
-                                            for(int i= 0;i < positioinStr.size(); i++){
+
+//                                            for(String item : positioinStr){
+//                                                ppList.add(new ProjectPositions(item))
+//                                            }
+                                        Log.d("에러난다고 사이즈 ", positioinStr.size() + "  " +positionNumInt.size() );
+
+
+                                        for(int i= 0;i < positioinStr.size(); i++){
                                                 ppList.add(new ProjectPositions(positioinStr.get(i), Integer.parseInt(positionNumInt.get(i))));
                                             }
 
@@ -362,10 +374,8 @@ public class ProjectAdd3Activity extends AppCompatActivity {
 //                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
 //                                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                             startActivity(intent);
-                                        } catch (Exception e){
-                                            Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 입력해주세요.", Toast.LENGTH_LONG);
-                                        }
 
+                                            Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 입력해주세요.", Toast.LENGTH_LONG);
 
                                     }
                                     @Override

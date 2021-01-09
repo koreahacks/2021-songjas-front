@@ -17,6 +17,7 @@ import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.chatting.chat.GroupMessageActivity;
 import com.example.timmo_songjas.chatting.chat.MessageActivity;
 import com.example.timmo_songjas.chatting.model.ChatModel;
+import com.example.timmo_songjas.chatting.model.UserModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +38,9 @@ import static com.example.timmo_songjas.feature.utils.CommonValues.SEVER_USERID_
 public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRecyclerViewAdapter.ViewHolder> {
     private SimpleDateFormat simpleDateFormat;
 //    private SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("a hh:mm"); //오전 오후
+
+
+    String roomname;
 
     private Context context;
 
@@ -122,8 +126,25 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
         customViewHolder.textView_numofpeople.setText(num_people + "명 · ");
 
 
+
+        FirebaseDatabase.getInstance().getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot item : snapshot.getChildren()){
+                    if( item.getValue(UserModel.class).userid.equals(SEVER_USERID_LOGGED_IN)){
+                        roomname = item.getValue(UserModel.class).userName;
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         //이건 챗방 이미지랑 챗방 이름 설정하는거라 뭐 굳이
-        customViewHolder.tV_title_chat.setText("단체 챗방");
+        customViewHolder.tV_title_chat.setText( roomname+"님의 팀");
         //뭐 나중에 프로젝트 등록 다되면 바꾸던가
 
 
@@ -150,7 +171,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
             public void onClick(View view) {
                 Intent intent = null;
                 //채팅방 인원수 체크
-                if (chatModels.get(position).users.size() > 2 ){
+                if (chatModels.get(position).isTeamChat ){
                     intent = new Intent(view.getContext(), GroupMessageActivity.class);
                     intent.putExtra("destinationRoom",room_keys.get(position));
                     intent.putExtra("userid",chatModels.get(position).teamchatuserid );
