@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--아이템 메세지 버튼 넣기 시도 중-->
+<!--채팅방 안에서 메세지 아이템-->
+
+<!--이 최상위 리니어는 자기 안의 컨텐츠를 오른쪽or왼쪽 정렬하는데 사용됨-->
+
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_main_message"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp">
+
+    <!--    메세지 아이템 기본틀이고 -->
+    <!--    어차피 내 이미지나 이름은 표시할 필요 없으니-->
+    <!--    내 메세지에선 desti부분은 invisible하게 세팅하고-->
+    <!--    상대방이 보낸 메세지 일 경우세만 비지블하게-->
+    <!--    -> 이 부분 코드 message activity java에  onBindViewHolder-->
+
+    <!--        상대방 정보-->
+    <LinearLayout
+        android:id="@+id/ll_left_message"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ImageView
+            android:id="@+id/iv_profile_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/bg_profile_40_dp"
+            android:layout_marginTop="8dp"
+            android:contentDescription="@string/description_logo" />
+        <TextView
+            android:gravity="bottom"
+            android:id="@+id/tv_mytimestamp_messageItem"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/time_mess_item"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/text_grey"
+            android:textSize="10sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:paddingBottom="3dp"
+            tools:ignore="SmallSp" />
+
+
+
+    </LinearLayout>
+
+    <!--    가운데 메세지-->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginStart="8dp"
+        android:paddingTop="8dp"
+        android:layout_marginLeft="8dp">
+
+        <TextView
+            android:id="@+id/tv_name_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:textColor="@color/four_black"
+            android:textSize="12sp"
+            android:text="@string/app_name" />
+
+
+        <!--        나중에 초대 파트 구현 위해 리니어 추가-->
+        <LinearLayout
+            android:id="@+id/ll_center_messageItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bg_message"
+            android:backgroundTint="@null"
+            android:orientation="vertical">
+            <!--        !!!!!!!!!!1텍스트 색도 자바에서 바꾸기-->
+
+            <TextView
+                android:id="@+id/tv_main_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/chat_item"
+                android:textColor="@color/four_black"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_sub_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/noto_medium"
+                android:includeFontPadding="false"
+                android:text="@string/sub_message"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+        <!--          시간을 내꺼 왼정렬 상대꺼 오정렬하게 -->
+
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_gravity="bottom"
+        android:id="@+id/tv_dest_timestamp_messageItem"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/time_mess_item"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:textColor="@color/text_grey"
+        android:textSize="10sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        tools:ignore="SmallSp" />
+</LinearLayout>
+
+
+
+
+

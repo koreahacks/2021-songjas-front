@@ -77,5 +77,7 @@
     <string name="real">현실형</string>
     <string name="now_member">현재 팀원</string>
 
+    <string name="time_mess_item">오후 10:00</string>
+    <string name="chat_item">챗 아이템</string>
 
 </resources>

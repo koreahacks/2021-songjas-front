@@ -66,7 +66,6 @@ public class ProjectFindFragment extends Fragment {
 
         //리싸이클러뷰 어댑터 만들고 추가
 
-
         //필터 버튼
         filter_btn = (ImageView) toolbar.findViewById(R.id.filter_projectfind);
 
