@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--    shape 태그 안에 shape 속성 넣어서 모양 지정도 가능 -->
+
+    <solid android:color="@color/bg_grey_10"/>
+    <!--    도형 안쪽 채울 때-->
+
+    <corners android:radius="8dp"/>
+</shape>

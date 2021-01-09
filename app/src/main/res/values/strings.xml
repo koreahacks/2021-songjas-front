@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Timmo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="timmo">팀모</string>
+    <string name="timgle">팀글</string>
+    <string name="chatting">채팅</string>
+    <string name="MY">MY</string>
+
     <string name="description_logo">LOGO</string>
     <string name="email">이메일</string>
     <string name="email_input">이메일을 입력해주세요.</string>
