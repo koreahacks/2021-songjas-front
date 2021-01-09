@@ -54,7 +54,7 @@ public class ProfileMemberFragment extends Fragment {
 
         context = container.getContext();
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile_member, container, false);
 
         //리싸이클러뷰 불러오기
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_profilemember);

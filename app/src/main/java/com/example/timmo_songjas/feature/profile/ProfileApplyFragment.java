@@ -45,7 +45,7 @@ public class ProfileApplyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile_apply, container, false);
 
         //리싸이클러뷰 불러오기
         recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_profileapply);
