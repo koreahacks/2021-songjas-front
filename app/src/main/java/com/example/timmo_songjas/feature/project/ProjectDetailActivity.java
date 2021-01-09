@@ -287,6 +287,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
                             btn_chat.setVisibility(View.GONE);
                         }
 
+
                     }
                 }
                 else{

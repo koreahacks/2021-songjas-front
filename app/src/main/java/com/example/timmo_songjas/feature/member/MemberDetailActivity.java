@@ -223,6 +223,7 @@ public class MemberDetailActivity extends AppCompatActivity {
             public void onFailure(Call<MemberDetailResponse> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
 
+
             }
         });
     }
