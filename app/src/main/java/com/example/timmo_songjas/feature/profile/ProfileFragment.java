@@ -54,6 +54,8 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
+        getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileProjectFragment()).commit();
+        getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileMemberFragment()).commit();
     }
 
 
@@ -90,6 +92,7 @@ public class ProfileFragment extends Fragment {
         //이미지 동그랗게 자르기
         Glide.with(this).load(R.drawable.ic_bg_profie_64_dp).circleCrop().into(imageView);
 
+        loadData();
 
         //fragment
         applyFragment = new ProfileApplyFragment();
