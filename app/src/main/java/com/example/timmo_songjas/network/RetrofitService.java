@@ -10,6 +10,10 @@ import com.example.timmo_songjas.data.SignupResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.PATCH;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
@@ -21,6 +25,7 @@ public interface RetrofitService {
 
     @POST("/users/signup")
     Call<SignupResponse> userSignup(@Body SignupData data);
+
 
     //프로필 조회
     @GET("/users")

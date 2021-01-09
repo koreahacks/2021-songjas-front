@@ -4,18 +4,22 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-//이건 채팅방 리스트하는 페이지 전체 탭바 있는
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.timmo_songjas.R;
 import com.google.android.material.tabs.TabLayout;
-import com.example.timmo_songjas.chatting.fragment.ChatFragment;
+
 
 public class ChatlistFragment extends Fragment {
 
+
     private TabLayout tabLayout;
     private View view;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
