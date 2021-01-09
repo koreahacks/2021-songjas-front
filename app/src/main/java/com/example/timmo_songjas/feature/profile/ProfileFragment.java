@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,19 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.ProfileResponse;
 import com.example.timmo_songjas.feature.member.MemberAddActivity;
 import com.example.timmo_songjas.feature.project.ProjectAdd1Activity;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 import com.google.android.material.tabs.TabItem;
 import com.google.android.material.tabs.TabLayout;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 
 public class ProfileFragment extends Fragment {
@@ -39,6 +49,8 @@ public class ProfileFragment extends Fragment {
     TextView appNum;
     TextView projectNum;
     TextView memberNum;
+
+    RetrofitService service1;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -145,4 +157,37 @@ public class ProfileFragment extends Fragment {
     }
     
     //TODO: 서버에서 데이터 받아오기
+    //데이터 받아오기
+    public void loadData(){
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<ProfileResponse> call = service1.mainProfile(USER_TOKEN);
+
+        call.enqueue(new Callback<ProfileResponse>() {
+            @Override
+            public void onResponse(Call<ProfileResponse> call, Response<ProfileResponse> response) {
+                if (response.isSuccessful()) {
+                    ProfileResponse result = response.body();
+                    if (result.getStatus() == 200) {
+                        Log.d("연결 성공: ", result.getMessage());
+                        if(result.getUsers().getImg() != null && !result.getUsers().getImg().equals("")){
+                            Glide.with(context).load(result.getUsers().getImg()).circleCrop().into(imageView);
+                        }
+                        name.setText(result.getUsers().getName());
+                        appNum.setText(String.valueOf(result.getProjectApplicants().size()));
+                        projectNum.setText(String.valueOf(result.getProjects().size()));
+                        memberNum.setText(String.valueOf(result.getMembers().size()));
+                        //Log.d("데이터 확인", String.valueOf(result.getMembers().size()));
+                    }
+                    else {
+                        Log.d("각종 오류: ", result.getMessage());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileResponse> call, Throwable t) {
+                Log.d("실패: ", "연결 실패");
+            }
+        });
+    }
 }

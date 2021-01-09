@@ -7,6 +7,7 @@ import com.example.timmo_songjas.data.MessageTimgleData;
 import com.example.timmo_songjas.data.MessageTimgleResponse;
 import com.example.timmo_songjas.data.PartyFindResponse;
 import com.example.timmo_songjas.data.ProfileImageResponse;
+import com.example.timmo_songjas.data.ProfileResponse;
 import com.example.timmo_songjas.data.ProjectAdd1Response;
 import com.example.timmo_songjas.data.ProjectDetailApplyData;
 import com.example.timmo_songjas.data.ProjectDetailApplyResponse;
@@ -94,5 +95,9 @@ public interface RetrofitService {
     @POST("/users/images")
     Call<ProfileImageResponse> profileImage(@Header("Authorization") String token,
                                             @Part MultipartBody.Part body);
+
+    //프로필 확인(마이 페이지)
+    @GET("/users/mypage")
+    Call<ProfileResponse> mainProfile(@Header("Authorization") String token);
 
 }
