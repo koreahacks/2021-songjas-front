@@ -3,6 +3,7 @@ package com.example.timmo_songjas.feature;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.feature.project.ProjectFindFragment;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -77,8 +79,9 @@ public class FilterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
 
-        intent  = getIntent();
-        title = intent.getStringExtra("search_title");
+
+//        title = getIntent().getStringExtra("search_title");
+//        Log.d("필터 타이틀",title);
 
         //툴바
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_filter);
@@ -355,59 +358,73 @@ public class FilterActivity extends AppCompatActivity {
             b_q = new HashMap<>();
  //    /projects?title=&type=&field=&position=&largeAddress=&smallAddress=&limitUniv=&morning=&night=&dawn=&plan=&cramming=&leader=&follower=&challenge=&realistic=
 
-            s_q.put("title", title );
-            s_q.put( "type", typeString);
-            s_q.put("field", fieldString );
-            s_q.put("position", positionString);
-            s_q.put( "largeAddress", state);
-            s_q.put( "smallAddress", country);
+//            s_q.put("title", title );
 
-            b_q.put("limitUniv", opt_limitUniv);
+//            if()
+
+            if(typeString != null )//if(!typeString.equals("") )
+                s_q.put( "type", typeString);
+            if(fieldString != null )//if(!fieldString.equals("") )
+                s_q.put("field", fieldString );
+            if(positionString != null )//if(!typeString.equals("") )
+                s_q.put("position", positionString);
+            if(state != null )//if(!typeString.equals("") )
+                s_q.put( "largeAddress", state);
+            if(country != null )//if(!typeString.equals("") )
+                s_q.put( "smallAddress", country);
+
+            if(opt_limitUniv)
+
+            if(opt_limitUniv)
+                b_q.put("limitUniv", opt_limitUniv);
+//            else s_q.put("limitUniv", "");
+
             if(opt_morning)
                 b_q.put("morning", opt_morning);
-            else
-                b_q.put("morning", null);
+//            else
+//                s_q.put("morning", "");
 
             if(opt_night)
                 b_q.put("night", opt_night);
-            else
-                b_q.put("morning", null);
+//            else
+//                s_q.put("morning", "");
 
             if(opt_dawn)
                 b_q.put("dawn", opt_dawn);
-            else
-                b_q.put("dawn", null);
+//            else
+//                s_q.put("dawn", "");
 
             if(opt_plan)
                 b_q.put("plan", opt_plan);
-            else
-                b_q.put("plan", null);
+//            else
+//                s_q.put("plan", "");
 
             if(opt_cramming)
                 b_q.put("cramming", opt_cramming);
-            else
-                b_q.put("cramming", null);
+//            else
+//                s_q.put("cramming", "");
 
             if(opt_leader)
                 b_q.put("leader", opt_leader);
-            else
-                b_q.put("leader", opt_leader);
+//            else
+//                s_q.put("leader", "");
 
             if(opt_follower)
                 b_q.put("follower", opt_follower);
-            else
-                b_q.put("follower", null);
+//            else
+//                s_q.put("follower", "");
 
             if(opt_challenge)
                 b_q.put("challenge", opt_challenge);
-            else
-                b_q.put("challenge", null);
+//            else
+//                s_q.put("challenge", "");
 
             if(opt_realistic)
                 b_q.put("reality", opt_realistic);
-            else
-                b_q.put("reality", null);
+//            else
+//                s_q.put("reality", "");
 
+            intent =new Intent();
             intent.putExtra("s_q", (Serializable) s_q);
             intent.putExtra("b_q", (Serializable) b_q);
 
@@ -429,12 +446,16 @@ public class FilterActivity extends AppCompatActivity {
 
         rbUniv = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
         //rbUniv = (RadioButton) findViewById(id);
-        univ = rbUniv.getText().toString();
 
-        if(univ.equals("univ_true")){ // true
-            opt_limitUniv = true; }
-        else { //자대 false
-            opt_limitUniv = false; }
+
+        if(univ != null){
+            univ = rbUniv.getText().toString();
+            if(univ.equals("univ_true")){ // true
+                opt_limitUniv = true; }
+            else { //자대 false
+                opt_limitUniv = false; }
+        }
+        else opt_limitUniv=false;
 
         opt_morning = (Integer.parseInt(String.valueOf(morningCount % 2))!= 0 );
         opt_night = (Integer.parseInt(String.valueOf(nightCount % 2))!= 0 );

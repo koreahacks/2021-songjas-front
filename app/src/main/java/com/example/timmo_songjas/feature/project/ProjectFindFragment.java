@@ -38,6 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static android.app.Activity.RESULT_OK;
 import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProjectFindFragment extends Fragment {
@@ -182,7 +183,7 @@ public class ProjectFindFragment extends Fragment {
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
                 Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
                 //TODO: 검색 네트워킹
-                title =query;
+                title = query;
                 //TODO: 네트워킹 필요
                 return true;
             }
@@ -199,8 +200,11 @@ public class ProjectFindFragment extends Fragment {
         filter_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Log.d("필터 출발 : ", " 버튼 누름");
+
                 Intent intent = new Intent(getActivity(), FilterActivity.class);
-                intent.putExtra("search_title",title);
+                //intent.putExtra("search_title",title);
                 startActivityForResult(intent, 1004);
             }
         });
@@ -211,19 +215,37 @@ public class ProjectFindFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == 1004){
+        //super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 1004 && resultCode== RESULT_OK){
+            Log.d("필터0 : ", "빽 옴");
+
             //필터 정보 넘어옴
            s_q =  (Map<String, String>) data.getSerializableExtra("s_q");
            b_q =  (Map<String, Boolean>) data.getSerializableExtra("b_q");
+
+            if(title != null)
+                s_q.put("title",title);
+
+           for(Map.Entry<String,String>i : s_q.entrySet()){
+               Log.d("필터s_q : ", i.getKey()+" "+i.getValue() );
+
+           }
+
+            for(Map.Entry<String,Boolean>i : b_q.entrySet()){
+                Log.d("필터b_q : ", i.getKey()+" "+i.getValue() );
+
+            }
 
            service.timmoFilter(USER_TOKEN , s_q , b_q).enqueue(new Callback<TimmoFilterResponse>() {
                @Override
                public void onResponse(Call<TimmoFilterResponse> call, Response<TimmoFilterResponse> response) {
                    TimmoFilterResponse result = response.body();
                    if(response.isSuccessful()){
-
                        Log.d("필터1 : ", result.getMessage().toString());
+                       Log.d("필터1 : ", String.valueOf(result.getData().size()));
+                       if(result.getData().size() >0)
+                           Log.d("필터1 : ", String.valueOf(result.getData().get(0).getId()));
+
 
                    }
                    else {
@@ -234,8 +256,6 @@ public class ProjectFindFragment extends Fragment {
                @Override
                public void onFailure(Call<TimmoFilterResponse> call, Throwable t) {
                    Log.e("필터3 에러 발생", t.getMessage().toString());
-
-
                }
            });
 
