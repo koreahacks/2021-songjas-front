@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Timmo_Songjas</string>
+    <string name="write_timgle">팀글 작성</string>
+    <string name="title">제목</string>
+    <string name="plz_input_title">제목을 입력해주세요.</string>
+    <string name="type">유형</string>
+    <string name="field">분야</string>
+    <string name="hope_position">희망 포지션</string>
+    <string name="introduction">소개</string>
+    <string name="plz_introduce_yourself">자신을 마음껏 뽑내주세요!</string>
+    <string name="add_act">활동 추가</string>
+    <string name="act_term">활동 기간</string>
+    <string name="yyyy_mm_dd">YYYY-MM-DD</string>
+    <string name="act_content">활동 내용</string>
+    <string name="input_act_content">활동 내용을 입력해주세요.</string>
+    <string name="port">포트폴리오</string>
+    <string name="input_port">관련 링크를 첨부해주세요.</string>
+    <string name="open_or_not">공개 여부</string>
+    <string name="open">공개</string>
+    <string name="not_open">비공개</string>
+    <string name="finish">완료</string>
 </resources>
