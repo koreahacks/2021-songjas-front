@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.timmo_songjas.R;
 
 public class TeamChatFragment extends Fragment {
-
     RecyclerView recyclerView;
     TeamChatRecyclerViewAdapter adapter;
 
@@ -31,6 +30,4 @@ public class TeamChatFragment extends Fragment {
         recyclerView.setAdapter( adapter );
         return view;
     }
-
-
 }

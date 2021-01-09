@@ -24,6 +24,10 @@ import android.widget.Toast;
 import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.chatting.model.ChatModel;
 import com.example.timmo_songjas.chatting.model.UserModel;
+import com.example.timmo_songjas.data.Data;
+import com.example.timmo_songjas.data.TimmoListResponse;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -40,7 +44,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.timmo_songjas.feature.utils.CommonValues.SEVER_USERID_LOGGED_IN;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
+
+@SuppressWarnings("NullableProblems")
 public class MessageActivity extends AppCompatActivity {
+
     private String destinatonUserid;
     private String userid; //firebase의 uid대신 uid 하위의 userid 넣을 수 있을까?
 
@@ -51,11 +64,17 @@ public class MessageActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM월 dd일");
+    @SuppressLint("SimpleDateFormat")
     private SimpleDateFormat simpleDateFormat2 = new SimpleDateFormat("a hh:mm"); //오전 오후
 
     private UserModel destinationUserModel;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListener;
+
+    private boolean canSend;//버튼 메세지 파트
+    private String get_room_key; //팀 협업 쪽 가기 위한
+
+    RetrofitService service;
 
     int peopleCount = 0;
 
@@ -71,7 +90,7 @@ public class MessageActivity extends AppCompatActivity {
         send_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(editText.getText().toString() != "") sendMessage();
+                if(!editText.getText().toString().equals("")) sendMessage();
             }
         });
 
@@ -79,7 +98,9 @@ public class MessageActivity extends AppCompatActivity {
         iv_invite_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                //TODO:서버쪽에서 팀모 작성한 목록 불러와서 여기다 뿌려
+                if(!userid.equals(destinatonUserid)) //방장만 보낼 수 있음
+                    sendBtnMessage();
             }
         });
 
@@ -89,11 +110,14 @@ public class MessageActivity extends AppCompatActivity {
     void init(){
         //intent로 넘어온 상대 uid
         destinatonUserid = getIntent().getStringExtra("destinationUserid"); // 채팅을 당하는 아이디
-//        userid = SEVER_USERID_LOGGED_IN;//서버에 로그인된 내 userid ,string 임
+        userid = SEVER_USERID_LOGGED_IN;//서버에 로그인된 내 userid ,string 임
         editText = (EditText) findViewById(R.id.et_message);
         recyclerView = (RecyclerView) findViewById(R.id.rv_message);
         send_btn = (ImageButton)findViewById(R.id.ib_send_message); // 일반 텍스트 보내는 메세지지 버튼
         iv_invite_user = (ImageView)findViewById(R.id.iv_invite_message); // 팀협업 메세지 보내는 이미지
+        service = RetrofitClient.getClient().create(RetrofitService.class);
+        //     Toast.makeText(getApplicationContext(),"" , Toast.LENGTH_SHORT).show();
+
 
     }
 
@@ -147,6 +171,85 @@ public class MessageActivity extends AppCompatActivity {
                         }
                     });
         }
+
+    }
+
+    void sendBtnMessage(){
+        if(chatRoomUid == null) { //채팅방이 안만들어져있다면
+            Toast.makeText(MessageActivity.this, "일반 텍스트 먼저 보내 대화를 시작하세요.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        canSend = false;//팀모 목록 없으면 못보내니까
+        get_room_key = null;
+
+        List<String> timmo_list = new ArrayList<>(); //팀모
+        List<String>room_list = new ArrayList<>();
+
+        //메인 스레드 쪽에서만 ui 작업 가능하데 조심
+        Call<TimmoListResponse> call = service.userTimmoList(USER_TOKEN); //, "application/json"
+        call.enqueue(new Callback<TimmoListResponse>() {
+            @Override
+            public void onResponse(Call<TimmoListResponse> call, Response<TimmoListResponse> response) {
+                Toast.makeText(MessageActivity.this, response.body().getMessage(), Toast.LENGTH_SHORT).show();
+                if(response.isSuccessful()){
+                    TimmoListResponse result = response.body();
+
+                    Toast.makeText(MessageActivity.this, " 팀모글 사이즈 ", result.getData().size()).show();
+
+                    canSend=true;//팀모 작성한 것이 있으면
+                    for(Data item : result.getData() ){
+                        timmo_list.add(item.getTitle());
+                        room_list.add(item.getRoom());
+                    }
+
+                    AlertDialog alertDialog =  new AlertDialog.Builder(MessageActivity.this).setTitle("초대할 팀 프로젝트")
+                            .setSingleChoiceItems( timmo_list.toArray(new String[timmo_list.size()]), -1, new DialogInterface.OnClickListener() {
+                                @Override public void onClick(DialogInterface dialog, int which) {
+                                    get_room_key = room_list.get(which);
+                                }
+                            })
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    if(get_room_key != null){
+                                        ChatModel.Comment comment = new ChatModel.Comment();
+                                        comment.userid = userid;
+                                        comment.isBtn = true; //버튼임
+
+                                        //TODO:이 해당 메세지 클릭 시 발생할 이벤트 처리도
+                                        //이때 어떤 모집글의 채팅방인지 띄워주기 할 예정
+                                        comment.chatroomkey = get_room_key;
+                                        comment.message = editText.getText().toString();
+                                        comment.timestamp = ServerValue.TIMESTAMP;
+                                        comment.message = "팀 협업 메신저로 초대되었습니다. \n 수락하신다면 아래 초대장 받기를 눌러주세요.";
+
+                                        FirebaseDatabase.getInstance().getReference().child("chatrooms")
+                                                .child(get_room_key)
+                                                .child("comments").push().setValue(comment);
+                                    }
+                                    else{
+                                        Toast.makeText(MessageActivity.this, "팀빌딩 채팅방의 키가 없습니다.", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            }).setNegativeButton("CANCEL",null).show();
+
+
+                }
+                else if(response.body().getStatus() == 400){
+                    Toast.makeText(MessageActivity.this, "작성한 팀모글이 없습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TimmoListResponse> call, Throwable t) {
+                Toast.makeText(MessageActivity.this, "목록 조회 실패", Toast.LENGTH_SHORT).show();
+                Log.e("목록 조회 에러 발생", t.getMessage());
+                t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
+                //showProgress(false);
+
+            }
+        });
 
     }
 
@@ -258,7 +361,7 @@ public class MessageActivity extends AppCompatActivity {
 
             if(comments.get(position).isBtn){ // 버튼 이라면
 
-                if(comments.get(position).userid != destinatonUserid){ //내가 보낸거면 버튼 기능 안넣음
+                if(!comments.get(position).userid.equals(destinatonUserid)){ //내가 보낸거면 버튼 기능 안넣음
                     messageViewHolder.tv_main_message.setText(userModel.userName + "님을 팀협업 채팅방으로 초대했습니다.");
                     messageViewHolder.tv_sub_message.setText("");
                 }

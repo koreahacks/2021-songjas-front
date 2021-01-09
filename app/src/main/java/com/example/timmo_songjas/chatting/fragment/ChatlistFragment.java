@@ -13,9 +13,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.timmo_songjas.R;
 import com.google.android.material.tabs.TabLayout;
 
-
+//이건 채팅방 리스트하는 페이지 전체 탭바 있는
 public class ChatlistFragment extends Fragment {
-
 
     private TabLayout tabLayout;
     private View view;
