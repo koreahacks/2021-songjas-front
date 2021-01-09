@@ -18,5 +18,12 @@
         <item name="searchIcon">@drawable/ic_search_24_dp</item>
         <item name="closeIcon">@drawable/ic_arrow_left_24_dp</item>
     </style>
+    <style name="Theme.TIMMO_SONGJAS.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.TIMMO_SONGJAS.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.TIMMO_SONGJAS.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>

@@ -12,6 +12,11 @@
         android:theme="@style/Theme.TIMMO_SONGJAS"
         android:allowBackup="false"
         tools:ignore="AllowBackup">
+        <activity
+            android:name=".feature.project.ProjectDetailActivity"
+            android:label="@string/title_activity_project_detail"
+            android:theme="@style/Theme.TIMMO_SONGJAS.NoActionBar"></activity>
+
         <activity android:name=".chatting.MessageActivity"  android:windowSoftInputMode="adjustResize" />
         <activity android:name=".feature.sign.SignUpActivity2" />
         <activity android:name=".feature.sign.SignUpActivity1" />
@@ -28,11 +33,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
     </application>
 
