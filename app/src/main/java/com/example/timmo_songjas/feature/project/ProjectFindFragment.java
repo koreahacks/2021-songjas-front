@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,11 +22,26 @@ import android.widget.Toast;
 
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.TimmoFilterResponse;
+import com.example.timmo_songjas.feature.FilterActivity;
+import com.example.timmo_songjas.feature.sign.SignInActivity;
+import com.example.timmo_songjas.network.RetrofitService;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProjectFindFragment extends Fragment {
 
+    RetrofitService service;
+    private Map<String,String> s_q ;
+    private Map<String,Boolean> b_q;
 
     public ArrayList<ProjectFindItem> list = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -32,6 +49,8 @@ public class ProjectFindFragment extends Fragment {
 
     private ImageView filter_btn;
     private ImageView subtitle_projectfind;
+
+    private  String title;
 
     private void initDataset() {
         list.clear();
@@ -71,6 +90,7 @@ public class ProjectFindFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
                 Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
+                title =query;
                 //TODO: 네트워킹 필요
                 return true;
             }
@@ -94,12 +114,49 @@ public class ProjectFindFragment extends Fragment {
         filter_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(getActivity(), FilterActivity.class);
-                //startActivityForResult(intent, 1004);
+                Intent intent = new Intent(getActivity(), FilterActivity.class);
+                intent.putExtra("search_title",title);
+                startActivityForResult(intent, 1004);
             }
         });
         // Inflate the layout for this fragment
         return view;
     }
 
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode == 1004){
+            //필터 정보 넘어옴
+           s_q =  (Map<String, String>) data.getSerializableExtra("s_q");
+           b_q =  (Map<String, Boolean>) data.getSerializableExtra("b_q");
+
+           service.timmoFilter(USER_TOKEN , s_q , b_q).enqueue(new Callback<TimmoFilterResponse>() {
+               @Override
+               public void onResponse(Call<TimmoFilterResponse> call, Response<TimmoFilterResponse> response) {
+                   TimmoFilterResponse result = response.body();
+                   if(response.isSuccessful()){
+
+                       Log.d("필터1 : ", result.getMessage().toString());
+
+                   }
+                   else {
+
+                       Log.d("필터1 : ", String.valueOf(response.errorBody()));
+                   }
+               }
+               @Override
+               public void onFailure(Call<TimmoFilterResponse> call, Throwable t) {
+                   Log.e("필터3 에러 발생", t.getMessage().toString());
+
+
+               }
+           });
+
+
+
+        }
+
+    }
 }

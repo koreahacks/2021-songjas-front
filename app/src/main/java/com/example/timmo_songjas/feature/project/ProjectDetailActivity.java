@@ -96,7 +96,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
         //TODO: ProjectFind에서 선택한 모집글의 아이디를 전달받음
         Intent intent = getIntent();
         project_id = intent.getIntExtra("project_id", 1);
-
+        Log.e("idddddddddddddddddddd", Integer.toString(project_id));
         //data
         init();
 
