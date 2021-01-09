@@ -17,5 +17,5 @@ public class CommonValues {
     public static final int PROADD_2TO3 = 202;
     public static final int PARTY_TO_PROADD = 203;
     public static final int PROFADD_IMAGE = 204;
-
+    public static final int PROFILADD_IMAGE = 205;
 }

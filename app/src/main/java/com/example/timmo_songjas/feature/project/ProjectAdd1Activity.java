@@ -47,6 +47,7 @@ import retrofit2.Response;
 import static com.example.timmo_songjas.feature.utils.CommonValues.PROADD_IMAGE;
 import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
+
 public class ProjectAdd1Activity extends AppCompatActivity {
 
     Spinner spType;

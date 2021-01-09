@@ -6,6 +6,8 @@ import com.example.timmo_songjas.data.MemberDetailResponse;
 import com.example.timmo_songjas.data.MessageTimgleData;
 import com.example.timmo_songjas.data.MessageTimgleResponse;
 import com.example.timmo_songjas.data.PartyFindResponse;
+import com.example.timmo_songjas.data.ProfileImageResponse;
+import com.example.timmo_songjas.data.ProjectAdd1Response;
 import com.example.timmo_songjas.data.ProjectDetailApplyData;
 import com.example.timmo_songjas.data.ProjectDetailApplyResponse;
 import com.example.timmo_songjas.data.ProjectDetailChoiceTimgleResponse;
@@ -20,13 +22,16 @@ import com.example.timmo_songjas.data.SignupResponse;
 import com.example.timmo_songjas.data.TimgleListResponse;
 import com.example.timmo_songjas.data.TimmoListResponse;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Multipart;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface RetrofitService {
@@ -78,5 +83,16 @@ public interface RetrofitService {
     @PATCH("/users")
     Call<ProfileEditInputResponse> profileEdit(@Header("Authorization") String token, @Body ProfileEditInputData data);
 
+    //projectAdd 이미지 전송
+    @Multipart
+    @POST("/projects/images")
+    Call<ProjectAdd1Response> projectImage(@Header("Authorization") String token,
+                                           @Part MultipartBody.Part body);
+
+    //프로필 이미지 등록
+    @Multipart
+    @POST("/users/images")
+    Call<ProfileImageResponse> profileImage(@Header("Authorization") String token,
+                                            @Part MultipartBody.Part body);
 
 }
