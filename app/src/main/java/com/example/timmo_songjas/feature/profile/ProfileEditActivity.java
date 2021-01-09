@@ -4,13 +4,21 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,16 +33,22 @@ import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.data.ProfileEditInputData;
 import com.example.timmo_songjas.data.ProfileEditInputResponse;
 import com.example.timmo_songjas.data.ProfileEditResponse;
+import com.example.timmo_songjas.data.ProfileImageResponse;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
 
+import java.io.File;
 import java.io.InputStream;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.example.timmo_songjas.feature.utils.CommonValues.PROFADD_IMAGE;
+import static com.example.timmo_songjas.feature.utils.CommonValues.PROFILADD_IMAGE;
 import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProfileEditActivity extends AppCompatActivity {
@@ -71,6 +85,73 @@ public class ProfileEditActivity extends AppCompatActivity {
     RetrofitService service2;
 
     Bitmap img;
+    Uri imageUri;
+    String imagePath;
+    String[] REQUIRED_PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE};
+
+    //이미지 파일 열기
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PROFILADD_IMAGE) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                try {
+                    // 선택한 이미지에서 비트맵 생성
+                    InputStream in = getContentResolver().openInputStream(data.getData());
+                    img = BitmapFactory.decodeStream(in);
+                    imageUri = data.getData();
+                    in.close();
+
+                    // 이미지 표시
+                    ivProfile.setImageBitmap(img);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            imagePath = getPathEugene(getApplicationContext(), imageUri);
+            Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_LONG).show();
+            Log.d("이미지 경로", imagePath);
+            Log.d("이미지 경로", data.getData().toString());
+            sendImage();
+        }
+    }
+
+    final int REQUESTCODE2 = 151;
+
+    private void requestPermission(){
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+        if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+            // if(ActivityCompat.)
+            ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUESTCODE2);
+        }
+
+    }
+
+    //new 절대경로
+    public String getPathEugene(Context context, Uri uri){
+        String filename = "unknown";
+        Uri filePathUri = uri;
+
+        if(uri.getScheme().toString().compareTo("content") == 0){
+            Cursor cursor = context.getContentResolver().query(uri,null,null,null,null);
+            if(cursor.moveToFirst()){
+                int columnIndex  = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                filePathUri = Uri.parse(cursor.getString(columnIndex));
+                filename = filePathUri.getLastPathSegment().toString();
+            }
+            cursor.close();
+        }
+        else if(uri.getScheme().compareTo("file") == 0){
+            filename = filePathUri.getLastPathSegment().toString();
+        }
+        else{
+            filename = filename + "_" + filePathUri.getLastPathSegment();
+        }
+        //return filename;
+        return filePathUri.getPath().toString();
+    }
 
 
 
@@ -98,8 +179,8 @@ public class ProfileEditActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.setType("image/*");
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(intent, PROFADD_IMAGE);
+                intent.setAction(Intent.ACTION_PICK);
+                startActivityForResult(intent, PROFILADD_IMAGE);
             }
         });
         //이메일
@@ -304,7 +385,14 @@ public class ProfileEditActivity extends AppCompatActivity {
                 Log.d("값: ",  String.valueOf(night)+String.valueOf(chall));
 
 
+
+                //이미지 제외 나머지 데이터 전송
+                ProfileEditInputData data = new ProfileEditInputData(
+                        state, county, univ, major, grade, null,
+                        moring, night, dawn, plan, focus, leader, follow, chall, real);
+                sendData(data);
                 //TODO: 이미지 전송
+
                 finish();
 
             }
@@ -405,28 +493,52 @@ public class ProfileEditActivity extends AppCompatActivity {
     }
 
     //TODO: 프로필 이미지 수정 보내기
+    //이미지 전송하기
+    private void sendImage(){
+        //retrofilt2 연결
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        File file = new File(imagePath);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);//"image/*""multipart/form-data"
+        //MultipartBody.Part body = MultipartBody.Part.create(requestFile);
+        //MultipartBody.Part body = MultipartBody.Part.createFormData("img", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("img", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
 
 
-    //이미지 파일 열기
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == PROFADD_IMAGE) {
-            // Make sure the request was successful
-            if (resultCode == RESULT_OK) {
-                try {
-                    // 선택한 이미지에서 비트맵 생성
-                    InputStream in = getContentResolver().openInputStream(data.getData());
-                    img = BitmapFactory.decodeStream(in);
-                    in.close();
-                    // 이미지 표시
-                    Glide.with(this).load(img).circleCrop().into(ivProfile);
-                } catch (Exception e) {
-                    e.printStackTrace();
+        Call<ProfileImageResponse> call = service1.profileImage(USER_TOKEN,  body);
+        call.enqueue(new Callback<ProfileImageResponse>() {
+            @Override
+            public void onResponse(Call<ProfileImageResponse> call, Response<ProfileImageResponse> response) {
+                if (response != null && response.isSuccessful()) {
+                    //메인 스레드에서 작업하는 부분 UI 작업 가능
+                    ProfileImageResponse result = response.body();
+                    if (result.getStatus() == 201) {
+                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        Log.d("plz complete", response.body().getData().getImg());
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
+                        Log.d("error code", response.headers().toString());
+                    }
+                }
+                else if(response == null){
+                    Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
+                    Log.d("사진 없음",  response.headers().toString());
+                }
+                else {
+                    Log.d("연결 실패",  response.headers().toString());
+                    Log.d("연결 실패",  response.toString());
                 }
             }
-        }
+
+            @Override
+            public void onFailure(Call<ProfileImageResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
+
+
 
     //툴바
     @Override
