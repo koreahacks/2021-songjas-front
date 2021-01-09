@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.chatting.chat.MessageActivity;
 import com.example.timmo_songjas.data.ProjectDetailApplyData;
 import com.example.timmo_songjas.data.ProjectDetailApplyResponse;
 import com.example.timmo_songjas.data.ProjectDetailChoiceTimgleResponse;
@@ -275,11 +276,9 @@ public class ProjectDetailActivity extends AppCompatActivity {
                             btn_chat.setOnClickListener(new View.OnClickListener(){
                                 @Override
                                 public void onClick(View v){
-   /*                                 //TODO: 작성자에게 메시지 보내기 "현진"
                                     Intent intent1 = new Intent(ProjectDetailActivity.this , MessageActivity.class);
-                                    //TODO:String으로 바꿔서 ID 보내기!!
                                     intent1.putExtra("destinationUserid",  Integer.toString(result.getProjects().getUserId() ) );
-                                    startActivity(intent1);*/
+                                    startActivity(intent1);
                                 }
                             });
                         }

@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.chatting.chat.MessageActivity;
 import com.example.timmo_songjas.data.MemberDetailResponse;
 import com.example.timmo_songjas.feature.TeamTypeAdapter;
 import com.example.timmo_songjas.feature.TeamTypeItem;
@@ -64,6 +65,7 @@ public class MemberDetailActivity extends AppCompatActivity {
 
 
     private int member_id;
+    private int message_need_id =-1;
 
     //레트로핏
     RetrofitService service;
@@ -89,7 +91,8 @@ public class MemberDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //메시지 보내기 버튼
-//                sendMessage();
+                if(message_need_id != -1)
+                    sendMessage();
 
             }
         });
@@ -141,6 +144,9 @@ public class MemberDetailActivity extends AppCompatActivity {
                     MemberDetailResponse result = response.body();
                     if (result.getStatus() == 200) {
                         Toast.makeText(getApplicationContext(), "팀모 조회 성공", Toast.LENGTH_SHORT).show();
+
+                        //메세지
+                        message_need_id = result.getUsers().getId();
 
 
                         if (result.getUsers().getImg() != null) {
@@ -221,10 +227,10 @@ public class MemberDetailActivity extends AppCompatActivity {
         });
     }
     public void sendMessage(){
-//        Intent intent1 = new Intent(MemberDetailActivity.this ,MessageActivity.class);
-//        //TODO:String으로 바꿔서 ID 보내기!!
-//        intent1.putExtra("destinationUserid",member_id);
-//        startActivity(intent1);
+        Intent intent1 = new Intent(MemberDetailActivity.this , MessageActivity.class);
+        //TODO:String으로 바꿔서 ID 보내기!!
+        intent1.putExtra("destinationUserid",Integer.toString(message_need_id)  );
+        startActivity(intent1);
     }
 
     @Override
