@@ -11,7 +11,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TIMMO_SONGJAS"
         tools:ignore="AllowBackup">
-        <activity android:name=".feature.PartyFindActivity" />
+        <activity android:name=".feature.PartyFindActivity">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
         <activity android:name=".feature.FilterActivity" />
         <activity android:name=".feature.member.MemberDetailActivity" />
         <activity
