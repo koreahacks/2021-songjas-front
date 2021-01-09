@@ -311,19 +311,19 @@ public class ProjectAdd1Activity extends AppCompatActivity {
                     //메인 스레드에서 작업하는 부분 UI 작업 가능
                     ProjectAdd1Response result = response.body();
                     if (result.getStatus() == 201) {
-                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
                         Log.d("plz complete", response.body().getData().getImg());
                         image = response.body().getData().getImg();
                     }
                     else{
                         image = null;
-                        Toast.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
                         Log.d("error code", response.headers().toString());
                     }
                 }
                 else if(response == null){
                     image = null;
-                    Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
                     Log.d("사진 없음",  response.headers().toString());
                 }
                 else {
@@ -336,7 +336,7 @@ public class ProjectAdd1Activity extends AppCompatActivity {
             @Override
             public void onFailure(Call<ProjectAdd1Response> call, Throwable t) {
                 image = null;
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
 

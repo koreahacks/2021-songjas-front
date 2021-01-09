@@ -111,7 +111,7 @@ public class ProfileEditActivity extends AppCompatActivity {
                 }
             }
             imagePath = getPathEugene(getApplicationContext(), imageUri);
-            Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_LONG).show();
+            //Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_LONG).show();
             Log.d("이미지 경로", imagePath);
             Log.d("이미지 경로", data.getData().toString());
             sendImage();
@@ -414,7 +414,7 @@ public class ProfileEditActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ProfileEditResponse result = response.body();
                     if (result.getStatus() == 200) {
-                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
                         if(result.getData().getImg() != null && !result.getData().getImg().equals("")){
                             Glide.with(getApplicationContext()).load(result.getData().getImg()).circleCrop().into(ivProfile);
                         }
@@ -437,13 +437,13 @@ public class ProfileEditActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ProfileEditResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -478,18 +478,18 @@ public class ProfileEditActivity extends AppCompatActivity {
                     //메인 스레드에서 작업하는 부분 UI 작업 가능
                     ProfileEditInputResponse result = response.body();
                     if (result.getStatus() == 201) {
-                        Toast.makeText(getApplicationContext(), String.valueOf(result.getStatus()), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), String.valueOf(result.getStatus()), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
                     Log.d("오류 출력", response.message());
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<ProfileEditInputResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -514,16 +514,16 @@ public class ProfileEditActivity extends AppCompatActivity {
                     //메인 스레드에서 작업하는 부분 UI 작업 가능
                     ProfileImageResponse result = response.body();
                     if (result.getStatus() == 201) {
-                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
                         Log.d("plz complete", response.body().getData().getImg());
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
+                        //Tost.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
                         Log.d("error code", response.headers().toString());
                     }
                 }
                 else if(response == null){
-                    Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
                     Log.d("사진 없음",  response.headers().toString());
                 }
                 else {
@@ -534,7 +534,7 @@ public class ProfileEditActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProfileImageResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
 

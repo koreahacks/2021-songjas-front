@@ -336,13 +336,13 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         else univType=false;
 
 
-                                            Toast.makeText(getApplicationContext(), "3 트라이", Toast.LENGTH_LONG);
+                                            //Toast.makeText(getApplicationContext(), "3 트라이", Toast.LENGTH_LONG);
 
 
                                             List<ProjectMembers> pmList = new ArrayList<>();
                                             pmList.add(new ProjectMembers(myId, timgle));
                                             for(int i =0; i < memberList.size(); i++){
-                                                Toast.makeText(getApplicationContext(), "4", Toast.LENGTH_LONG);
+                                                //Toast.makeText(getApplicationContext(), "4", Toast.LENGTH_LONG);
 
                                                 pmList.add(new ProjectMembers(memberList.get(i), null));
                                             }
@@ -374,14 +374,14 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                             //TODO: 데이터 서버로 전송
                                             //TODO: 서버에 보낼 데이터 중 roomkey도 있음, 채팅방 ,룸키 값 받아왔으니 보내주기만하면됨
 
-                                            Toast.makeText(getApplicationContext(), "3 인텐", Toast.LENGTH_LONG);
+                                            //Toast.makeText(getApplicationContext(), "3 인텐", Toast.LENGTH_LONG);
 
 
 //                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
 //                                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                                             startActivity(intent);
 
-                                            Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 입력해주세요.", Toast.LENGTH_LONG);
+                                            //Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 입력해주세요.", Toast.LENGTH_LONG);
 
                                     }
                                     @Override

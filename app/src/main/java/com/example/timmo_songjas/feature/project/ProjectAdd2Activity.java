@@ -325,7 +325,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProjectAdd3Activity.class);
                 try {
-                    Toast.makeText(getApplicationContext(), timgleString, Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), timgleString, Toast.LENGTH_LONG).show();
                     //add1에서 받아온 데이터
                     intent.putExtra("image", image);
                     intent.putExtra("title", title);
@@ -355,7 +355,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
 
                     startActivity(intent);
                 }catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "모든 항목을 정확히 입력해주세요.", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "모든 항목을 정확히 입력해주세요.", Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -384,14 +384,14 @@ public class ProjectAdd2Activity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                     Log.d("연결: ", "연결 실패");
                 }
             }
 
             @Override
             public void onFailure(Call<TimgleListResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
                 Log.d("연결: ", "완전 실패");
             }
         });

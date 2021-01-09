@@ -122,7 +122,7 @@ public class ProjectFindFragment extends Fragment {
                 if(response.isSuccessful()){
                     ProjectFindResponse result = response.body();
                     if (result.getStatus() == 200) {
-                        Toast.makeText(getActivity(), "팀모 목록 조회 성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "팀모 목록 조회 성공", Toast.LENGTH_SHORT).show();
                         List<ProjectFindResponse.Datum> project_list = result.getData();
 
                         list.clear();
@@ -162,7 +162,7 @@ public class ProjectFindFragment extends Fragment {
             }
             @Override
             public void onFailure(Call<ProjectFindResponse> call, Throwable t) {
-                Toast.makeText(getActivity(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -181,7 +181,7 @@ public class ProjectFindFragment extends Fragment {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
-                Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
                 //TODO: 검색 네트워킹
                 title = query;
                 //TODO: 네트워킹 필요

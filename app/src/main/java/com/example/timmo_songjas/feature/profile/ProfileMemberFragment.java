@@ -114,7 +114,7 @@ public class ProfileMemberFragment extends Fragment {
                             //profileMemberAdapter.addItem(new ProfileMemberItem(state, title, type, field, positon));
                             memeberList.add(new ProfileMemberItem(state, title, type, field, positon));
                         }
-                        Toast.makeText(context, String.valueOf(memeberList.size()), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(context, String.valueOf(memeberList.size()), Toast.LENGTH_LONG).show();
                     }
                     else {
                         Log.d("각종 오류: ", result.getMessage());

@@ -186,7 +186,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     ProjectDetailResponse result = response.body();
                     if (result.getStatus() == 200) {
-                        Toast.makeText(getApplicationContext(), "팀모 조회 성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "팀모 조회 성공", Toast.LENGTH_SHORT).show();
 
                         //TODO: 자대, D-day는 귀찮으니까 전달 받으면 안되나여?
 
@@ -291,12 +291,12 @@ public class ProjectDetailActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
             public void onFailure(Call<ProjectDetailResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -312,7 +312,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ProjectDetailChoiceTimgleResponse result2 = response.body();
                     if (result2.getStatus() == 200) {
-                        Toast.makeText(getApplicationContext(), "지원 조회 성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "지원 조회 성공", Toast.LENGTH_SHORT).show();
 
                         List<ProjectDetailChoiceTimgleResponse.Datum> apply_timgles = result2.getData();
 
@@ -346,7 +346,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProjectDetailChoiceTimgleResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -380,7 +380,7 @@ public class ProjectDetailActivity extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<ProjectDetailApplyResponse> call, Throwable t) {
-                Toast.makeText(ProjectDetailActivity.this, "팀글3 ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(ProjectDetailActivity.this, "팀글3 ", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
             }

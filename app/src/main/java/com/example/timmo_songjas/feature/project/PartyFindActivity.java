@@ -74,7 +74,7 @@ public class PartyFindActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
-                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
                 load(query);
                 return true;
             }
@@ -104,7 +104,7 @@ public class PartyFindActivity extends AppCompatActivity {
                     PartyFindResponse result = response.body();
                     if(result.getStatus() == 200) {
                         if(result.getData()!= null){
-                            Toast.makeText(getApplicationContext(), "검색결과 있음 ", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "검색결과 있음 ", Toast.LENGTH_SHORT).show();
                             result_partyfind_true.setVisibility(View.VISIBLE);
                             result_partyfind_false.setVisibility(View.GONE);
                             if(result.getData().getImg() != null){
@@ -137,13 +137,13 @@ public class PartyFindActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<PartyFindResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Tost.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
     }
