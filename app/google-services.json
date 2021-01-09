@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "689730589810",
+    "project_id": "timmo-e5d2d",
+    "storage_bucket": "timmo-e5d2d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:689730589810:android:7055d932617185af685eeb",
+        "android_client_info": {
+          "package_name": "com.example.timmo_songjas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "689730589810-5a9blk7p4tpckjhmhdii965vkf8id5mn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.timmo_songjas",
+            "certificate_hash": "0f2b7159a14f93422c679c2a87c2076f32b299f2"
+          }
+        },
+        {
+          "client_id": "689730589810-8ukuq45l23nur0d8tbnha3vgr5dei2tv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqXiBLEaoFxNDSt9au3GXhmrCqwFmT85o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "689730589810-8ukuq45l23nur0d8tbnha3vgr5dei2tv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
