@@ -18,11 +18,24 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.MemberActivities;
+import com.example.timmo_songjas.data.MemberAddData;
+import com.example.timmo_songjas.data.MemberAddResponse;
+import com.example.timmo_songjas.data.MemberPositions;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class MemberAddActivity extends AppCompatActivity {
 
@@ -37,6 +50,8 @@ public class MemberAddActivity extends AppCompatActivity {
     ArrayList<String> date = new ArrayList<>();
     ArrayList<String> content = new ArrayList<>();
     int btnCount;
+
+    RetrofitService service1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -255,9 +270,12 @@ public class MemberAddActivity extends AppCompatActivity {
                 //typeString(유형)
                 //fieldString(분야)
                 //positioinStr(희망포지션)
+                List<MemberPositions> posision = new ArrayList<>();
+                posision.add(new MemberPositions(positioinStr));
                 String introduction = etIntro.getText().toString();
                 //date(ArrayList, String type)하단에 구현
                 //content(ArrayList, String type)하단에 구현
+                List<MemberActivities> memberActivities = new ArrayList<>();
                 date.add(etTerm.getText().toString());
                 content.add(etContent.getText().toString());
                 for(int i = 0; i <btnCount; i++){
@@ -268,11 +286,22 @@ public class MemberAddActivity extends AppCompatActivity {
                     EditText tmpContent = (EditText)findViewById(contentID);
                     content.add(tmpContent.getText().toString());
                 }
-
+                for(int i = 0; i < date.size(); i++){
+                    MemberActivities tmp = new MemberActivities();
+                    tmp.setDate(date.get(i));
+                    tmp.setContent(content.get(i));
+                    memberActivities.add(tmp);
+                }
                 String port = etPort.getText().toString();
                 //String openRadio = rbOpen.getText().toString();//true 값으로 전달
                 boolean open = (rbOpen.getText().toString().equals("공개")? true: false);
                 try {
+                    //TODO: 서버로 데이터 전송
+                    MemberAddData data = new MemberAddData(
+                            title, typeString, fieldString,  introduction,
+                            port, open, posision , memberActivities
+                    );
+                    send(data);
                     finish();
                 }catch (Exception e){
                     //Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 채워주세요.", Toast.LENGTH_LONG).show();
@@ -280,6 +309,33 @@ public class MemberAddActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //데이터 전송하기
+    private void send(MemberAddData data){
+        //retrofilt2 연결
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<MemberAddResponse> call = service1.memberAdd(USER_TOKEN, data);
+        call.enqueue(new Callback<MemberAddResponse>() {
+            @Override
+            public void onResponse(Call<MemberAddResponse> call, Response<MemberAddResponse> response) {
+                if (response.isSuccessful()) {
+                    MemberAddResponse result = response.body();
+                    if (result.getStatus() == 201) {
+                        Toast.makeText(getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MemberAddResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     //툴바

@@ -2,6 +2,8 @@ package com.example.timmo_songjas.network;
 
 import com.example.timmo_songjas.data.EmailAuthData;
 import com.example.timmo_songjas.data.EmailAuthResponse;
+import com.example.timmo_songjas.data.MemberAddData;
+import com.example.timmo_songjas.data.MemberAddResponse;
 import com.example.timmo_songjas.data.MemberDetailResponse;
 import com.example.timmo_songjas.data.MessageTimgleData;
 import com.example.timmo_songjas.data.MessageTimgleResponse;
@@ -99,5 +101,10 @@ public interface RetrofitService {
     //프로필 확인(마이 페이지)
     @GET("/users/mypage")
     Call<ProfileResponse> mainProfile(@Header("Authorization") String token);
+
+    //팀글(이력서) 생성
+    @POST("/members")
+    Call<MemberAddResponse> memberAdd(@Header("Authorization") String token, @Body MemberAddData data);
+
 
 }
