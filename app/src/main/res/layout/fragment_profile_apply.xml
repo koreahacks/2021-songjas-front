@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.profile.ProfileApplyFragment">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_profileapply"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_grey"/>
+    <TextView
+        android:id="@+id/tv_empty_profileapply"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/text_grey"
+        android:textSize="14sp"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:visibility="gone"/>
+
+</FrameLayout>

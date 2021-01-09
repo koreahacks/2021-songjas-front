@@ -1,4 +1,4 @@
-package com.example.timmo_songjas.profile;
+package com.example.timmo_songjas.feature.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 

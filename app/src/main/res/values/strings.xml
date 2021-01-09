@@ -89,5 +89,6 @@
     <string name="same_univ">자대</string>
     <string name="profile_edit">프로필 수정</string>
     <string name="logout">로그아웃</string>
+    <string name="apply">지원</string>
 
 </resources>
