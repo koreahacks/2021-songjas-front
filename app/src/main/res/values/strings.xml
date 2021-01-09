@@ -54,4 +54,10 @@
     <string name="univ">대학교</string>
 
 
+    <string name="name_tab1_chat">팀빌딩</string>
+    <string name="name_tab2_chat">팀협업</string>
+    <string name="message_input">메세지를 입력해주세요.</string>
+
+
+
 </resources>

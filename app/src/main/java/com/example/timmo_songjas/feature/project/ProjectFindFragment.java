@@ -69,6 +69,7 @@ public class ProjectFindFragment extends Fragment {
 
         //필터 버튼
         filter_btn = (ImageView) toolbar.findViewById(R.id.filter_projectfind);
+
         filter_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
