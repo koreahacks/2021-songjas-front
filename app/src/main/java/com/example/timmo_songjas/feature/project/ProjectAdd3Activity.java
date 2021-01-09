@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -342,6 +343,8 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                                 ppList.add(new ProjectPositions(positioinStr.get(i), Integer.parseInt(positionNumInt.get(i))));
                                             }
 
+                                            Log.d("데이터 확인 ", image + title+ type+feild+startDate+endDate+content+port);
+                                            Log.d("데이터 확인 2: ", state+county);
                                             ProjectAddData data = new ProjectAddData(
                                                     image, roomkey, title, type, feild, startDate, endDate,
                                                     content, port, morning, night, dawn, plan, focus, leader,
