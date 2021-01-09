@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!--    나중에 이거 자체가 프레그먼트로 메인의 프레그먼트에 넣어짐-->
+    <!--프레그먼트로 해서 프레그먼트에 채팅 리스트 뿌려주면 된다-->
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_chatlist"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        tools:ignore="MissingConstraints"/>
+
+    <!--    https://itnext.io/android-tablayout-and-tabitem-268ac06ba966-->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tl_chat"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintBottom_toTopOf="@id/include"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_chatlist"
+        app:tabContentStart="24dp"
+        app:tabGravity="start"
+        app:tabIndicatorColor="@color/deep_orange"
+        app:tabIndicatorFullWidth="false"
+        app:tabIndicatorHeight="2dp"
+        app:tabMode="fixed"
+        app:tabPaddingBottom="10dp"
+        app:tabPaddingEnd="26dp"
+        app:tabPaddingStart="26dp"
+        app:tabPaddingTop="10dp"
+        app:tabSelectedTextColor="@color/deep_orange"
+        app:tabTextAppearance="@style/tab_Style"
+        >
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="90dp"
+            android:id="@+id/tab1_chat"
+            android:layout_height="match_parent"
+            android:text="@string/name_tab1_chat"
+
+            />
+
+        <com.google.android.material.tabs.TabItem
+            android:layout_width="90dp"
+            android:id="@+id/tab2_chat"
+
+            android:layout_height="match_parent"
+            android:text="@string/name_tab2_chat" />
+
+    </com.google.android.material.tabs.TabLayout>
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/line_gray"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tl_chat" />
+
+    <FrameLayout
+        android:id="@+id/fl_chatlist"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
