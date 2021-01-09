@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
-    private final static String BASE_URL = "http://115.85.183.231:3000";//"할당받은 public dns 작성";
+    private final static String BASE_URL = "http://118.67.133.160:3000";//"할당받은 public dns 작성";
     //baseUrl 반드시 '/'로 마무리 해야함
     private static Retrofit retrofit = null;
     private static OkHttpClient okhttp = null;
@@ -17,7 +17,6 @@ public class RetrofitClient {
     }
 
     public static Retrofit getClient() {
-
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
@@ -26,5 +25,4 @@ public class RetrofitClient {
         }
         return retrofit;
     }
-
 }
