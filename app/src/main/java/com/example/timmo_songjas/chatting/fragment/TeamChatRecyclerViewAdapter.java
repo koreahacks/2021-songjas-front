@@ -70,6 +70,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
 //                if(snapshot.getChildrenCount()>0){ //뭐지 뭐 활용할순있겠다
 //                }
                 chatModels.clear();
+                room_keys.clear();
                 for(DataSnapshot item : snapshot.getChildren()){
                     if(item.getValue(ChatModel.class).isTeamChat) {
                         chatModels.add(item.getValue(ChatModel.class));
