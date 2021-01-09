@@ -42,6 +42,8 @@ public class FilterActivity extends AppCompatActivity {
     int challCount;
     int realCount;
 
+    //    /projects?title=&type=&field=&position=&largeAddress=&smallAddress=&limitUniv=&morning=&night=&dawn=&plan=&cramming=&leader=&follower=&challenge=&realistic=
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

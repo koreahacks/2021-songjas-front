@@ -23,7 +23,10 @@ import com.example.timmo_songjas.data.SigninResponse;
 import com.example.timmo_songjas.data.SignupData;
 import com.example.timmo_songjas.data.SignupResponse;
 import com.example.timmo_songjas.data.TimgleListResponse;
+import com.example.timmo_songjas.data.TimmoFilterResponse;
 import com.example.timmo_songjas.data.TimmoListResponse;
+
+import java.util.Map;
 
 import okhttp3.MultipartBody;
 import retrofit2.Call;
@@ -36,6 +39,7 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
+import retrofit2.http.QueryMap;
 
 public interface RetrofitService {
     @POST("/users/signin")
@@ -105,6 +109,13 @@ public interface RetrofitService {
     //팀글(이력서) 생성
     @POST("/members")
     Call<MemberAddResponse> memberAdd(@Header("Authorization") String token, @Body MemberAddData data);
+
+
+    //팀모 필터
+    @GET("/projects")
+    Call<TimmoFilterResponse> timmoFilter(@Header("Authorization") String token ,
+                                            @QueryMap Map<String,String>s_querys,
+                                            @QueryMap Map<String, Boolean>b_querys);
 
 
 }
