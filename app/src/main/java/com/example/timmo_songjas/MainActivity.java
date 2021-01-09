@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     //연결한 프래그먼트
     private ProjectFindFragment projectFindFragment = new ProjectFindFragment();
     private MemberFindFragment memberFindFragment = new MemberFindFragment();
+    private ProfileFragment profileFragment = new ProfileFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +49,15 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.main_content, memberFindFragment).commitAllowingStateLoss();
                     break;
                 case R.id.profile_menu:
-                    transaction.replace(R.id.main_content, new ProfileFragment()).commitAllowingStateLoss();
+                    transaction.replace(R.id.main_content, profileFragment).commitAllowingStateLoss();
+                    return true;
 
-                    break;
                 case R.id.chat_menu:
                     transaction.replace(R.id.main_content, new ChatlistFragment()).commitAllowingStateLoss();
                     return true;
                 case R.id.people_menu:
                     transaction.replace(R.id.main_content, new PeopleFragment()).commitAllowingStateLoss();
-
+                    return true;
             }
             return true;
         }

@@ -52,6 +52,9 @@ dependencies {
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
 
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
     // Retrofit 라이브러리
     implementation 'com.squareup.retrofit2:retrofit:2.6.4'
@@ -60,5 +63,7 @@ dependencies {
     // Scalars 변환기 라이브러리
     implementation 'com.squareup.retrofit2:converter-scalars:2.6.4'
 
+    //login error
+    implementation 'org.conscrypt:conscrypt-android:2.5.0'
 
 }
