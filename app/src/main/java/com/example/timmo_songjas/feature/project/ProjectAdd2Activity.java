@@ -103,24 +103,20 @@ public class ProjectAdd2Activity extends AppCompatActivity {
         //String[] timgle  = {"나야나", "나를 데리겨", "나는 최고", "팀글을 선택하세요"};
         loadTimgleList();
         spText = (Spinner)findViewById(R.id.sp_text_project);
-        ArrayAdapter<String> textAapter = new ArrayAdapter<String>(this, R.layout.item_spinner, timgleTitle);
-//        {
-//            @Override
-//            public View getView(int position, View convertView, ViewGroup parent) {
-//                View v = super.getView(position, convertView, parent);
-//                return v;
-//            }
-//            @Override
-//            public int getCount() {
-//                return super.getCount(); // you dont display last item. It is used as hint.
-//            }
-//        };
+        ArrayAdapter<String> textAapter = new ArrayAdapter<String>(this, R.layout.item_spinner, timgleTitle){
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View v = super.getView(position, convertView, parent);
+                return v;
+            }
+            @Override
+            public int getCount() {
+                return super.getCount(); // you dont display last item. It is used as hint.
+            }
+        };
         textAapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spText.setAdapter(textAapter);
-//        spText.setSelection(textAapter.getCount());
-
-
-
+        spText.setSelection(textAapter.getCount());
 
         spText.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
