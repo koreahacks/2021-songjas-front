@@ -24,9 +24,10 @@
             android:name=".feature.project.ProjectDetailActivity"
             android:label="@string/title_activity_project_detail"
             android:theme="@style/Theme.TIMMO_SONGJAS.NoActionBar" />
-        <activity
-            android:name=".chatting.chat.MessageActivity"
+
+        <activity android:name=".chatting.chat.MessageActivity"
             android:windowSoftInputMode="adjustResize" />
+
         <activity android:name=".feature.sign.SignUpActivity2" />
         <activity android:name=".feature.sign.SignUpActivity1" />
         <activity android:name=".feature.sign.SignInActivity" />
@@ -35,20 +36,20 @@
         <activity android:name=".feature.project.ProjectAdd3Activity" />
         <activity android:name=".feature.profile.ProfileEditActivity" />
         <activity android:name=".SplashActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".MainActivity">
 
-             <intent-filter>
-             <action android:name="android.intent.action.MAIN" />
+<!--             <intent-filter>-->
+<!--             <action android:name="android.intent.action.MAIN" />-->
 
 
-             <category android:name="android.intent.category.LAUNCHER" />
-             </intent-filter>
+<!--             <category android:name="android.intent.category.LAUNCHER" />-->
+<!--             </intent-filter>-->
         </activity>
     </application>
 

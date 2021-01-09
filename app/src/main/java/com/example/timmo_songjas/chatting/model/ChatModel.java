@@ -23,4 +23,36 @@ public class ChatModel {
         public int projectId; // 프로젝트아이디, 팀원들이 등록할 프로젝트의 아이디
         public Object timestamp;
     }
+
+    public boolean isTeamChat() {
+        return isTeamChat;
+    }
+
+    public void setTeamChat(boolean teamChat) {
+        isTeamChat = teamChat;
+    }
+
+    public Map<String, Boolean> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Map<String, Boolean> users) {
+        this.users = users;
+    }
+
+    public Map<String, Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Map<String, Comment> comments) {
+        this.comments = comments;
+    }
+
+    public String getTeamchatuserid() {
+        return teamchatuserid;
+    }
+
+    public void setTeamchatuserid(String teamchatuserid) {
+        this.teamchatuserid = teamchatuserid;
+    }
 }

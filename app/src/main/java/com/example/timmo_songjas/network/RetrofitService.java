@@ -1,5 +1,7 @@
 package com.example.timmo_songjas.network;
 
+import com.example.timmo_songjas.data.EmailAuthData;
+import com.example.timmo_songjas.data.EmailAuthResponse;
 import com.example.timmo_songjas.data.SigninData;
 import com.example.timmo_songjas.data.SigninResponse;
 import com.example.timmo_songjas.data.SignupData;
@@ -15,6 +17,9 @@ public interface RetrofitService {
 
     @POST("/users/signup")
     Call<SignupResponse> userSignup(@Body SignupData data);
+
+    @POST("/auth/email")
+    Call<EmailAuthResponse> emailAuth(@Body EmailAuthData data);
 
 
 }

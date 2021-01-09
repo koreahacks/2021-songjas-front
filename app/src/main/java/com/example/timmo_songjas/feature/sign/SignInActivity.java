@@ -2,13 +2,13 @@ package com.example.timmo_songjas.feature.sign;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -25,11 +25,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.example.timmo_songjas.feature.utils.CommValues.USER_TOKEN;
-import static com.example.timmo_songjas.feature.utils.CommValues.SERVER_USERID;
-import static com.example.timmo_songjas.feature.utils.CommValues.USER_NAME_LOGGED_IN;
-import static com.example.timmo_songjas.feature.utils.CommValues.SEVER_USERID_LOGGED_IN;
-
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
+import static com.example.timmo_songjas.feature.utils.CommonValues.SERVER_USERID;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_NAME_LOGGED_IN;
+import static com.example.timmo_songjas.feature.utils.CommonValues.SEVER_USERID_LOGGED_IN;
 
 public class SignInActivity extends AppCompatActivity {
     private Button login;
@@ -42,7 +41,6 @@ public class SignInActivity extends AppCompatActivity {
     RetrofitService service;
     SharedPreferences preferences;
     boolean saveSigninData = false;
-
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -63,39 +61,28 @@ public class SignInActivity extends AppCompatActivity {
             et_pw.setText(pw);
         }
 
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startLogin(new SigninData(et_email.getText().toString() , et_pw.getText().toString() ));
-            }
-        });
+        login.setOnClickListener(view -> startLogin(new SigninData(et_email.getText().toString() , et_pw.getText().toString() )));
 
-        signup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(SignInActivity.this, SignUpActivity1.class ));
-            }
-        });
+        signup.setOnClickListener(v -> startActivity(new Intent(SignInActivity.this, SignUpActivity1.class )));
 
     }
 
     private void startLogin(SigninData data){
         //enqueue 로 비동기 통신 실행
         service.userSignin(data).enqueue(new Callback<SigninResponse>(){
-
             @Override
-            public void onResponse(Call<SigninResponse> call, Response<SigninResponse> response) {
+            public void onResponse(@NonNull Call<SigninResponse> call, @NonNull Response<SigninResponse> response) {
                 if(response.isSuccessful()){
-                    //메인 스레드에서 작업하는 부분 UI 작업 가능
+
                     SigninResponse result = response.body();
 
                     Toast.makeText(SignInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-                    Log.d("나와라", response.headers().toString());
+                    Log.d("signin 나와라", response.headers().toString());
 
                     USER_TOKEN = result.getData().getAccessToken();
-                    Log.d("토큰  ", USER_TOKEN );
+                    Log.d("signin 토큰  ", USER_TOKEN );
 
-                    setFirebase(result.getData().getId() );
+                    setForFirebase(result.getData().getId() );
                     saveData();
                     Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                     startActivity(intent);
@@ -108,7 +95,7 @@ public class SignInActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<SigninResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<SigninResponse> call,@NonNull Throwable t) {
                 Toast.makeText(SignInActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
@@ -139,21 +126,18 @@ public class SignInActivity extends AppCompatActivity {
         editor.apply();
     }
 
-    private void setFirebase(int id ){
+    private void setForFirebase(int id ){
         //firebase 파트
         SERVER_USERID = id;
         SEVER_USERID_LOGGED_IN = Integer.toString(SERVER_USERID);
+
         //TODO:프로필 데이터에서 이름 받아와서 name에 설정
         USER_NAME_LOGGED_IN = SEVER_USERID_LOGGED_IN;
 
-
     }
-
 
     //설정값을 불러오는 함수
     private void load() {
-        // SharedPreferences 객체.get타입( 저장된 이름, 기본값 )
-        // 저장된 이름이 존재하지 않을 시 기본값
         saveSigninData = preferences.getBoolean("SAVE_SIGNIN_DATA", false);
         email = preferences.getString("EMAIL", "");
         USER_TOKEN = preferences.getString("ACCESS_TOKEN", "");
