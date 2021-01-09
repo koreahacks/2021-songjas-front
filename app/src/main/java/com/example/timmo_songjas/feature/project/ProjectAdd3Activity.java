@@ -240,6 +240,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                     etPositionNum3.setVisibility(View.VISIBLE);
                 }
                 else{
+                    btnCount=2;
                     Toast.makeText(getApplicationContext(), "희망 포지션과 인원은 최대 3개까지 입력 가능합니다.", Toast.LENGTH_LONG).show();
                 }
             }//버튼 클릭 이벤트 끝
