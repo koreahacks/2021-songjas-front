@@ -1,66 +1,148 @@
 package com.example.timmo_songjas.feature.profile;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.feature.member.MemberAddActivity;
+import com.example.timmo_songjas.feature.project.ProjectAdd1Activity;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class ProfileFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Context context;
+    ProfileApplyFragment applyFragment;
+    ProfileProjectFragment projectFragment;
+    ProfileMemberFragment memberFragment;
+    ImageView plusImage;
+    ImageView profileEdit;
+    FragmentManager manager;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    TextView name;
+    ImageView imageView;
+    TextView appNum;
+    TextView projectNum;
+    TextView memberNum;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance(String param1, String param2) {
-        ProfileFragment fragment = new ProfileFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        context = container.getContext();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
+
+        //툴바영역
+        Toolbar toolbar = (Toolbar) rootView.findViewById(R.id.toolbar_profile); //fragment xml 툴바 영역?
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        //프로필 수정
+        profileEdit = (ImageView) toolbar.findViewById(R.id.profile_edit);
+        profileEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        name = (TextView)rootView.findViewById(R.id.tv_name_profile);
+        imageView = (ImageView) rootView.findViewById(R.id.iv_image_profile);
+        plusImage = (ImageView)rootView.findViewById(R.id.iv_plus_profile);
+        appNum = (TextView)rootView.findViewById(R.id.tv_applynum_profile);
+        projectNum = (TextView)rootView.findViewById(R.id.tv_projectnum_profile);
+        memberNum = (TextView)rootView.findViewById(R.id.tv_membernum_profile);
+
+        //TODO: 서버에서 가져온 이미지 불러오기
+        //이미지 동그랗게 자르기
+        Glide.with(this).load(R.drawable.ic_bg_profie_64_dp).circleCrop().into(imageView);
+
+
+        //fragment
+        applyFragment = new ProfileApplyFragment();
+        projectFragment = new ProfileProjectFragment();
+        memberFragment = new ProfileMemberFragment();
+        getFragmentManager().beginTransaction().add(R.id.fl_profile, applyFragment).commit();
+
+        //TODO: 각 탭에 존재하는 글 개수 받아오기
+
+        TabLayout tab = (TabLayout)rootView.findViewById(R.id.tb_profile);
+        TabItem applyTab = (TabItem)rootView.findViewById(R.id.ti_apply);
+        TabItem projectTab = (TabItem) rootView.findViewById(R.id.ti_project);
+        TabItem memberTab = (TabItem) rootView.findViewById(R.id.ti_member);
+
+        //탭 이동
+        tab.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                int position = tab.getPosition();
+
+                Fragment selected = null;
+                if(position == 1){
+                    selected=projectFragment;
+                    plusImage.setVisibility(View.VISIBLE);
+                    plusImage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), ProjectAdd1Activity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                else if(position == 2){
+                    selected=memberFragment;
+                    plusImage.setVisibility(View.VISIBLE);
+                    plusImage.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getActivity(), MemberAddActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
+                else {
+                    selected=applyFragment;
+                    plusImage.setVisibility(View.INVISIBLE);
+                }
+
+                getFragmentManager().beginTransaction().replace(R.id.fl_profile, selected).commit();
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        return rootView;
     }
+    
+    //TODO: 서버에서 데이터 받아오기
 }
