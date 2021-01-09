@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TIMMO_SONGJAS">
-        <activity android:name=".chatting.MessageActivity"  android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".profile.ProfileEditActivity"></activity>
+        <activity android:name=".feature.project.ProjectAdd3Activity" />
+        <activity android:name=".feature.project.ProjectAdd2Activity" />
+        <activity android:name=".chatting.MessageActivity" />
         <activity android:name=".feature.sign.Signup2Activity" />
         <activity android:name=".feature.sign.Signup1Activity" />
         <activity android:name=".feature.sign.SignInActivity" />
