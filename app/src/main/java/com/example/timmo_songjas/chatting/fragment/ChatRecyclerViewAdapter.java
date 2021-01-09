@@ -35,6 +35,7 @@ import java.util.TreeMap;
 
 import static com.example.timmo_songjas.feature.utils.CommonValues.SEVER_USERID_LOGGED_IN;
 
+//ChatFragment adapter , firebase에서 팀빌딩 (isTeamChat false) 채팅방 리스트
 public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<ChatModel> chatModels; // 리스팅할 채팅방 정보 담기는 곳
@@ -55,7 +56,6 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
 
 
     //팀빌딩 어탭터 생성자
-    @SuppressLint("SimpleDateFormat")
     public ChatRecyclerViewAdapter(Context context) {
         //Server Test
         this.userid = SEVER_USERID_LOGGED_IN;
@@ -79,8 +79,8 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
         FirebaseDatabase.getInstance().getReference().child("chatrooms").orderByChild("users/"+ userid).equalTo(true).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.getChildrenCount()>0){ //뭐지 뭐 활용할순있겠다
-//                }
+                if(snapshot.getChildrenCount()>0){ //뭐지 뭐 활용할순있겠다
+                }
 
                 chatModels.clear();
                 for(DataSnapshot item : snapshot.getChildren()){
@@ -216,6 +216,8 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
                 }
             }
         });
+
+
 
     }
 

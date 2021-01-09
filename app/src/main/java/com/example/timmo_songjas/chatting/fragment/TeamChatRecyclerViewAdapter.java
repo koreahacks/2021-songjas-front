@@ -1,5 +1,6 @@
 package com.example.timmo_songjas.chatting.fragment;
 
+import android.annotation.SuppressLint;
 import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
@@ -49,6 +50,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
 
     //팀협업 어탭터
     //어댑터생성자
+    @SuppressLint("SimpleDateFormat")
     public TeamChatRecyclerViewAdapter(Context context) {
         this.context = context;
         chatModels = new ArrayList<>();
@@ -57,6 +59,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
         destinationUsers = new ArrayList<>();
 
         getTeamChatListDataFromFirebase();
+
     }
 
     public void getTeamChatListDataFromFirebase(){
@@ -93,6 +96,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull TeamChatRecyclerViewAdapter.ViewHolder holder, int position) {
         //아래 커스텀뷰홀더에서 찾은거를 바인딩 시켜해야
@@ -157,6 +161,8 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
                     intent.putExtra("destinationUid",destinationUsers.get(position));
                 }
 
+                //애니메이션 추가 화면 밀리면서 이동하는 효과 줌
+                // 그다음 뒤로가기 했을 때 채팅창이 또 옆으로 밀려나는 효과주기위해 messageActivity로 이동
                 ActivityOptions activityOptions = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright,R.anim.toleft);
@@ -165,6 +171,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
             }
         });
 
+
     }
 
     @Override
@@ -172,7 +179,7 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
         return chatModels.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView tV_title_chat;
         public TextView textView_last_message;
@@ -188,4 +195,6 @@ public class TeamChatRecyclerViewAdapter extends RecyclerView.Adapter<TeamChatRe
             textView_numofpeople = (TextView)view.findViewById(R.id.tv_numofpeople_chat);
         }
     }
+
 }
+

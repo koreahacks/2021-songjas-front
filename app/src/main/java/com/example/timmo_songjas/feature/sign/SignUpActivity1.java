@@ -10,7 +10,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -32,9 +31,12 @@ public class SignUpActivity1 extends AppCompatActivity {
     private EditText password;
     private EditText emailAuth;
     private Button btn_signup1;
-
-
-    private boolean emailAuthEnd = true; // TODO:false이 기본값 , 바꿔주기
+    private Button btn_email;
+    private String email_check_result;
+        //이메일 인증 버튼 클릭 여부
+    private boolean clickEmailAuth = false; // TODO: false이 기본값 , 바꿔주기
+//이메일 인증 번호 최종 확인 완료
+    private boolean emailAuthEnd = false;
 
     RetrofitService service;
 
@@ -56,63 +58,69 @@ public class SignUpActivity1 extends AppCompatActivity {
 
         service = RetrofitClient.getClient().create(RetrofitService.class);
 
-        btn_signup1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //이메일 인증 파트
-                //TODO:나중에 조건에 ! 빼기
-                if(!emailAuthEnd)
-                    startEmailAuth(new EmailAuthData( email.getText().toString()) );
+        btn_signup1.setOnClickListener(v -> {
+            if(!clickEmailAuth){//이메일 인증 버튼 누르지 않음
+                Toast.makeText(SignUpActivity1.this, "이메일 인증해주세요", Toast.LENGTH_SHORT).show();
+            }
+            else if(email_check_result.equals(emailAuth.getText().toString()) ){ // 인증번호확인
 
-                if(!emailAuthEnd){
-                    Toast.makeText(SignUpActivity1.this, "이메일 인증해주세요", Toast.LENGTH_SHORT).show();
-                }
+                Toast.makeText(SignUpActivity1.this, "인증 성공", Toast.LENGTH_SHORT).show();
+                emailAuthEnd = true ; // 이메일 성공 & 인증 끝남.
+            }
+            else{ //인증번호 틀림
+                Toast.makeText(SignUpActivity1.this, "인증 실패", Toast.LENGTH_SHORT).show();
+            }
 
-                //이메일 인증했고 다 입력했으면
-                if(emailAuthEnd && !password.getText().toString().equals("")){
+            if(emailAuthEnd){ // 이메일 인증 성공했으니
+                if(password.getText().toString().length() >= 6){ //비밀번호 6자리 이상
                     Intent intent = new Intent(SignUpActivity1.this, SignUpActivity2.class );
                     intent.putExtra("email",email.getText().toString());
                     intent.putExtra("password",password.getText().toString());
                     startActivity(intent);
                 }
+                else{
+                    Toast.makeText(SignUpActivity1.this, "비밀번호는 6자리 이상 입력해주세요", Toast.LENGTH_SHORT).show();
 
+                }
             }
 
-        } );
+        });
+
+
+        btn_email.setOnClickListener(v->{
+            startEmailAuth(new EmailAuthData( email.getText().toString()) );
+        });
     }
 
     private void startEmailAuth(EmailAuthData data){
+        Toast.makeText(SignUpActivity1.this, "인증번호가 발송되었습니다.",Toast.LENGTH_SHORT).show();
+
+        btn_email.setEnabled(false);
         //enqueue 로 비동기 통신 실행
         service.emailAuth(data).enqueue(new Callback<EmailAuthResponse>() {
             @Override
             public void onResponse(@NonNull Call<EmailAuthResponse> call, @NonNull Response<EmailAuthResponse> response) {
                 if(response.isSuccessful()){
                     EmailAuthResponse result = response.body();
-                    if(result.getStatus() == 201){ // 응답 성공
-                        if(emailAuth.getText().toString().equals(result.getData().getAuthNum())){
-                            emailAuthEnd=true; // 이메일 인증 성공 flag
-                        }
-                    }
-                    Toast.makeText(SignUpActivity1.this, result.getMessage(), Toast.LENGTH_SHORT).show();
-
+                    email_check_result = result.getData().getAuthNum();
+                    //인증번호 받아두고
+                    clickEmailAuth = true;
                 }
                 else{
-                    Toast.makeText(SignUpActivity1.this, " 이메일 인증 onResponse 실패" + response.errorBody(),Toast.LENGTH_LONG).show();
-
+                    Toast.makeText(SignUpActivity1.this, " 인증 실패 : " + response.errorBody(),Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<EmailAuthResponse> call, @NonNull Throwable t) {
                 Toast.makeText(SignUpActivity1.this, "이메일 인증 에러 발생", Toast.LENGTH_SHORT).show();
-                Log.e("로그인 에러 발생", t.getMessage());
+                Log.e("인증 에러 발생", t.getMessage());
                 t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
                 //showProgress(false);
             }
 
-
         });
-
+        btn_email.setEnabled(true);
     }
 
     void init(){
@@ -120,6 +128,7 @@ public class SignUpActivity1 extends AppCompatActivity {
         emailAuth = (EditText)findViewById(R.id.tet_pw_signup1);
         password = (EditText) findViewById(R.id.et_pw_signup1);
         btn_signup1 = (Button) findViewById(R.id.btn_next_signup1);
+        btn_email = (Button)findViewById(R.id.btn_email_check);
     }
 
     @Override

@@ -12,7 +12,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.timmo_songjas.R;
 
+//팀빌딩 채팅방 리스트 위한 fragment
+@SuppressWarnings("NullableProblems")
 public class ChatFragment extends Fragment {
+
     RecyclerView recyclerView;
     ChatRecyclerViewAdapter adapter;
 
@@ -32,6 +35,5 @@ public class ChatFragment extends Fragment {
 
         return view;
     }
-
 
 }

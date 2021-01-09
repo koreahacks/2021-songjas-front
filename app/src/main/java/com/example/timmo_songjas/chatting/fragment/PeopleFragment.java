@@ -42,6 +42,7 @@ public class PeopleFragment extends Fragment {
         return view;
     }
 
+    @SuppressWarnings("NullableProblems")
     class PeopleFragmentRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         List<UserModel> userModels;//친구 목록 쌓이는 리스트
@@ -96,7 +97,6 @@ public class PeopleFragment extends Fragment {
         @Override
         public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, final int position) {
 
-            //그 사람 리스트에서 그 사람 칸 전체 클릭 시 이벤트 처리
             //클릭하면 채팅창 불러오는 애니메이션 추가
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -111,7 +111,6 @@ public class PeopleFragment extends Fragment {
                         activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright,R.anim.toleft);
                         startActivity(intent,activityOptions.toBundle());
                     }
-
 
                 }
             });
@@ -138,5 +137,5 @@ public class PeopleFragment extends Fragment {
             }
         }
     }
-}
 
+}

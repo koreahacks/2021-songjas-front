@@ -126,5 +126,6 @@
     <string name="real_type">현실파</string>
     <string name="univ_type">지원 대학 제한</string>
     <string name="no_result">검색 결과가 없습니다</string>
+    <string name="signup1_email_check">인증하기</string>
 
 </resources>
