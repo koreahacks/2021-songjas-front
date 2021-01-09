@@ -1,66 +1,73 @@
 package com.example.timmo_songjas.feature.profile;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.feature.member.MemberDetailActivity;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ProfileMemberFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProfileMemberFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Context context;
+    RecyclerView recyclerView;
+    ProfileMemberAdapter profileMemberAdapter;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
 
     public ProfileMemberFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ProfileMemberFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileMemberFragment newInstance(String param1, String param2) {
-        ProfileMemberFragment fragment = new ProfileMemberFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        context = container.getContext();
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile_member, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
+
+        //리싸이클러뷰 불러오기
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.rv_profilemember);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(container.getContext(), LinearLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(layoutManager);
+
+        //어답터를 통해 내용 추가하기
+        profileMemberAdapter = new ProfileMemberAdapter(container.getContext());
+
+        //profileMemberAdapter.addItem(new ProfileMemberItem("서울특별시", "나야나", "공모전", "컴퓨터그래픽", "그래픽개발자"));
+
+        recyclerView.setAdapter(profileMemberAdapter);
+
+        //리싸이클뷰가 비었을 경우 글자 설정
+        TextView emptyText = (TextView) rootView.findViewById(R.id.tv_empty_profilemember);
+        if(profileMemberAdapter.getItemCount() == 0){
+            emptyText.setText("아직 팀글이 없습니다.");
+            emptyText.setVisibility(View.VISIBLE);
+        }
+
+        //클릭 이벤트 처리
+        profileMemberAdapter.setOnItemClickListener(new ProfileMemberAdapter.OnItemClickListener() {
+            @Override
+            public void OnItemClick(ProfileMemberAdapter.ViewHolder holder, View view, int position) {
+                ProfileMemberItem item = profileMemberAdapter.getItem(position);
+                //화면 이동
+                Intent intent = new Intent(getActivity(), MemberDetailActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        return rootView;
     }
+    
+    //TODO: 서버에서 데이터 받아오기
 }

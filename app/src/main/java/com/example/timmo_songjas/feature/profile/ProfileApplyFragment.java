@@ -72,5 +72,5 @@ public class ProfileApplyFragment extends Fragment {
         return rootView;
     }
     
-    //데이터 받아오기
+    //TODO:데이터 받아오기
 }
