@@ -8,19 +8,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.data.ProfileResponse;
 import com.example.timmo_songjas.feature.member.MemberAddActivity;
+import com.example.timmo_songjas.feature.profile.ProfileApplyFragment;
+import com.example.timmo_songjas.feature.profile.ProfileEditActivity;
+import com.example.timmo_songjas.feature.profile.ProfileMemberFragment;
+import com.example.timmo_songjas.feature.profile.ProfileProjectFragment;
 import com.example.timmo_songjas.feature.project.ProjectAdd1Activity;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
@@ -34,8 +42,11 @@ import retrofit2.Response;
 import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 
-public class ProfileFragment extends Fragment {
+/*
+TODO: /변수 값은 서버와 연결에서 DB에서 가져와야 함. Data 패키지 따로 만들어서 거기서 데이터들 정리하고, feature 패키지에서 데이터 가져와 사용하는 걸로
+*/
 
+public class ProfileFragment extends Fragment {
     Context context;
     ProfileApplyFragment applyFragment;
     ProfileProjectFragment projectFragment;
@@ -54,7 +65,7 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
-      }
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -62,7 +73,6 @@ public class ProfileFragment extends Fragment {
         getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileProjectFragment()).commit();
         getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileMemberFragment()).commit();
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -163,8 +173,7 @@ public class ProfileFragment extends Fragment {
 
         return rootView;
     }
-    
-    //TODO: 서버에서 데이터 받아오기
+
     //데이터 받아오기
     public void loadData(){
         service1 = RetrofitClient.getClient().create(RetrofitService.class);
@@ -198,4 +207,6 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+
+
 }
