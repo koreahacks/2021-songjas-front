@@ -23,6 +23,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.ProjectMembers;
 import com.example.timmo_songjas.data.TimgleListResponse;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
@@ -64,7 +65,8 @@ public class ProjectAdd2Activity extends AppCompatActivity {
 
     RetrofitService service1;
     List<String> timgleTitle = new ArrayList<>();
-    //ArrayList<Integer> userId = new ArrayList<>();
+    List<Integer> userId = new ArrayList<>();
+    List<ProjectMembers> membersList = new ArrayList<>();
 
 
     @Override
@@ -93,34 +95,29 @@ public class ProjectAdd2Activity extends AppCompatActivity {
         //TODO: 서버에서 이력서 제목 받아와서 String 배열로 만들기
 
         //스피너 구현(팀글 첨부)
-        String[] timgle  = {"나야나", "나를 데리겨", "나는 최고", "팀글을 선택하세요"};
-        Log.d("내용 확인", timgle[0]);
+        //String[] timgle  = {"나야나", "나를 데리겨", "나는 최고", "팀글을 선택하세요"};
         spText = (Spinner)findViewById(R.id.sp_text_project);
-        ArrayAdapter<String> textAapter = new ArrayAdapter<String>(this, R.layout.item_spinner, timgle){
+        ArrayAdapter<String> textAapter = new ArrayAdapter<String>(this, R.layout.item_spinner, timgleTitle){
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
                 View v = super.getView(position, convertView, parent);
-                if (position == getCount()){
-                    ((TextView)v.findViewById(R.id.text1)).setText("");
-                    ((TextView)v.findViewById(R.id.text1)).setHint("팀글을 선택하세요"); //"Hint to be displayed"
-                }
                 return v;
             }
-
             @Override
             public int getCount() {
-                return super.getCount()-1; // you dont display last item. It is used as hint.
+                return super.getCount(); // you dont display last item. It is used as hint.
             }
         };
         textAapter.setDropDownViewResource(R.layout.item_spinner_dropdown);
         spText.setAdapter(textAapter);
-        spText.setSelection(textAapter.getCount());
+        //spText.setSelection(textAapter.getCount());
 
 
         spText.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                timgleString = timgle[position];
+                timgleString =timgleTitle.get(position);
+                //timgleString = timgle[position];
                 Log.d("스피너 선택", timgleString);
             }
             @Override
@@ -369,13 +366,13 @@ public class ProjectAdd2Activity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     TimgleListResponse result = response.body();
                     if (result.getStatus() == 200) {
-                        titleStr = new String[result.getData().size()+1];
+                        timgleTitle.clear();
+                        userId.clear();
                         //int num = result.getData().size();
-                        Toast.makeText(getApplicationContext(), result.getMessage(), Toast.LENGTH_LONG).show();
-                        Log.d("연결: ", result.getMessage() +" "+String.valueOf(result.getData().size()));
                         for(int i =0; i < result.getData().size(); i++){
-                            Log.d("데이터: ", result.getData().get(i).getTitle());
-                            titleStr[i] = result.getData().get(i).getTitle();
+                            timgleTitle.add(result.getData().get(i).getTitle());
+                            userId.add(result.getData().get(i).getId());
+                            //titleStr[i] = result.getData().get(i).getTitle();
                         }
                     }
                 }
@@ -402,6 +399,9 @@ public class ProjectAdd2Activity extends AppCompatActivity {
             email = data.getStringExtra("email");
             name = data.getStringExtra("name");
             img = data.getStringExtra("img");
+
+            //add3로 넘겨야 할 데이터
+            membersList.add(Integer.parseInt(id), null);
 
             //TODO: 리싸이클러뷰로 보여주기
             member_list.add(new ProjectAddMember(img, name));
