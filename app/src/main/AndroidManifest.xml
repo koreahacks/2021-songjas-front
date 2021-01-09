@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timmo_songjas">
+
 
 
 <!--    allowback관련 링크 카카오워크에 추가해놓음 마지막에 보기-->
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TIMMO_SONGJAS">
-        <activity android:name=".profile.ProfileEditActivity"></activity>
-        <activity android:name=".feature.project.ProjectAdd3Activity" />
-        <activity android:name=".feature.project.ProjectAdd2Activity" />
-        <activity android:name=".chatting.MessageActivity" />
-        <activity android:name=".feature.sign.Signup2Activity" />
-        <activity android:name=".feature.sign.Signup1Activity" />
+        android:theme="@style/Theme.TIMMO_SONGJAS"
+        android:allowBackup="false"
+        tools:ignore="AllowBackup">
+        <activity android:name=".chatting.MessageActivity"  android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".feature.sign.SignUpActivity2" />
+        <activity android:name=".feature.sign.SignUpActivity1" />
         <activity android:name=".feature.sign.SignInActivity" />
         <activity android:name=".SplashActivity" >
             <intent-filter>
