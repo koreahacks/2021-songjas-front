@@ -22,10 +22,20 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.ProfileEditInputData;
+import com.example.timmo_songjas.data.ProfileEditInputResponse;
+import com.example.timmo_songjas.data.ProfileEditResponse;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 
 import java.io.InputStream;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.example.timmo_songjas.feature.utils.CommonValues.PROFADD_IMAGE;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProfileEditActivity extends AppCompatActivity {
     ImageView ivProfile;
@@ -57,11 +67,14 @@ public class ProfileEditActivity extends AppCompatActivity {
     private TextView tvChall;
     private TextView tvReal;
 
+    RetrofitService service1;
+    RetrofitService service2;
+
     Bitmap img;
 
 
 
-
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -265,6 +278,7 @@ public class ProfileEditActivity extends AppCompatActivity {
             }
         });
 
+        load();
 
         //완료 버튼 클릭 이벤트
         Button btnFinish = (Button)findViewById(R.id.btn_finish_profile);
@@ -298,9 +312,99 @@ public class ProfileEditActivity extends AppCompatActivity {
 
     }
 
-    //TODO:유저 정보 불러오기
+    //유저 정보 불러오기
+    private void load(){
+        //retrofilt2 연결
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<ProfileEditResponse> call = service1.userProfile(USER_TOKEN, "application/json");
 
-    //TODO:프로필 수정 정보 보내기
+        call.enqueue(new Callback<ProfileEditResponse>() {
+            @Override
+            public void onResponse(Call<ProfileEditResponse> call, Response<ProfileEditResponse> response) {
+                if (response.isSuccessful()) {
+                    ProfileEditResponse result = response.body();
+                    if (result.getStatus() == 200) {
+                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        if(result.getData().getImg() != null && !result.getData().getImg().equals("")){
+                            Glide.with(getApplicationContext()).load(result.getData().getImg()).circleCrop().into(ivProfile);
+                        }
+                        tvProfile.setText(result.getData().getName());
+                        tv_email_profile.setText(result.getData().getEmail());
+                        etState.setText(result.getData().getLargeAddress());
+                        etCounty.setText(result.getData().getSmallAddress());
+                        etUniv.setText(result.getData().getUniv());
+                        etMjor.setText(result.getData().getMajor());
+                        etGrade.setText(String.valueOf(result.getData().getGrade()));
+                        morningCount = btnColor(result.getData().getMorning(), tvMorning);
+                        nightCount = btnColor(result.getData().getNight(), tvNight);
+                        dawnCount = btnColor(result.getData().getDawn(), tvDawn);
+                        planCount = btnColor(result.getData().getPlan(), tvPlan);
+                        focusCount = btnColor(result.getData().getCramming(), tvFocus);
+                        leaderCount = btnColor(result.getData().getLeader(), tvLeader);
+                        followCount = btnColor(result.getData().getFollower(), tvFollow);
+                        challCount = btnColor(result.getData().getChallenge(), tvChall);
+                        realCount = btnColor(result.getData().getRealistic(), tvReal);
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileEditResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //개인 성향 버튼 색 변경
+    protected int btnColor(boolean selected, TextView tv){
+        int count = 0;
+        if(selected ==true){
+            count = 1;
+            tv.setTextColor(Color.WHITE);
+            tv.setBackground(getResources().getDrawable(R.drawable.btn_orange_selected));
+
+        }
+        else{
+            count = 0;
+            tv.setTextColor(Color.parseColor("#c5ccd6"));
+            tv.setBackground(getResources().getDrawable(R.drawable.text_grey_rect));
+        }
+        return count;
+    }
+
+
+
+    //프로필 수정 정보 보내기
+    public void sendData(ProfileEditInputData data){
+        service2 = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<ProfileEditInputResponse> call = service2.profileEdit(USER_TOKEN, data);
+        call.enqueue(new Callback<ProfileEditInputResponse>() {
+            @Override
+            public void onResponse(Call<ProfileEditInputResponse> call, Response<ProfileEditInputResponse> response) {
+                if (response.isSuccessful()) {
+                    //메인 스레드에서 작업하는 부분 UI 작업 가능
+                    ProfileEditInputResponse result = response.body();
+                    if (result.getStatus() == 201) {
+                        Toast.makeText(getApplicationContext(), String.valueOf(result.getStatus()), Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Log.d("오류 출력", response.message());
+                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileEditInputResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    //TODO: 프로필 이미지 수정 보내기
 
 
     //이미지 파일 열기

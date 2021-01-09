@@ -23,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.timmo_songjas.R;
-import com.example.timmo_songjas.feature.PartyFindActivity;
 
 import java.util.ArrayList;
 
