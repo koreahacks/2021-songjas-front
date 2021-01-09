@@ -307,8 +307,6 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         //TODO:일단 얼랏해놓고 의견 물어보자자                //인원 입력 받기
                                         switch (btnCount){
                                             case 0:
-                                            case 3:
-
                                                 positionNumInt.add(etNumber.getText().toString());
                                                 break;
                                             case 1:
@@ -316,6 +314,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                                 positionNumInt.add(etPositionNum2.getText().toString());
                                                 break;
                                             case 2:
+                                            case 3:
                                                 positionNumInt.add(etNumber.getText().toString());
                                                 positionNumInt.add(etPositionNum2.getText().toString());
                                                 positionNumInt.add(etPositionNum3.getText().toString());
