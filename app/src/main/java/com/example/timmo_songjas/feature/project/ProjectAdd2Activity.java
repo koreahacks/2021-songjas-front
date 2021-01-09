@@ -23,11 +23,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.TimgleListResponse;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static com.example.timmo_songjas.feature.utils.CommonValues.PARTY_TO_PROADD;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProjectAdd2Activity extends AppCompatActivity {
 
@@ -47,9 +56,16 @@ public class ProjectAdd2Activity extends AppCompatActivity {
     String name;
     String img;
 
+    String[] titleStr;
+
     public ArrayList<ProjectAddMember> member_list = new ArrayList<>();
     private RecyclerView rv_member;
     private ProjectAddMemberAdapter projectAddMemberAdapter;
+
+    RetrofitService service1;
+    List<String> timgleTitle = new ArrayList<>();
+    //ArrayList<Integer> userId = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -343,6 +359,39 @@ public class ProjectAdd2Activity extends AppCompatActivity {
     }
 
     //TODO:데이터 받아오기
+    //팀글 목록 가져오기
+    public void loadTimgleList(){
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<TimgleListResponse> call = service1.userTigleList(USER_TOKEN);
+        call.enqueue(new Callback<TimgleListResponse>() {
+            @Override
+            public void onResponse(Call<TimgleListResponse> call, Response<TimgleListResponse> response) {
+                if (response.isSuccessful()) {
+                    TimgleListResponse result = response.body();
+                    if (result.getStatus() == 200) {
+                        titleStr = new String[result.getData().size()+1];
+                        //int num = result.getData().size();
+                        Toast.makeText(getApplicationContext(), result.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.d("연결: ", result.getMessage() +" "+String.valueOf(result.getData().size()));
+                        for(int i =0; i < result.getData().size(); i++){
+                            Log.d("데이터: ", result.getData().get(i).getTitle());
+                            titleStr[i] = result.getData().get(i).getTitle();
+                        }
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    Log.d("연결: ", "연결 실패");
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TimgleListResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                Log.d("연결: ", "완전 실패");
+            }
+        });
+    }
 
     //partyFind 에서 팀원 데이터 받아오기
     @Override
@@ -355,6 +404,8 @@ public class ProjectAdd2Activity extends AppCompatActivity {
             img = data.getStringExtra("img");
 
             //TODO: 리싸이클러뷰로 보여주기
+            member_list.add(new ProjectAddMember(img, name));
+            projectAddMemberAdapter.notifyDataSetChanged();
         }
     }
 

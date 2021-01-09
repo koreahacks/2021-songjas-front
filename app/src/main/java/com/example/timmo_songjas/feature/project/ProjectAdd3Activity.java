@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,10 +20,19 @@ import android.widget.Toast;
 
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.ProjectAddData;
+import com.example.timmo_songjas.data.ProjectAddResponse;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.example.timmo_songjas.feature.utils.CommonValues.SEVER_USERID_LOGGED_IN;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProjectAdd3Activity extends AppCompatActivity {
 
@@ -31,6 +41,10 @@ public class ProjectAdd3Activity extends AppCompatActivity {
     EditText etNumber;
     ArrayList<String> positionNumInt = new ArrayList<>();
     int btnCount;
+
+    RetrofitService service1;
+
+    String roomkey="";//서버에 보낼 룸키 데이터
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -236,7 +250,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("userid",SEVER_USERID_LOGGED_IN); //팀장 userid
-                //TODO: 룸키 넣기
+                intent.putExtra("destinationRoom",roomkey); //룸키
                 //TODO:일단 얼랏해놓고 의견 물어보자자                //인원 입력 받기
                 switch (btnCount){
                     case 0:
@@ -275,6 +289,47 @@ public class ProjectAdd3Activity extends AppCompatActivity {
 
             }
         });
+    }
+
+    //데이터 전송
+    private void send(ProjectAddData data){
+        //retrofilt2 연결
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<ProjectAddResponse> call = service1.projectAdd(USER_TOKEN,  data);
+
+        call.enqueue(new Callback<ProjectAddResponse>() {
+            @Override
+            public void onResponse(Call<ProjectAddResponse> call, Response<ProjectAddResponse> response) {
+                if (response.isSuccessful()) {
+                    //메인 스레드에서 작업하는 부분 UI 작업 가능
+                    ProjectAddResponse result = response.body();
+                    if (result.getStatus() == 201) {
+                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectAddResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
+
+    //툴바
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
