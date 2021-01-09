@@ -73,7 +73,7 @@ public class MemberFindFragment extends Fragment {
                 if(response.isSuccessful()){
                     MemberFindResponse result = response.body();
                     if(result.getStatus() == 200){
-                        Toast.makeText(getActivity(), "팀 목록 조회 성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getActivity(), "팀 목록 조회 성공", Toast.LENGTH_SHORT).show();
                         List<MemberFindResponse.Datum> member_list = result.getData();
 
                         list.clear();
@@ -143,7 +143,7 @@ public class MemberFindFragment extends Fragment {
         searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
-                Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
                 //서버로 스트링 보내고 받으면 리싸이클러뷰로 반영?
                 return true;
             }

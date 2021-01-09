@@ -145,7 +145,7 @@ public class MemberDetailActivity extends AppCompatActivity {
                 if(response.isSuccessful()) {
                     MemberDetailResponse result = response.body();
                     if (result.getStatus() == 200) {
-                        Toast.makeText(getApplicationContext(), "팀모 조회 성공", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), "팀모 조회 성공", Toast.LENGTH_SHORT).show();
 
                         for(int i = 0 ; i < result.getMemberPositions().size(); i++){
                             Log.d("ttttt",result.getMemberPositions().get(i).getPosition() );
@@ -221,13 +221,13 @@ public class MemberDetailActivity extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<MemberDetailResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
 
 
             }

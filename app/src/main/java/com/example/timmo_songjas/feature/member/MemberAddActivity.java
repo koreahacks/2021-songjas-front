@@ -304,7 +304,7 @@ public class MemberAddActivity extends AppCompatActivity {
                     send(data);
                     finish();
                 }catch (Exception e){
-                    //Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 채워주세요.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 채워주세요.", Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -322,17 +322,17 @@ public class MemberAddActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     MemberAddResponse result = response.body();
                     if (result.getStatus() == 201) {
-                        Toast.makeText(getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getApplicationContext(), result.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<MemberAddResponse> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
 
