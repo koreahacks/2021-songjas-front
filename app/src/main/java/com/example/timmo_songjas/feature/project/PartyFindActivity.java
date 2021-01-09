@@ -1,4 +1,4 @@
-package com.example.timmo_songjas.feature;
+package com.example.timmo_songjas.feature.project;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,7 +60,7 @@ public class PartyFindActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
-                //Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
                 //load(query);
                 return true;
             }
@@ -78,5 +78,7 @@ public class PartyFindActivity extends AppCompatActivity {
         tv_name_partyfind = (TextView) findViewById(R.id.tv_name_partyfind);
         tv_email_partyfind = findViewById(R.id.tv_email_partyfind);
     }
+
+    //TODO: 네트워킹 부분 load(query);
 
 }
