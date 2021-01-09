@@ -395,6 +395,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent">
                 <RadioButton
+                    android:id="@+id/univ_true"
                     android:padding="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -404,6 +405,7 @@
                     android:includeFontPadding="false"
                     android:textColor="@color/hint_grey"/>
                 <RadioButton
+                    android:id="@+id/univ_false"
                     android:padding="8dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
