@@ -1,8 +1,5 @@
 package com.example.timmo_songjas.feature;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,6 +14,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.example.timmo_songjas.R;
 
@@ -343,8 +343,10 @@ public class FilterActivity extends AppCompatActivity {
 
         //대학
         radioGroup = (RadioGroup)findViewById(R.id.rg_univ_filter);
-        id = radioGroup.getCheckedRadioButtonId();
-        rbUniv = (RadioButton) findViewById(id);
+        //id = radioGroup.getCheckedRadioButtonId();
+
+        rbUniv = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+        //rbUniv = (RadioButton) findViewById(id);
 
 
         //완료 버튼
@@ -425,13 +427,11 @@ public class FilterActivity extends AppCompatActivity {
 
         spField.setSelection(feildAapter.getCount());
 
-
         state = etState.getText().toString();
         country = etCounty.getText().toString();
         univ = rbUniv.getText().toString();
 
-
-        if(univ.equals("전체")){ // true
+        if(univ.equals("univ_true")){ // true
             opt_limitUniv = true; }
         else { //자대 false
             opt_limitUniv = false; }
@@ -445,10 +445,7 @@ public class FilterActivity extends AppCompatActivity {
         opt_follower = (Integer.parseInt(String.valueOf(followCount % 2))!= 0 );
         opt_challenge = (Integer.parseInt(String.valueOf(challCount % 2))!= 0 );
         opt_realistic = (Integer.parseInt(String.valueOf(realCount % 2))!= 0 );
-
-
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
