@@ -219,6 +219,8 @@ public class GroupMessageActivity extends AppCompatActivity {
                 if(response.isSuccessful()){
                     TimmoListResponse result = response.body();
                     //canSend=true;//팀모 작성한 것이 있으면
+                    projectid_list.clear();
+                    title_list.clear();
                     for(int i = 0 ; i < result.getData().size() ;i++ ){
                         projectid_list.add( i, result.getData().get(i).getId()  );
                         title_list.add(i, result.getData().get(i).getTitle());
@@ -364,6 +366,8 @@ public class GroupMessageActivity extends AppCompatActivity {
                                         if(response.isSuccessful()){
                                             Toast.makeText(GroupMessageActivity.this, response.message(), Toast.LENGTH_SHORT).show();
 
+                                            timgle_id_list.clear();
+                                            timgle_title_list.clear();
                                             TimgleListResponse result = response.body();
                                             for(Data item : result.getData()){
                                                 timgle_id_list.add(item.getId());

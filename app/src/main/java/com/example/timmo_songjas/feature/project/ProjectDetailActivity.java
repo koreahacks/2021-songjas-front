@@ -316,6 +316,9 @@ public class ProjectDetailActivity extends AppCompatActivity {
 
                         List<ProjectDetailChoiceTimgleResponse.Datum> apply_timgles = result2.getData();
 
+                        title.clear();
+                        timgle_id.clear();
+
                         //Log.d("지원하기 루프  : ", String.valueOf(apply_timgles.size()));
                         for(ProjectDetailChoiceTimgleResponse.Datum item : apply_timgles){
                             title.add(item.getTitle());

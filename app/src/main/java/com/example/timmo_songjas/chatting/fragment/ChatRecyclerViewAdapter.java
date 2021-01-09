@@ -83,6 +83,7 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
                 }
 
                 chatModels.clear();
+                room_keys.clear();
                 for(DataSnapshot item : snapshot.getChildren()){
                     if(!item.getValue(ChatModel.class).isTeamChat){ //isTeamChat false 인것만 가져오기
                         chatModels.add( item.getValue(ChatModel.class));
@@ -148,32 +149,6 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
         customViewHolder.textView_numofpeople.setText(num_people + "명 · ");
 
         customViewHolder.tV_title_chat.setText(users.get(destinationUserid).userName);
-        //챗방 상대 유저 정보 가져오기
-        //Server Test
-//        //이제 destuser uid 알았으니 해당 유저의 정보 가져오기                                  한번만 불러올거니까 싱글로 가져와서
-//        FirebaseDatabase.getInstance().getReference().child("users").child(destinationUserid).addListenerForSingleValueEvent(
-//                new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        //상대방 유저 정보!!
-//                        //가져온값 usermodel에 담기, 이미지랑,이름 뿌리기
-//                        UserModel destUserModel = snapshot.getValue(UserModel.class);
-//                        //프로필 이미지
-////                            Glide.with(customViewHolder.itemView.getContext())
-////                                    .load(destUserModel.profileImageUrl)
-////                                    .apply(new RequestOptions().circleCrop())
-////                                    .into(customViewHolder.imageView);
-//                        customViewHolder.tV_title_chat.setText(destUserModel.userName);
-//                        //채팅방 이름 상대방 이름으로 지정
-//                        //단체 채팅일때는 한명으롬ㄴ 해주기 길이가 애매해서
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                }
-//        );
 
 
         //채팅방의 마지막 메세지 띄우기기
@@ -207,8 +182,6 @@ public class ChatRecyclerViewAdapter extends RecyclerView.Adapter<ChatRecyclerVi
                     intent.putExtra("destinationUserid",destinationUsers.get(position));
                 }
 
-                //애니메이션 추가 화면 밀리면서 이동하는 효과 줌
-                // 그다음 뒤로가기 했을 때 채팅창이 또 옆으로 밀려나는 효과주기위해 messageActivity로 이동
                 ActivityOptions activityOptions = null;
                 if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
                     activityOptions = ActivityOptions.makeCustomAnimation(view.getContext(), R.anim.fromright,R.anim.toleft);
