@@ -5,6 +5,7 @@ import com.example.timmo_songjas.data.EmailAuthResponse;
 import com.example.timmo_songjas.data.MemberAddData;
 import com.example.timmo_songjas.data.MemberAddResponse;
 import com.example.timmo_songjas.data.MemberDetailResponse;
+import com.example.timmo_songjas.data.MemberFindResponse;
 import com.example.timmo_songjas.data.MessageTimgleData;
 import com.example.timmo_songjas.data.MessageTimgleResponse;
 import com.example.timmo_songjas.data.PartyFindResponse;
@@ -20,6 +21,7 @@ import com.example.timmo_songjas.data.ProjectDetailResponse;
 import com.example.timmo_songjas.data.ProfileEditInputData;
 import com.example.timmo_songjas.data.ProfileEditInputResponse;
 import com.example.timmo_songjas.data.ProfileEditResponse;
+import com.example.timmo_songjas.data.ProjectFindResponse;
 import com.example.timmo_songjas.data.SigninData;
 import com.example.timmo_songjas.data.SigninResponse;
 import com.example.timmo_songjas.data.SignupData;
@@ -69,6 +71,16 @@ public interface RetrofitService {
 
     @GET("/users/{email}")
     Call<PartyFindResponse> partyFind(@Header("Authorization") String token, @Header("Content-type") String type, @Path("email") String email);
+
+    //팀모 목록
+    @GET("/projects")
+    Call<ProjectFindResponse> projectFind(@Header("Authorization") String token, @Header("Content-type") String type);
+
+
+    //팀글 목록
+    @GET("/members")
+    Call<MemberFindResponse> memberFind(@Header("Authorization") String token, @Header("Content-type") String type);
+
 
     //팀글 조회
     @GET("/members/{id}")

@@ -22,7 +22,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_loca_projectfind"
+        android:id="@+id/tv_largeaddress_projectfind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
@@ -35,6 +35,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/tv_smalladdress_projectfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/noto_medium"
+        android:includeFontPadding="false"
+        android:textColor="@color/light_orange"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_largeaddress_projectfind"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tv_dday_projectfind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +57,7 @@
         android:includeFontPadding="false"
         android:textColor="@color/light_orange"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/tv_loca_projectfind"
+        app:layout_constraintStart_toEndOf="@+id/tv_smalladdress_projectfind"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
