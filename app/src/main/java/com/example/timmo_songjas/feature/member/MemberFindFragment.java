@@ -1,14 +1,6 @@
 package com.example.timmo_songjas.feature.member;
 
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,14 +8,34 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.network.RetrofitService;
+
+import java.util.ArrayList;
 
 
 public class MemberFindFragment extends Fragment {
 
+    RetrofitService service;
+
+
     private ImageView filter_btn;
     private ImageView subtitle_memberfind;
+
+    public ArrayList<MemberFindItem> list = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private MemberFindAdapter memberFindAdapter;
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
