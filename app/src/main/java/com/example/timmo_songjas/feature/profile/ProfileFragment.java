@@ -54,6 +54,11 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
+      }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileProjectFragment()).commit();
         getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileMemberFragment()).commit();
     }

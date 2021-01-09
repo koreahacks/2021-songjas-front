@@ -30,7 +30,6 @@ import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProfileApplyFragment extends Fragment {
 
-    Context context;
     RecyclerView recyclerView;
     ProfileApplyAdapter applyAdapter;
 
@@ -45,7 +44,6 @@ public class ProfileApplyFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        context = container.getContext();
         // Inflate the layout for this fragment
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_profile, container, false);
 
