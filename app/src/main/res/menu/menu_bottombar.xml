@@ -16,6 +16,13 @@
         android:icon="@drawable/ic_chat_24_dp"
         android:title="@string/chatting" />
 
+<!--    채팅 임시 확인-->
+    <item
+        android:id="@+id/people_menu"
+        android:icon="@drawable/ic_loading"
+        android:title="People"/>
+
+
     <item
         android:id="@+id/profile_menu"
         android:icon="@drawable/ic_profile_24_dp"
