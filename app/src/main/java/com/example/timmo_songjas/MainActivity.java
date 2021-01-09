@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.timmo_songjas.chatting.fragment.ChatlistFragment;
 import com.example.timmo_songjas.feature.project.ProjectFindFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.profile_menu:
                     break;
                 case R.id.chat_menu:
+                    transaction.replace(R.id.main_content, new ChatlistFragment()).commitAllowingStateLoss();
                     return true;
             }
             return true;

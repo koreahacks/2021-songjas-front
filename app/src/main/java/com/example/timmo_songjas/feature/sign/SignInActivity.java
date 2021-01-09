@@ -42,19 +42,20 @@ public class SignInActivity extends AppCompatActivity {
     SharedPreferences preferences;
     boolean saveSigninData = false;
 
+    String A;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        init(); //초기 세팅
+       //초기 세팅
+        init();
 
         preferences = getSharedPreferences("appData", MODE_PRIVATE);
         service = RetrofitClient.getClient().create(RetrofitService.class);
 
         load();
-
         //이전에 로그인 정보를 저장시킨 기록이 있다면
         if(saveSigninData){
             et_email.setText(email);
