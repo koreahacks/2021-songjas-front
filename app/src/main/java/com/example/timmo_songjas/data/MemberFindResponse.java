@@ -57,7 +57,7 @@ public class MemberFindResponse {
         private Integer id;
         @SerializedName("img")
         @Expose
-        private Object img;
+        private String img;
         @SerializedName("largeAddress")
         @Expose
         private String largeAddress;
@@ -76,11 +76,11 @@ public class MemberFindResponse {
             this.id = id;
         }
 
-        public Object getImg() {
+        public String getImg() {
             return img;
         }
 
-        public void setImg(Object img) {
+        public void setImg(String img) {
             this.img = img;
         }
 

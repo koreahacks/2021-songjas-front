@@ -89,7 +89,8 @@ public class MemberDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //메시지 보내기 버튼
-//                sendMessage();
+                //sendMessage();
+                //해당 글 작정자 아이디 = result.getUsers().getId();
 
             }
         });
