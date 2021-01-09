@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/member_item_layout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/pic_partyfind"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/bg_profile_48_dp"
+        android:contentDescription="@string/todo"
+        android:layout_marginLeft="24dp" />
+
+    <TextView
+        android:id="@+id/tv_loca_memberfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:text=""
+        android:textColor="@color/light_orange"
+        android:fontFamily="@font/noto_medium"
+        android:includeFontPadding="false"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/pic_partyfind"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_title_memberfind"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="48dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/noto_medium"
+        android:includeFontPadding="false"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/four_black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/pic_partyfind"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+    <TextView
+        android:id="@+id/tv_type_memberfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textColor="@color/text_grey"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/pic_partyfind"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_memberfind" />
+
+    <TextView
+        android:id="@+id/tv_field_memberfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textColor="@color/text_grey"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_type_memberfind"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_memberfind" />
+
+    <TextView
+        android:id="@+id/tv_position_memberfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        android:textColor="@color/text_grey"
+        android:fontFamily="@font/noto_regular"
+        android:includeFontPadding="false"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_field_memberfind"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title_memberfind" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/ic_star_24_dp"
+        android:contentDescription="@string/todo" />
+
+    <include
+        layout="@layout/line_gray"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_position_memberfind"
+        app:layout_constraintVertical_bias="1.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

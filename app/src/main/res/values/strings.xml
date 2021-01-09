@@ -92,6 +92,7 @@
     <string name="collect">주요 모집 내용</string>
     <string name="team_member">팀원</string>
     <string name="apply_member">지원자</string>
+    <string name="id">아이디</string>
 
 
 </resources>
