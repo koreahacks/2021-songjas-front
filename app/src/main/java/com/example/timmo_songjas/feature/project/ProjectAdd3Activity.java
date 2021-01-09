@@ -239,7 +239,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                     etPositionNum3.setVisibility(View.VISIBLE);
                 }
                 else{
-                    btnCount=2;
+                    btnCount=3;
                     Toast.makeText(getApplicationContext(), "희망 포지션과 인원은 최대 3개까지 입력 가능합니다.", Toast.LENGTH_LONG).show();
                 }
             }//버튼 클릭 이벤트 끝
@@ -305,6 +305,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         //TODO:일단 얼랏해놓고 의견 물어보자자                //인원 입력 받기
                                         switch (btnCount){
                                             case 0:
+                                            case 3:
                                                 positionNumInt.add(etNumber.getText().toString());
                                                 break;
                                             case 1:
@@ -316,6 +317,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                                 positionNumInt.add(etPositionNum2.getText().toString());
                                                 positionNumInt.add(etPositionNum3.getText().toString());
                                                 break;
+
                                         }
 
                                         //시/시도, 시/군/구 입력
