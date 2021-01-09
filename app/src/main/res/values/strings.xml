@@ -92,8 +92,6 @@
     <string name="apply_member">지원자</string>
     <string name="id">아이디</string>
 
-
-
     <string name="time_mess_item">오후 10:00</string>
     <string name="chat_item">챗 아이템</string>
     <string name="hope_member_position">희망 팀원 포지션</string>
@@ -108,6 +106,25 @@
     <string name="same_univ">자대</string>
     <string name="profile_edit">프로필 수정</string>
     <string name="logout">로그아웃</string>
-
+    <string name="position">희망 포지션</string>
+    <string name="resume_intro">소개</string>
+    <string name="career">활동 내역</string>
+    <string name="portfolio">포트폴리오</string>
+    <string name="user_type">개인 성향</string>
+    <string name="send_message">메시지 보내기</string>
+    <string name="filter">필터</string>
+    <string name="personal_type">유형</string>
+    <string name="plz_select_type">유형을 선택해주세요.</string>
+    <string name="morning_type">아침형</string>
+    <string name="night_type">저녁형</string>
+    <string name="dawn_type">새벽형</string>
+    <string name="plan_type">계획형</string>
+    <string name="focus_type">몰입형</string>
+    <string name="leader_type">리더</string>
+    <string name="follow_type">팔로워</string>
+    <string name="challege_type">도전파</string>
+    <string name="real_type">현실파</string>
+    <string name="univ_type">지원 대학 제한</string>
+    <string name="no_result">검색 결과가 없습니다</string>
 
 </resources>

@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.FilterActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_filter"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/deep_black"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:text="@string/filter">
+        </TextView></androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/sv_filter"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btn_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_filter">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_type_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/personal_type"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/sp_type_filter"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/hint_grey"
+                android:autofillHints="@string/plz_select_type"
+                android:textSize="14sp"
+                android:background="@drawable/underline"
+                app:layout_constraintEnd_toStartOf="@+id/sp_field_filter"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_type_filter" />
+
+            <TextView
+                android:id="@+id/tv_field_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/field"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/sp_type_filter"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Spinner
+                android:id="@+id/sp_field_filter"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:autofillHints="@string/plz_select_type"
+                android:background="@drawable/underline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/sp_type_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_field_filter" />
+
+            <TextView
+                android:id="@+id/tv_position_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/position"
+                android:textColor="@color/text_grey"
+                android:autofillHints="희망 포지션을 선택해주세요."
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sp_type_filter" />
+
+            <Spinner
+                android:id="@+id/sp_position_filter"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:background="@drawable/underline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_position_filter" />
+
+            <TextView
+                android:id="@+id/tv_state_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/state"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/sp_position_filter" />
+
+            <EditText
+                android:id="@+id/et_state_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:background="@drawable/underline"
+                android:hint="@string/seoul"
+                android:inputType="text"
+                android:textColor="@color/six_black"
+                android:textColorHint="@color/hint_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/et_county_filter"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_state_filter" />
+
+            <TextView
+                android:id="@+id/tv_county_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/county"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toEndOf="@+id/et_state_filter"
+                app:layout_constraintTop_toBottomOf="@id/sp_position_filter" />
+
+            <EditText
+                android:id="@+id/et_county_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:autofillHints=""
+                android:background="@drawable/underline"
+                android:hint="@string/yongsan"
+                android:inputType="text"
+                android:textColor="@color/deep_black"
+                android:textColorHint="@color/hint_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_state_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_county_filter" />
+
+            <TextView
+                android:id="@+id/tv_char_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/type"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_county_filter"/>
+
+
+            <TextView
+                android:id="@+id/tv_morning_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:text="@string/morning_type"
+                android:background="@drawable/btn_selected"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tv_night_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_char_filter" />
+
+            <TextView
+                android:id="@+id/tv_night_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/btn_selected"
+                android:text="@string/night_type"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                app:layout_constraintEnd_toStartOf="@+id/tv_dawn_filter"
+                app:layout_constraintStart_toEndOf="@+id/tv_morning_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_char_filter" />
+
+            <TextView
+                android:id="@+id/tv_dawn_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/dawn_type"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                app:layout_constraintEnd_toStartOf="@+id/tv_plan_filter"
+                app:layout_constraintStart_toEndOf="@id/tv_night_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_char_filter" />
+
+            <TextView
+                android:id="@+id/tv_plan_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                android:text="@string/plan_type"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_dawn_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_char_filter" />
+
+            <TextView
+                android:id="@+id/tv_focus_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/focus_type"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                app:layout_constraintEnd_toStartOf="@+id/tv_leader_filter"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_morning_filter"/>
+
+            <TextView
+                android:id="@+id/tv_leader_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/leader_type"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                app:layout_constraintEnd_toStartOf="@+id/tv_follow_filter"
+                app:layout_constraintStart_toEndOf="@+id/tv_focus_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_morning_filter" />
+
+            <TextView
+                android:id="@+id/tv_follow_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/follow_type"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                app:layout_constraintEnd_toStartOf="@+id/tv_challenge_filter"
+                app:layout_constraintStart_toEndOf="@+id/tv_leader_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_morning_filter" />
+
+            <TextView
+                android:id="@+id/tv_challenge_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/challege_type"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_follow_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_morning_filter" />
+
+            <TextView
+                android:id="@+id/tv_real_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/real_type"
+                android:paddingVertical="4dp"
+                android:paddingHorizontal="16dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@drawable/text_selected"
+                android:background="@drawable/btn_selected"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toBottomOf="@+id/tv_focus_filter" />
+
+            <TextView
+                android:id="@+id/tv_univ_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="44dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/univ_type"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_real_filter" />
+
+            <RadioGroup
+                android:id="@+id/rg_univ_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="120dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toBottomOf="@+id/tv_univ_filter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <RadioButton
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entire"
+                    android:button="@drawable/radio_bnt_customed"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/hint_grey"/>
+                <RadioButton
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/same_univ"
+                    android:button="@drawable/radio_bnt_customed"
+                    android:layout_marginLeft="8dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/hint_grey"/>
+            </RadioGroup>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="20dp"
+        android:background="@color/white">
+        <Button
+            android:id="@+id/finish_filter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_rec"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/finish"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
