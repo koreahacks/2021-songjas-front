@@ -30,10 +30,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.ProjectAdd1Response;
+import com.example.timmo_songjas.network.RetrofitClient;
+import com.example.timmo_songjas.network.RetrofitService;
 
+import java.io.File;
 import java.io.InputStream;
 
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 import static com.example.timmo_songjas.feature.utils.CommonValues.PROADD_IMAGE;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 public class ProjectAdd1Activity extends AppCompatActivity {
 
@@ -50,6 +62,8 @@ public class ProjectAdd1Activity extends AppCompatActivity {
     Bitmap img;
     Uri imageUri;
     String imagePath;
+
+    RetrofitService service1;
 
     //이미지 파일 열기
     @Override
@@ -76,7 +90,7 @@ public class ProjectAdd1Activity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), imagePath, Toast.LENGTH_LONG).show();
             Log.d("이미지 경로", imagePath);
             Log.d("이미지 경로", data.getData().toString());
-            //TODO: 이미지 서버로 보내기
+            sendImage();
         }
     }
 
@@ -246,7 +260,50 @@ public class ProjectAdd1Activity extends AppCompatActivity {
         });
     }
 
-    //TODO: 이미지 전송 메소드 만들기
+    //이미지 전송
+    private void sendImage(){
+        //retrofilt2 연결
+        service1 = RetrofitClient.getClient().create(RetrofitService.class);
+        File file = new File(imagePath);
+        RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), file);//"image/*""multipart/form-data"
+        //MultipartBody.Part body = MultipartBody.Part.create(requestFile);
+        //MultipartBody.Part body = MultipartBody.Part.createFormData("img", file.getName(), requestFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("img", file.getName(), RequestBody.create(MediaType.parse("image/*"), file));
+
+
+        Call<ProjectAdd1Response> call = service1.projectImage(USER_TOKEN,  body);
+        call.enqueue(new Callback<ProjectAdd1Response>() {
+            @Override
+            public void onResponse(Call<ProjectAdd1Response> call, Response<ProjectAdd1Response> response) {
+                if (response != null && response.isSuccessful()) {
+                    //메인 스레드에서 작업하는 부분 UI 작업 가능
+                    ProjectAdd1Response result = response.body();
+                    if (result.getStatus() == 201) {
+                        Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
+                        Log.d("plz complete", response.body().getData().getImg());
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
+                        Log.d("error code", response.headers().toString());
+                    }
+                }
+                else if(response == null){
+                    Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
+                    Log.d("사진 없음",  response.headers().toString());
+                }
+                else {
+                    Log.d("연결 실패",  response.headers().toString());
+                    Log.d("연결 실패",  response.toString());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProjectAdd1Response> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+    }
 
     //툴바
     @Override
