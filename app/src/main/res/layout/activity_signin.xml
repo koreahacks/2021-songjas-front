@@ -3,7 +3,122 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".sign.SigninActivity">
+    android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/iv_star_projectfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="60dp"
+        android:src="@drawable/ic_logo_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/description_logo"
+        android:layout_marginLeft="24dp" />
+
+    <TextView
+        android:id="@+id/tv_univ_projectfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/email"
+        android:textSize="14sp"
+        android:textColor="@color/text_grey"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_star_projectfind"
+        android:layout_marginLeft="24dp" />
+
+    <EditText
+        android:id="@+id/et_email_signin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/underline"
+        android:inputType="textEmailAddress"
+        android:hint="@string/email_input"
+        android:textColorHint="@color/hint_grey"
+        android:textColor="@color/deep_black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_univ_projectfind"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/tv_loca_projectfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/pwd"
+        android:textColor="@color/text_grey"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_email_signin"
+        android:layout_marginLeft="24dp" />
+
+    <EditText
+        android:id="@+id/et_pw_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:inputType="textPassword"
+        android:background="@drawable/underline"
+        android:textColor="@color/deep_black"
+        android:textColorHint="@color/hint_grey"
+        android:textSize="16sp"
+        android:hint="@string/pwd_input"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_loca_projectfind"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/tv_dday_projectfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/not_member"
+        android:textColor="@color/text_grey"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/tx_signupbtn_signin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw_signin"
+        android:layout_marginLeft="24dp" />
+
+    <TextView
+        android:id="@+id/tx_signupbtn_signin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:text="@string/singup"
+        android:textColor="@color/deep_orange"
+        android:textSize="14sp"
+        android:layout_marginTop="12sp"
+        app:layout_constraintStart_toEndOf="@id/tv_dday_projectfind"
+        app:layout_constraintTop_toBottomOf="@+id/et_pw_signin"
+        />
+
+    <Button
+        android:id="@+id/btn_login_signin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/button_rec"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:backgroundTint="@color/light_orange"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

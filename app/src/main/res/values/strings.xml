@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">Timmo_Songjas</string>
+    <string name="app_name">Timmo</string>
+    <string name="description_logo">LOGO</string>
+    <string name="email">이메일</string>
+    <string name="email_input">이메일을 입력해주세요.</string>
+    <string name="pwd">비밀번호</string>
+    <string name="pwd_input">비밀번호를 입력해주세요.</string>
+    <string name="not_member">회원이 아니신가요?</string>
+    <string name="singup">회원가입</string>
+    <string name="login">로그인</string>
+
 </resources>

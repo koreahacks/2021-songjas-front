@@ -1,4 +1,4 @@
-package com.example.timmo_songjas.sign;
+package com.example.timmo_songjas.feature.sign;
 
 import androidx.appcompat.app.AppCompatActivity;
 
