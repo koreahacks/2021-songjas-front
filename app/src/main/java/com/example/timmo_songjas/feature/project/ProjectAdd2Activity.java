@@ -69,7 +69,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
 
     RetrofitService service1;
     ArrayList<String> timgleTitle = new ArrayList<>();//팀글 제목
-    ArrayList<Integer> memberIds = new ArrayList<>();//팀글 ID
+    ArrayList<Integer> memberIds= new ArrayList<>();//팀글 ID
     List<ProjectMembers> membersList = new ArrayList<>();//팀원 ID
 
 
@@ -101,6 +101,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
 
         //스피너 구현(팀글 첨부)
         //String[] timgle  = {"나야나", "나를 데리겨", "나는 최고", "팀글을 선택하세요"};
+        loadTimgleList();
         spText = (Spinner)findViewById(R.id.sp_text_project);
         ArrayAdapter<String> textAapter = new ArrayAdapter<String>(this, R.layout.item_spinner, timgleTitle);
 //        {
