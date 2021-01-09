@@ -16,6 +16,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.example.timmo_songjas.feature.sign.SignInActivity;
 
 public class SplashActivity extends AppCompatActivity {
+//firebaseconfig관련
 
     private FirebaseRemoteConfig firebaseRemoteConfig;
 
