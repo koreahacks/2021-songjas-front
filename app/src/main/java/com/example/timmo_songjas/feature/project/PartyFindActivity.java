@@ -1,5 +1,6 @@
 package com.example.timmo_songjas.feature.project;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -13,8 +14,18 @@ import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.bumptech.glide.Glide;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.PartyFindResponse;
+import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import static com.example.timmo_songjas.feature.utils.CommonValues.PARTY_TO_PROADD;
+import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 
 public class PartyFindActivity extends AppCompatActivity {
@@ -64,7 +75,7 @@ public class PartyFindActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
                 Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
-                //load(query);
+                load(query);
                 return true;
             }
             @Override
@@ -82,7 +93,7 @@ public class PartyFindActivity extends AppCompatActivity {
         tv_email_partyfind = findViewById(R.id.tv_email_partyfind);
     }
 
-/*    private void load(String query){
+    private void load(String query){
         service = RetrofitClient.getClient().create(RetrofitService.class);
         Call<PartyFindResponse> call = service.partyFind(USER_TOKEN, "application/json", query);
 
@@ -135,5 +146,5 @@ public class PartyFindActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });
-    }*/
+    }
 }

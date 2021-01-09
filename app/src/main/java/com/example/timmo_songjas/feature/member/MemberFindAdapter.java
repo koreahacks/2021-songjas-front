@@ -44,11 +44,12 @@ public class MemberFindAdapter extends RecyclerView.Adapter<MemberFindAdapter.Me
         //My my = myList.get(position);
         MemberFindAdapter.MemberFindViewHolder viewHolder = (MemberFindAdapter.MemberFindViewHolder)holder;
 
+        if(mProject.get(position).profile != null){
         //TODO: viewHolder.itemView.getContext() 인지 그냥 context인지 확인
         Glide.with(viewHolder.itemView.getContext())
                 .load(mProject.get(position).profile)
                 .apply(new RequestOptions().circleCrop())
-                .into(holder.image);
+                .into(holder.image);}
         viewHolder.l_addr.setText(mProject.get(position).l_addr);
         viewHolder.s_addr.setText(mProject.get(position).s_addr);
         viewHolder.title.setText(mProject.get(position).title);
