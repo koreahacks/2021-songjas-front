@@ -345,9 +345,6 @@ public class FilterActivity extends AppCompatActivity {
         radioGroup = (RadioGroup)findViewById(R.id.rg_univ_filter);
         //id = radioGroup.getCheckedRadioButtonId();
 
-        rbUniv = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
-        //rbUniv = (RadioButton) findViewById(id);
-
 
         //완료 버튼
         finishBtn = (Button)findViewById(R.id.finish_filter);
@@ -429,6 +426,9 @@ public class FilterActivity extends AppCompatActivity {
 
         state = etState.getText().toString();
         country = etCounty.getText().toString();
+
+        rbUniv = (RadioButton) findViewById(radioGroup.getCheckedRadioButtonId());
+        //rbUniv = (RadioButton) findViewById(id);
         univ = rbUniv.getText().toString();
 
         if(univ.equals("univ_true")){ // true

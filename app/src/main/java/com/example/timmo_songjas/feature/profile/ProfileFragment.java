@@ -71,7 +71,7 @@ public class ProfileFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileProjectFragment()).commit();
-        getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileMemberFragment()).commit();
+//        getFragmentManager().beginTransaction().replace(R.id.fl_profile, new ProfileMemberFragment()).commit();
     }
 
     @Override
@@ -88,12 +88,9 @@ public class ProfileFragment extends Fragment {
 
         //프로필 수정
         profileEdit = (ImageView) toolbar.findViewById(R.id.profile_edit);
-        profileEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
-                startActivity(intent);
-            }
+        profileEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), ProfileEditActivity.class);
+            startActivity(intent);
         });
 
         name = (TextView)rootView.findViewById(R.id.tv_name_profile);
