@@ -57,7 +57,11 @@
     <string name="name_tab1_chat">팀빌딩</string>
     <string name="name_tab2_chat">팀협업</string>
     <string name="message_input">메세지를 입력해주세요.</string>
-
+    <string name="create_timmo">팀모 생성</string>
+    <string name="n">n</string>
+    <string name="collect_term">모집 기간</string>
+    <string name="collect_content">모집 내용</string>
+    <string name="content_hint">어떤 활동을 할 예정인지, 어떤 사람을 뽑는지를 풍부하게 표현해주세요.</string>
 
 
 </resources>
