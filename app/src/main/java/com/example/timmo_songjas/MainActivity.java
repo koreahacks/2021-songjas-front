@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.timmo_songjas.chatting.fragment.ChatlistFragment;
+import com.example.timmo_songjas.chatting.fragment.PeopleFragment;
+import com.example.timmo_songjas.feature.profile.ProfileFragment;
 import com.example.timmo_songjas.feature.project.ProjectFindFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -45,10 +47,15 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.main_content, memberFindFragment).commitAllowingStateLoss();
                     break;
                 case R.id.profile_menu:
+                    transaction.replace(R.id.main_content, new ProfileFragment()).commitAllowingStateLoss();
+
                     break;
                 case R.id.chat_menu:
                     transaction.replace(R.id.main_content, new ChatlistFragment()).commitAllowingStateLoss();
                     return true;
+                case R.id.people_menu:
+                    transaction.replace(R.id.main_content, new PeopleFragment()).commitAllowingStateLoss();
+
             }
             return true;
         }
