@@ -3,6 +3,7 @@ package com.example.timmo_songjas.feature.member;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -132,6 +133,7 @@ public class MemberDetailActivity extends AppCompatActivity {
         mLinearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
         rv_career.setLayoutManager(mLinearLayoutManager2);
         rv_career.setAdapter(memberDetailCareerAdapter);
+
     }
 
     public void load(int id){
@@ -144,6 +146,10 @@ public class MemberDetailActivity extends AppCompatActivity {
                     MemberDetailResponse result = response.body();
                     if (result.getStatus() == 200) {
                         Toast.makeText(getApplicationContext(), "팀모 조회 성공", Toast.LENGTH_SHORT).show();
+
+                        for(int i = 0 ; i < result.getMemberPositions().size(); i++){
+                            Log.d("ttttt",result.getMemberPositions().get(i).getPosition() );
+                        }
 
                         //메세지
                         message_need_id = result.getUsers().getId();

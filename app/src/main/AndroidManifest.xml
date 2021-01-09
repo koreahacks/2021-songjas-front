@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timmo_songjas">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="false"
@@ -13,12 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TIMMO_SONGJAS"
         tools:ignore="AllowBackup">
+        <activity android:name=".chatting.fragment.SelectFriendActivity"></activity>
         <activity android:name=".feature.project.PartyFindActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".feature.FilterActivity" />
         <activity android:name=".feature.member.MemberDetailActivity" />
@@ -26,10 +29,9 @@
             android:name=".feature.project.ProjectDetailActivity"
             android:label="@string/title_activity_project_detail"
             android:theme="@style/Theme.TIMMO_SONGJAS.NoActionBar" />
-
-        <activity android:name=".chatting.chat.MessageActivity"
+        <activity
+            android:name=".chatting.chat.MessageActivity"
             android:windowSoftInputMode="adjustResize" />
-
         <activity android:name=".feature.sign.SignUpActivity2" />
         <activity android:name=".feature.sign.SignUpActivity1" />
         <activity android:name=".feature.sign.SignInActivity" />
@@ -47,12 +49,12 @@
         </activity>
         <activity android:name=".MainActivity">
 
-<!--             <intent-filter>-->
-<!--             <action android:name="android.intent.action.MAIN" />-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
 
 
-<!--             <category android:name="android.intent.category.LAUNCHER" />-->
-<!--             </intent-filter>-->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 
