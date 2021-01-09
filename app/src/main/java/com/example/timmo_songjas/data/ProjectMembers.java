@@ -9,7 +9,7 @@ public class ProjectMembers {
     private Integer userId;
     @SerializedName("MemberId")
     @Expose
-    private Object memberId;
+    private Integer memberId;
 
     public Integer getUserId() {
         return userId;
@@ -19,15 +19,15 @@ public class ProjectMembers {
         this.userId = userId;
     }
 
-    public Object getMemberId() {
+    public Integer getMemberId() {
         return memberId;
     }
 
-    public void setMemberId(Object memberId) {
+    public void setMemberId(Integer memberId) {
         this.memberId = memberId;
     }
 
-    public ProjectMembers(Integer userId, Object memberId) {
+    public ProjectMembers(Integer userId, Integer memberId) {
         this.userId = userId;
         this.memberId = memberId;
     }
