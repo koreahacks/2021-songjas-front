@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Timmo_Songjas">
-        <activity android:name=".SigninActivity"></activity>
+        <activity android:name=".sign.SigninActivity"></activity>
         <activity android:name=".SplashActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
