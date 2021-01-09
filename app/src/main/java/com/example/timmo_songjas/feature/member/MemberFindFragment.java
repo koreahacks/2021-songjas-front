@@ -1,4 +1,4 @@
-package com.example.timmo_songjas.feature.project;
+package com.example.timmo_songjas.feature.member;
 
 import android.content.Intent;
 import android.os.Bundle;
