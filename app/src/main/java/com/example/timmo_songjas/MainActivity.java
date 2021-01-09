@@ -1,15 +1,16 @@
 package com.example.timmo_songjas;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
-import android.view.MenuItem;
-
 import com.example.timmo_songjas.chatting.fragment.ChatlistFragment;
 import com.example.timmo_songjas.chatting.fragment.PeopleFragment;
+import com.example.timmo_songjas.feature.member.MemberFindFragment;
 import com.example.timmo_songjas.feature.profile.ProfileFragment;
 import com.example.timmo_songjas.feature.project.ProjectFindFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
     //연결한 프래그먼트
     private ProjectFindFragment projectFindFragment = new ProjectFindFragment();
-    private ProjectFindFragment memberFindFragment = new ProjectFindFragment();
+    private MemberFindFragment memberFindFragment = new MemberFindFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
