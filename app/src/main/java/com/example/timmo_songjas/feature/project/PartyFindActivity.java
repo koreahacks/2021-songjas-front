@@ -1,12 +1,5 @@
 package com.example.timmo_songjas.feature.project;
 
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -14,7 +7,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.network.RetrofitService;
 
@@ -29,7 +27,6 @@ public class PartyFindActivity extends AppCompatActivity {
 
     ConstraintLayout result_partyfind_true;
     TextView result_partyfind_false;
-
 
     //레트로핏
     RetrofitService service;
@@ -85,6 +82,58 @@ public class PartyFindActivity extends AppCompatActivity {
         tv_email_partyfind = findViewById(R.id.tv_email_partyfind);
     }
 
-    //TODO: 네트워킹 부분 load(query);
+/*    private void load(String query){
+        service = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<PartyFindResponse> call = service.partyFind(USER_TOKEN, "application/json", query);
 
+        call.enqueue(new Callback<PartyFindResponse>() {
+            @Override
+            public void onResponse(Call<PartyFindResponse> call, Response<PartyFindResponse> response) {
+                if(response.isSuccessful()) {
+                    PartyFindResponse result = response.body();
+                    if(result.getStatus() == 200) {
+                        if(result.getData()!= null){
+                            Toast.makeText(getApplicationContext(), "검색결과 있음 ", Toast.LENGTH_SHORT).show();
+                            result_partyfind_true.setVisibility(View.VISIBLE);
+                            result_partyfind_false.setVisibility(View.GONE);
+                            if(result.getData().getImg() != null){
+                                Glide.with(getApplicationContext()).load(result.getData().getImg()).circleCrop().into(pic_partyfind);
+                            }
+                            tv_name_partyfind.setText(result.getData().getName());
+                            tv_email_partyfind.setText(result.getData().getEmail());
+
+                            //그리고 나온 결과를 눌렀을 때. id : result_partyfind_true
+                            result_partyfind_true.setOnClickListener(new View.OnClickListener(){
+                                @Override
+                                public void onClick(View v){
+                                    //TODO: 전 페이지로 정보 한번에 인텐트
+                                    //TODO: 성향은 false, true로 모든 정보 다 보내야 함
+                                    Intent intent = getIntent();
+                                    intent.putExtra("id", result.getData().getId());
+                                    intent.putExtra("email", result.getData().getEmail());
+                                    intent.putExtra("name", result.getData().getName());
+                                    intent.putExtra("image", result.getData().getImg());
+                                    setResult(PARTY_TO_PROADD, intent);
+                                    finish();
+                                }
+                            });
+
+                        }
+                        else{
+                            result_partyfind_true.setVisibility(View.GONE);
+                            result_partyfind_false.setVisibility(View.VISIBLE);
+                        }
+                    }
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), "연결 실패", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PartyFindResponse> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }*/
 }

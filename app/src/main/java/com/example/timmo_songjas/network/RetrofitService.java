@@ -2,8 +2,10 @@ package com.example.timmo_songjas.network;
 
 import com.example.timmo_songjas.data.EmailAuthData;
 import com.example.timmo_songjas.data.EmailAuthResponse;
+import com.example.timmo_songjas.data.MemberDetailResponse;
 import com.example.timmo_songjas.data.MessageTimgleData;
 import com.example.timmo_songjas.data.MessageTimgleResponse;
+import com.example.timmo_songjas.data.PartyFindResponse;
 import com.example.timmo_songjas.data.SigninData;
 import com.example.timmo_songjas.data.SigninResponse;
 import com.example.timmo_songjas.data.SignupData;
@@ -18,6 +20,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface RetrofitService {
     @POST("/users/signin")
@@ -43,6 +46,12 @@ public interface RetrofitService {
     @GET("/users/members")
     Call<TimgleListResponse> userTigleList(@Header("Authorization") String token);//, @Header("Content-Type") String type
 
+    @GET("/users/{email}")
+    Call<PartyFindResponse> partyFind(@Header("Authorization") String token, @Header("Content-type") String type, @Path("email") String email);
+
+    //팀글 조회
+    @GET("/members/{id}")
+    Call<MemberDetailResponse> memberDetail(@Header("Authorization") String token, @Header("Content-type") String type, @Path("id") int id);
 
 
 }
