@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".feature.project.ProjectAdd3Activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_timmoadd3"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/deep_black"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:text="@string/create_timmo">
+        </TextView></androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_timmoadd3"
+        app:layout_constraintBottom_toBottomOf="@+id/finish_project">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/btn_positionadd_project"
+                android:layout_width="wrap_content"
+                android:layout_height="28dp"
+                android:text="포지션 추가"
+                android:textColor="@color/deep_orange"
+                android:textSize="14sp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="24dp"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
+                android:background="@drawable/text_orange_rect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginRight="24dp" />
+
+            <TextView
+                android:id="@+id/tv_position_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/hope_member_position"
+                android:textColor="@color/text_grey"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="24dp" />
+
+            <Spinner
+                android:id="@+id/sp_position_project"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="24dp"
+                android:background="@drawable/underline"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_position_project" />
+
+            <TextView
+                android:id="@+id/tv_number_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/each_num_position"
+                android:layout_marginTop="20dp"
+
+                android:layout_marginStart="24dp"
+                android:textSize="14sp"
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/sp_position_project"
+                android:layout_marginLeft="24dp" />
+            <EditText
+                android:id="@+id/et_number_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/position_num_hint"
+                android:layout_marginHorizontal="24dp"
+                android:textColorHint="@color/hint_grey"
+                android:textColor="@color/six_black"
+                android:textSize="16sp"
+                android:background="@drawable/underline"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/tv_number_project"
+                android:autofillHints=""
+                android:inputType="number" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_position2_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/each_num_position"
+                android:textColor="@color/text_grey"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_number_project"
+                android:layout_marginLeft="24dp" />
+
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/sp_position2_project"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="24dp"
+                android:background="@drawable/underline"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_position2_project" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_number2_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/each_num_position"
+                android:layout_marginTop="20dp"
+
+                android:layout_marginStart="24dp"
+                android:textSize="14sp"
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/sp_position2_project"
+                android:layout_marginLeft="24dp" />
+            <EditText
+                android:id="@+id/et_number2_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/position_num_hint"
+
+                android:layout_marginHorizontal="24dp"
+                android:textColorHint="@color/hint_grey"
+                android:textColor="@color/six_black"
+                android:textSize="16sp"
+                android:background="@drawable/underline"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/tv_number2_project"
+                android:autofillHints=""
+                android:inputType="number" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_position3_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/position_num_hint"
+                android:textColor="@color/text_grey"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="32dp"
+                android:textSize="14sp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_number2_project"
+                android:layout_marginLeft="24dp" />
+
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/sp_position3_project"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="24dp"
+                android:background="@drawable/underline"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_position3_project" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_number3_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/each_num_position"
+                android:layout_marginTop="20dp"
+
+                android:layout_marginStart="24dp"
+                android:textSize="14sp"
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/sp_position3_project"
+                android:layout_marginLeft="24dp" />
+            <EditText
+                android:id="@+id/et_number3_project"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/position_num_hint"
+
+                android:layout_marginHorizontal="24dp"
+                android:textColorHint="@color/hint_grey"
+                android:textColor="@color/six_black"
+                android:textSize="16sp"
+                android:background="@drawable/underline"
+                android:layout_marginTop="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@id/tv_number3_project"
+                android:autofillHints=""
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/tv_state_project"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/timmo_state"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_number3_project"
+                android:layout_marginLeft="24dp" />
+
+            <EditText
+                android:id="@+id/et_state_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints=""
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:background="@drawable/underline"
+                android:hint="@string/seoul"
+                android:inputType="text"
+                android:textColor="@color/six_black"
+                android:textColorHint="@color/hint_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/et_county_filter"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_state_project"
+                android:layout_marginLeft="24dp" />
+
+            <TextView
+                android:id="@+id/tv_county_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/team_county"
+                android:textColor="@color/text_grey"
+                android:textSize="14sp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintLeft_toRightOf="@+id/et_state_filter"
+                app:layout_constraintTop_toBottomOf="@id/et_number3_project"
+                android:layout_marginLeft="16dp" />
+
+            <EditText
+                android:id="@+id/et_county_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:autofillHints=""
+                android:background="@drawable/underline"
+                android:hint="@string/yongsan"
+                android:inputType="text"
+                android:textColor="@color/deep_black"
+                android:textColorHint="@color/hint_grey"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_state_filter"
+                app:layout_constraintTop_toBottomOf="@+id/tv_county_filter"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="24dp" />
+
+            <TextView
+                android:id="@+id/tv_univ_filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/univ_limit"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="24dp"
+                android:textSize="14sp"
+                android:textColor="@color/text_grey"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_county_filter"
+                android:layout_marginLeft="24dp" />
+
+            <RadioGroup
+                android:id="@+id/rg_univ_filter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="24dp"
+                android:layout_marginBottom="120dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintHorizontal_bias="0"
+                app:layout_constraintTop_toBottomOf="@+id/tv_univ_filter"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+                <RadioButton
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/entire"
+                    android:button="@drawable/radio_btn_customed"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/hint_grey"/>
+                <RadioButton
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/same_univ"
+                    android:button="@drawable/radio_btn_customed"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/noto_regular"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/hint_grey"
+                    android:layout_marginLeft="8dp" />
+            </RadioGroup>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/finish_project"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="20dp"
+        android:background="@color/white">
+        <Button
+            android:id="@+id/btn_finish_project"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_rec"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/finish"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

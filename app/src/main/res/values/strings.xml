@@ -41,9 +41,7 @@
     <string name="next">다음</string>
     <string name="nickname">닉네임</string>
     <string name="nickname_input">닉네임을 입력해주세요.</string>
-    <string name="state">시/도</string>
     <string name="seoul">서울특별시</string>
-    <string name="county">시/군/구</string>
     <string name="yongsan">용산구</string>
     <string name="univ_input">대학교를 입력해주세요.</string>
     <string name="major">전공</string>
@@ -57,7 +55,7 @@
     <string name="name_tab1_chat">팀빌딩</string>
     <string name="name_tab2_chat">팀협업</string>
     <string name="message_input">메세지를 입력해주세요.</string>
-    <string name="create_timmo">팀모 생성</string>
+    <string name="create_timmo">팀모 작성</string>
     <string name="n">n</string>
     <string name="collect_term">모집 기간</string>
     <string name="collect_content">모집 내용</string>
@@ -79,5 +77,15 @@
 
     <string name="time_mess_item">오후 10:00</string>
     <string name="chat_item">챗 아이템</string>
+    <string name="hope_member_position">희망 팀원 포지션</string>
+    <string name="each_num_position">포지션 별 인원</string>
+    <string name="position_num_hint">포지션 별 인원을 입력해주세요.</string>
+    <string name="state">시/도</string>
+    <string name="county">시/군/구</string>
+    <string name="timmo_state">팀 활동 시/도</string>
+    <string name="team_county">팀 활동 시/군/구</string>
+    <string name="univ_limit">지원 대학 제한</string>
+    <string name="entire">전체</string>
+    <string name="same_univ">자대</string>
 
 </resources>
