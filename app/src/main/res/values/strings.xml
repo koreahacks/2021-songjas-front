@@ -63,5 +63,7 @@
     <string name="collect_content">모집 내용</string>
     <string name="content_hint">어떤 활동을 할 예정인지, 어떤 사람을 뽑는지를 풍부하게 표현해주세요.</string>
 
+    <string name="time_mess_item">오후 10:00</string>
+    <string name="chat_item">챗 아이템</string>
 
 </resources>
