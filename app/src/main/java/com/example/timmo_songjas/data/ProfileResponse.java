@@ -17,16 +17,16 @@ public class ProfileResponse {
     private String message;
     @SerializedName("Users")
     @Expose
-    private MemberDetailResponse.Users users;
+    private Users users;
     @SerializedName("ProjectApplicants")
     @Expose
-    private List<ProjectDetailResponse.ProjectApplicants> projectApplicants = null;
+    private List<ProjectApplicants> projectApplicants = null;
     @SerializedName("Projects")
     @Expose
-    private List<ProjectDetailResponse.Projects> projects = null;
+    private List<Projects> projects = null;
     @SerializedName("Members")
     @Expose
-    private List<MemberDetailResponse.Members> members = null;
+    private List<Members> members = null;
 
     public Integer getStatus() {
         return status;
@@ -52,35 +52,35 @@ public class ProfileResponse {
         this.message = message;
     }
 
-    public MemberDetailResponse.Users getUsers() {
+    public Users getUsers() {
         return users;
     }
 
-    public void setUsers(MemberDetailResponse.Users users) {
+    public void setUsers(Users users) {
         this.users = users;
     }
 
-    public List<ProjectDetailResponse.ProjectApplicants> getProjectApplicants() {
+    public List<ProjectApplicants> getProjectApplicants() {
         return projectApplicants;
     }
 
-    public void setProjectApplicants(List<ProjectDetailResponse.ProjectApplicants> projectApplicants) {
+    public void setProjectApplicants(List<ProjectApplicants> projectApplicants) {
         this.projectApplicants = projectApplicants;
     }
 
-    public List<ProjectDetailResponse.Projects> getProjects() {
+    public List<Projects> getProjects() {
         return projects;
     }
 
-    public void setProjects(List<ProjectDetailResponse.Projects> projects) {
+    public void setProjects(List<Projects> projects) {
         this.projects = projects;
     }
 
-    public List<MemberDetailResponse.Members> getMembers() {
+    public List<Members> getMembers() {
         return members;
     }
 
-    public void setMembers(List<MemberDetailResponse.Members> members) {
+    public void setMembers(List<Members> members) {
         this.members = members;
     }
 }
