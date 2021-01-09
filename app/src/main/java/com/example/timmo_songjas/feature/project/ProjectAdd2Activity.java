@@ -68,8 +68,8 @@ public class ProjectAdd2Activity extends AppCompatActivity {
     private ProjectAddMemberAdapter projectAddMemberAdapter;
 
     RetrofitService service1;
-    List<String> timgleTitle = new ArrayList<>();//팀글 제목
-    List<Integer> memberIds = new ArrayList<>();//팀글 ID
+    ArrayList<String> timgleTitle = new ArrayList<>();//팀글 제목
+    ArrayList<Integer> memberIds = new ArrayList<>();//팀글 ID
     List<ProjectMembers> membersList = new ArrayList<>();//팀원 ID
 
 
@@ -405,17 +405,19 @@ public class ProjectAdd2Activity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == PARTY_TO_PROADD){
-            id = data.getStringExtra("id");
-            email = data.getStringExtra("email");
-            name = data.getStringExtra("name");
-            img = data.getStringExtra("img");
+            if(id != null) {
+                id = data.getStringExtra("id");
+                email = data.getStringExtra("email");
+                name = data.getStringExtra("name");
+                img = data.getStringExtra("img");
 
-            //add3로 넘겨야 할 데이터
-            membersList.add(Integer.parseInt(id), null);
+                //add3로 넘겨야 할 데이터
+                membersList.add(Integer.parseInt(id), null);
 
-            //TODO: 리싸이클러뷰로 보여주기
-            member_list.add(new ProjectAddMember(img, name));
-            projectAddMemberAdapter.notifyDataSetChanged();
+                //TODO: 리싸이클러뷰로 보여주기
+                member_list.add(new ProjectAddMember(img, name));
+                projectAddMemberAdapter.notifyDataSetChanged();
+            }
         }
     }
 

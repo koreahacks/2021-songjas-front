@@ -228,7 +228,6 @@ public class MemberDetailActivity extends AppCompatActivity {
     }
     public void sendMessage(){
         Intent intent1 = new Intent(MemberDetailActivity.this , MessageActivity.class);
-        //TODO:String으로 바꿔서 ID 보내기!!
         intent1.putExtra("destinationUserid",Integer.toString(message_need_id)  );
         startActivity(intent1);
     }

@@ -9,7 +9,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:id="@+id/pic_partyfind"
+        android:id="@+id/iv_member"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginStart="24dp"
@@ -31,7 +31,7 @@
         android:fontFamily="@font/noto_medium"
         android:includeFontPadding="false"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/pic_partyfind"
+        app:layout_constraintStart_toEndOf="@+id/iv_member"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -63,7 +63,7 @@
         android:textColor="@color/four_black"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/pic_partyfind"
+        app:layout_constraintStart_toEndOf="@+id/iv_member"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <TextView
@@ -77,7 +77,7 @@
         android:fontFamily="@font/noto_regular"
         android:includeFontPadding="false"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/pic_partyfind"
+        app:layout_constraintStart_toEndOf="@+id/iv_member"
         app:layout_constraintTop_toBottomOf="@+id/tv_title_memberfind" />
 
     <TextView
