@@ -1,0 +1,500 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.project.ProjectDetailActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_timmo"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/deep_black"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:text="@string/timmo">
+        </TextView>
+        <ImageView
+            android:id="@+id/toolbar_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingRight="16dp"
+            android:layout_gravity="end"
+            android:src="@drawable/ic_star_24_dp"
+            android:contentDescription="@string/todo" />
+    </androidx.appcompat.widget.Toolbar>
+
+
+    <ScrollView
+        android:id="@+id/sv_projectdetail"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/btn_area"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_timmo">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_intro_projectdetail"
+                android:layout_width="0dp"
+                android:layout_height="180dp"
+                android:background="@color/bg_grey_10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="@string/todo" />
+            <TextView
+                android:id="@+id/tv_univ_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/text_red_rect"
+                android:fontFamily="@font/noto_medium"
+                android:includeFontPadding="false"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/point_red"
+                android:textSize="10sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_intro_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_dday_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/text_red_rect"
+                android:fontFamily="@font/noto_medium"
+                android:includeFontPadding="false"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp"
+                android:textColor="@color/point_red"
+                android:textSize="10sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_univ_projectdetail"
+                app:layout_constraintTop_toBottomOf="@+id/iv_intro_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_title_projectdetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:textColor="@color/four_black"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_dday_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_date_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="24dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/hint_grey"
+                android:textSize="10sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_intro_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_loca_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/loca"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_largeaddress_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_smalladdress_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/tv_largeaddress_projectdetail"
+                app:layout_constraintTop_toBottomOf="@id/tv_title_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_period_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/period"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_loca_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_startdate_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_loca_projectdetail" />
+
+            <TextView
+                android:id="@+id/period"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="8dp"
+                android:text="~"
+                app:layout_constraintStart_toEndOf="@+id/tv_startdate_projectdetail"
+                app:layout_constraintTop_toBottomOf="@id/tv_loca_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_enddate_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toEndOf="@+id/period"
+                app:layout_constraintTop_toBottomOf="@id/tv_loca_projectdetail" />
+
+
+            <TextView
+                android:id="@+id/tv_category_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="@string/category"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_startdate_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_typecontent_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="112dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_period_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_filedcontent_projectdetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_typecontent_projectdetail"
+                app:layout_constraintTop_toBottomOf="@id/tv_period_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_hope_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:text="희망 포지션"
+                android:textColor="@color/text_grey"
+                android:textSize="12sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_category_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_hopecontent_projectdetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="112dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="24dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_category_projectdetail" />
+
+            <include
+                android:id="@+id/box_gray_projectdetail"
+                layout="@layout/box_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_hope_projectdetail" />
+
+
+
+            <TextView
+                android:id="@+id/tv_collect_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/collect"
+                android:textColor="@color/four_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/box_gray_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_collectcontent_projectdetail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="24dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_collect_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_link_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="프로젝트 링크"
+                android:textColor="@color/four_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_collectcontent_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_linkcontent_productdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/noto_regular"
+                android:includeFontPadding="false"
+                android:textColor="@color/six_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_link_projectdetail" />
+
+
+
+            <include
+                android:id="@+id/line_gray_projectdetail"
+                layout="@layout/line_gray"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_linkcontent_productdetail" />
+
+
+            <TextView
+                android:id="@+id/tv_teamtype_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/team_type"
+                android:textColor="@color/four_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/line_gray_projectdetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_teamtype_projectdetail"
+                android:layout_width="match_parent"
+                android:layout_height="28dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_teamtype_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_teammember_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/team_member"
+                android:textColor="@color/four_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_teamtype_projectdetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_teammember_projectdetail"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_teammember_projectdetail" />
+
+            <TextView
+                android:id="@+id/tv_teamapply_projectdetail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/noto_bold"
+                android:includeFontPadding="false"
+                android:text="@string/apply_member"
+                android:textColor="@color/four_black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rv_teammember_projectdetail" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_teamapply_projectdetail"
+                android:layout_width="match_parent"
+                android:layout_height="67dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_teamapply_projectdetail" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+    </ScrollView>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/btn_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:elevation="20dp"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/btn_chat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="28dp"
+            android:src="@drawable/ic_chat_48_dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_no_applier"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/button_rec"
+            android:fontFamily="@font/noto_regular"
+            android:includeFontPadding="false"
+            android:text="@string/apply"
+            android:textColor="@color/white"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btn_chat"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
