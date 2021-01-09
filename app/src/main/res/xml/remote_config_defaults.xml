@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">-->
+<!-- START xml_defaults -->
+<!--리모드-->
+<defaultsMap>
+    <entry>
+        <key>splash_background</key>
+        <value>#aabbcc</value>
+    </entry>
+    <entry>
+        <key>splash_message_caps</key>
+        <value>false</value>
+        <!--        true하면 서버 점검 중 뜸-->
+    </entry>
+    <entry>
+        <key>splash_message</key>
+        <value>서버 점검 중 입니다.</value>
+<!--        firebase 서버지만 넣겠으-->
+    </entry>
+</defaultsMap>
+<!-- END xml_defaults -->
+<!--</PreferenceScreen>-->
