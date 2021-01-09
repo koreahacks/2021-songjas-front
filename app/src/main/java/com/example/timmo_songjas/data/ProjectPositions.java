@@ -27,4 +27,8 @@ public class ProjectPositions {
         this.headCount = headCount;
     }
 
+    public ProjectPositions(String position, Integer headCount) {
+        this.position = position;
+        this.headCount = headCount;
+    }
 }

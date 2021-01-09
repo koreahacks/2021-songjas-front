@@ -30,6 +30,7 @@ import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
 
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,6 +45,8 @@ public class ProjectAdd2Activity extends AppCompatActivity {
 
     Spinner spText;
     String timgleString;
+    int memberId;
+    int myId;
     int morningCount;
     int nightCount;
     int dawnCount;
@@ -65,9 +68,9 @@ public class ProjectAdd2Activity extends AppCompatActivity {
     private ProjectAddMemberAdapter projectAddMemberAdapter;
 
     RetrofitService service1;
-    List<String> timgleTitle = new ArrayList<>();
-    List<Integer> userId = new ArrayList<>();
-    List<ProjectMembers> membersList = new ArrayList<>();
+    List<String> timgleTitle = new ArrayList<>();//팀글 제목
+    List<Integer> memberIds = new ArrayList<>();//팀글 ID
+    List<ProjectMembers> membersList = new ArrayList<>();//팀원 ID
 
 
     @Override
@@ -121,6 +124,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 timgleString =timgleTitle.get(position);
+                memberId = memberIds.get(position);
                 //timgleString = timgle[position];
                 Log.d("스피너 선택", timgleString);
             }
@@ -333,7 +337,8 @@ public class ProjectAdd2Activity extends AppCompatActivity {
                     intent.putExtra("content", content);
 
                     //add에서 입력 받은 데이터
-                    intent.putExtra("timgle", timgleString);
+                    intent.putExtra("myId", String.valueOf(myId));
+                    intent.putExtra("timgle", String.valueOf(memberId));//팀글 아이디
                     intent.putExtra("port", dtPort.getText().toString());
                     intent.putExtra("morning", String.valueOf(morningCount % 2));
                     intent.putExtra("night", String.valueOf(nightCount % 2));
@@ -346,10 +351,8 @@ public class ProjectAdd2Activity extends AppCompatActivity {
                     intent.putExtra("reality", String.valueOf(realCount % 2));
 
                     //TODO: 선택된 팀원 정보-->(PartyFind에서 받아와야 함)
-                    intent.putExtra("id", id);
-                    intent.putExtra("email", email);
-                    intent.putExtra("name", name);
-                    intent.putExtra("img", img);
+                    //membersList(팀원 ID)list
+                    intent.putExtra("membersList", (Serializable) membersList);
 
                     startActivity(intent);
                 }catch (Exception e){
@@ -371,11 +374,12 @@ public class ProjectAdd2Activity extends AppCompatActivity {
                     TimgleListResponse result = response.body();
                     if (result.getStatus() == 200) {
                         timgleTitle.clear();
-                        userId.clear();
+                        memberIds.clear();
                         //int num = result.getData().size();
                         for(int i =0; i < result.getData().size(); i++){
+                            myId = result.getData().get(i).getUserId();
                             timgleTitle.add(result.getData().get(i).getTitle());
-                            userId.add(result.getData().get(i).getId());
+                            memberIds.add(result.getData().get(i).getId());
                             //titleStr[i] = result.getData().get(i).getTitle();
                         }
                     }

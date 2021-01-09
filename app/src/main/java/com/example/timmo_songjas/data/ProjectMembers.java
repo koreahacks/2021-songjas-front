@@ -27,4 +27,8 @@ public class ProjectMembers {
         this.memberId = memberId;
     }
 
+    public ProjectMembers(Integer userId, Object memberId) {
+        this.userId = userId;
+        this.memberId = memberId;
+    }
 }

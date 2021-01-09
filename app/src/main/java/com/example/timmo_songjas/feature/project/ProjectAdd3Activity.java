@@ -22,10 +22,13 @@ import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.data.ProjectAddData;
 import com.example.timmo_songjas.data.ProjectAddResponse;
+import com.example.timmo_songjas.data.ProjectMembers;
+import com.example.timmo_songjas.data.ProjectPositions;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -72,7 +75,8 @@ public class ProjectAdd3Activity extends AppCompatActivity {
         String startDate = intent.getStringExtra("startDate");
         String endDate = intent.getStringExtra("endDate");
         String content = intent.getStringExtra("content");
-        String timgle = intent.getStringExtra("timgle");
+        int myId = Integer.parseInt(intent.getStringExtra("myId"));
+        int timgle = Integer.parseInt(intent.getStringExtra("timgle"));
         String port = intent.getStringExtra("port");
         boolean morning = (Integer.parseInt(intent.getStringExtra("morning")) != 0 );
         boolean night = (Integer.parseInt(intent.getStringExtra("night")) != 0 );
@@ -83,11 +87,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
         boolean follow = (Integer.parseInt(intent.getStringExtra("follow")) != 0 );
         boolean challenge = (Integer.parseInt(intent.getStringExtra("challenge")) != 0 );
         boolean reality = (Integer.parseInt(intent.getStringExtra("reality")) != 0 );
-        String id = intent.getStringExtra("startDate");
-        String email = intent.getStringExtra("endDate");
-        String name = intent.getStringExtra("content");
-        String img = intent.getStringExtra("content");
-
+        List<Integer> memberList = (ArrayList<Integer>) intent.getSerializableExtra("membersList");
 
         //스피너 구현(희망팀원 포지션)
         String[] memberPosition = {"디자인", "개발", "기획","홍보/마케팅", "희망 포지션을 선택해주세요."};
@@ -275,8 +275,27 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                 int id = radioGroup.getCheckedRadioButtonId();
                 RadioButton rbUniv = (RadioButton) findViewById(id);
                 String univ = rbUniv.getText().toString();
+                boolean univType;
+                if(univ.equals("자대") ) univType=true;
+                else univType=false;
 
                 try {
+
+                    List<ProjectMembers> pmList = new ArrayList<>();
+                    pmList.add(new ProjectMembers(myId, timgle));
+                    for(int i =0; i < memberList.size(); i++){
+                        pmList.add(new ProjectMembers(memberList.get(i), null));
+                    }
+                    List<ProjectPositions> ppList = new ArrayList<>();
+                    for(int i= 0;i < positioinStr.size(); i++){
+                        ppList.add(new ProjectPositions(positioinStr.get(i), Integer.parseInt(positionNumInt.get(i))));
+                    }
+
+                    ProjectAddData data = new ProjectAddData(
+                            null, roomkey, title, type, feild, startDate, endDate,
+                            content, port, morning, night, dawn, plan, focus, leader,
+                            follow, challenge, reality, state, county, univType, pmList, ppList);
+                    send(data);
                     //TODO: 데이터 서버로 전송
                     //TODO: 서버에 보낼 데이터 중 roomkey도 있음, 채팅방 ,룸키 값 받아왔으니 보내주기만하면됨
 
