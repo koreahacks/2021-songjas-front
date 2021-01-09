@@ -11,6 +11,8 @@ import com.example.timmo_songjas.data.PartyFindResponse;
 import com.example.timmo_songjas.data.ProfileImageResponse;
 import com.example.timmo_songjas.data.ProfileResponse;
 import com.example.timmo_songjas.data.ProjectAdd1Response;
+import com.example.timmo_songjas.data.ProjectAddData;
+import com.example.timmo_songjas.data.ProjectAddResponse;
 import com.example.timmo_songjas.data.ProjectDetailApplyData;
 import com.example.timmo_songjas.data.ProjectDetailApplyResponse;
 import com.example.timmo_songjas.data.ProjectDetailChoiceTimgleResponse;
@@ -109,6 +111,10 @@ public interface RetrofitService {
     //팀글(이력서) 생성
     @POST("/members")
     Call<MemberAddResponse> memberAdd(@Header("Authorization") String token, @Body MemberAddData data);
+
+    //projectAdd3
+    @POST("/projects")
+    Call<ProjectAddResponse> projectAdd(@Header("Authorization") String token, @Body ProjectAddData data);
 
 
     //팀모 필터
