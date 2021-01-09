@@ -62,6 +62,20 @@
     <string name="collect_term">모집 기간</string>
     <string name="collect_content">모집 내용</string>
     <string name="content_hint">어떤 활동을 할 예정인지, 어떤 사람을 뽑는지를 풍부하게 표현해주세요.</string>
+    <string name="collertor_timgle">모집자 팀글</string>
+    <string name="team_port">팀포트폴리오</string>
+    <string name="port_link">관련 링크를 첨부해주세요.</string>
+    <string name="team_type">팀 성향</string>
+    <string name="morning">아침형</string>
+    <string name="night">저녁형</string>
+    <string name="dawn">새벽형</string>
+    <string name="plan">계획형</string>
+    <string name="focus">몰입형</string>
+    <string name="leader">리더</string>
+    <string name="follower">팔로워</string>
+    <string name="challenge">도전형</string>
+    <string name="real">현실형</string>
+    <string name="now_member">현재 팀원</string>
 
 
 </resources>

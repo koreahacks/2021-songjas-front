@@ -253,6 +253,7 @@
                 android:layout_marginHorizontal="24dp"
                 android:layout_marginTop="8dp"
                 android:autofillHints=""
+                android:inputType="date"
                 android:background="@drawable/underline"
                 android:fontFamily="@font/noto_regular"
                 android:hint="@string/yyyy_mm_dd"
@@ -308,7 +309,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/tv_port_resume"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/et_content_resume"></LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/et_content_resume" />
 
             <TextView
                 android:id="@+id/tv_port_resume"
