@@ -354,6 +354,12 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         Log.d("에러난다고 사이즈 ", positioinStr.size() + "  " +positionNumInt.size() );
 
 
+                                        positioinStr.clear();
+                                        positionNumInt.clear();
+                                        positioinStr.add("개발");
+                                        positionNumInt.add("2");
+                                        positioinStr.add("디자인");
+                                        positionNumInt.add("1");
                                         for(int i= 0;i < positioinStr.size(); i++){
                                                 ppList.add(new ProjectPositions(positioinStr.get(i), Integer.parseInt(positionNumInt.get(i))));
                                             }
