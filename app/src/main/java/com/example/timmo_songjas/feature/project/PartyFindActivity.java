@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.network.RetrofitService;
 
 
 public class PartyFindActivity extends AppCompatActivity {
@@ -29,6 +30,11 @@ public class PartyFindActivity extends AppCompatActivity {
     ConstraintLayout result_partyfind_true;
     TextView result_partyfind_false;
 
+
+    //레트로핏
+    RetrofitService service;
+
+    @RequiresApi(api= Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
