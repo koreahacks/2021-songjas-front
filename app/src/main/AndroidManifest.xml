@@ -37,6 +37,7 @@
         <activity android:name=".feature.project.ProjectAdd2Activity" />
         <activity android:name=".feature.project.ProjectAdd3Activity" />
         <activity android:name=".feature.profile.ProfileEditActivity" />
+        <activity android:name=".feature.member.MemberAddActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
