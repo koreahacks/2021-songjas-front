@@ -1,5 +1,15 @@
 package com.example.timmo_songjas.network;
 
+import com.example.timmo_songjas.data.EmailAuthData;
+import com.example.timmo_songjas.data.EmailAuthResponse;
+import com.example.timmo_songjas.data.MemberDetailResponse;
+import com.example.timmo_songjas.data.MessageTimgleData;
+import com.example.timmo_songjas.data.MessageTimgleResponse;
+import com.example.timmo_songjas.data.PartyFindResponse;
+import com.example.timmo_songjas.data.ProjectDetailApplyData;
+import com.example.timmo_songjas.data.ProjectDetailApplyResponse;
+import com.example.timmo_songjas.data.ProjectDetailChoiceTimgleResponse;
+import com.example.timmo_songjas.data.ProjectDetailResponse;
 import com.example.timmo_songjas.data.ProfileEditInputData;
 import com.example.timmo_songjas.data.ProfileEditInputResponse;
 import com.example.timmo_songjas.data.ProfileEditResponse;
@@ -7,6 +17,8 @@ import com.example.timmo_songjas.data.SigninData;
 import com.example.timmo_songjas.data.SigninResponse;
 import com.example.timmo_songjas.data.SignupData;
 import com.example.timmo_songjas.data.SignupResponse;
+import com.example.timmo_songjas.data.TimgleListResponse;
+import com.example.timmo_songjas.data.TimmoListResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -14,21 +26,8 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PATCH;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
-import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
-
-import com.example.timmo_songjas.data.EmailAuthData;
-import com.example.timmo_songjas.data.EmailAuthResponse;
-import com.example.timmo_songjas.data.MemberDetailResponse;
-import com.example.timmo_songjas.data.MessageTimgleData;
-import com.example.timmo_songjas.data.MessageTimgleResponse;
-import com.example.timmo_songjas.data.PartyFindResponse;
-
-import com.example.timmo_songjas.data.TimgleListResponse;
-import com.example.timmo_songjas.data.TimmoListResponse;
 
 public interface RetrofitService {
     @POST("/users/signin")
@@ -60,6 +59,16 @@ public interface RetrofitService {
     //팀글 조회
     @GET("/members/{id}")
     Call<MemberDetailResponse> memberDetail(@Header("Authorization") String token, @Header("Content-type") String type, @Path("id") int id);
+
+    //팀모 조회
+    @GET("/projects/{id}")
+    Call<ProjectDetailResponse> projectDetail(@Header("Authorization") String token, @Header("Content-type") String type, @Path("id") int id);
+
+    @GET("/users/members")
+    Call<ProjectDetailChoiceTimgleResponse> projectDetailChoiceTimgle (@Header("Authorization") String token, @Header("Content-type") String type);
+
+    @POST("/projects/applicants")
+    Call<ProjectDetailApplyResponse> projectDetailApplyResponse (@Header("Authorization") String token, @Header("Content-type") String type, @Body ProjectDetailApplyData body);
 
     //프로필 조회
     @GET("/users")
