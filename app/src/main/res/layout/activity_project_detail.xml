@@ -276,9 +276,9 @@
 
             <TextView
                 android:id="@+id/tv_hopecontent_projectdetail"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="112dp"
+                android:layout_marginLeft="112dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="24dp"
                 android:fontFamily="@font/noto_regular"
@@ -286,7 +286,7 @@
                 android:textColor="@color/six_black"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tv_category_projectdetail" />
 
             <include
@@ -377,7 +377,7 @@
                 android:id="@+id/tv_teamtype_projectdetail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginLeft="24dp"
                 android:layout_marginTop="40dp"
                 android:fontFamily="@font/noto_bold"
                 android:includeFontPadding="false"
