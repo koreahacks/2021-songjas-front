@@ -90,5 +90,6 @@
     <string name="profile_edit">프로필 수정</string>
     <string name="logout">로그아웃</string>
     <string name="apply">지원</string>
+    <string name="friend_id">아이디</string>
 
 </resources>

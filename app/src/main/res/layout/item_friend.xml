@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="71dp"
+    android:orientation="vertical">
+
+    <!--    그 나열되는 친구 목록-->
+    <!--채팅 확인을 위해 추가 나중에 지울 예정-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:layout_margin="10dp"
+            android:id="@+id/imageView_profile_friendItem"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_profile_24_dp"
+            android:contentDescription="@string/description_logo" />
+
+        <TextView
+            android:id="@+id/textView_emailId_friendItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:text="@string/friend_id"
+            android:layout_marginStart="10dp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
