@@ -4,6 +4,7 @@
     package="com.example.timmo_songjas">
 
 
+
 <!--    allowback관련 링크 카카오워크에 추가해놓음 마지막에 보기-->
     <application
         android:icon="@mipmap/ic_launcher"

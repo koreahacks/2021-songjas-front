@@ -22,6 +22,8 @@ public class SignUpActivity2 extends AppCompatActivity {
     private EditText largeAddress,smallAddress,univ,major,grade;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
