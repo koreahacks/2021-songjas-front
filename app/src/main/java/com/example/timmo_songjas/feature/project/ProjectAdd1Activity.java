@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -29,27 +30,36 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.example.timmo_songjas.R;
 import com.example.timmo_songjas.data.ProjectAdd1Response;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
 
+import org.json.JSONObject;
+
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.lang.annotation.Annotation;
+import java.net.URLEncoder;
 
+import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
+import retrofit2.Converter;
 import retrofit2.Response;
+import retrofit2.http.Header;
 
 import static com.example.timmo_songjas.feature.utils.CommonValues.PROADD_IMAGE;
 import static com.example.timmo_songjas.feature.utils.CommonValues.USER_TOKEN;
 
 
 public class ProjectAdd1Activity extends AppCompatActivity {
-
     Spinner spType;
     String typeString;
     Spinner spField;
@@ -60,11 +70,13 @@ public class ProjectAdd1Activity extends AppCompatActivity {
     ImageView ivImage;
 
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.READ_EXTERNAL_STORAGE};
+
+
+    RetrofitService service1;
+
     Bitmap img;
     Uri imageUri;
     String imagePath;
-
-    RetrofitService service1;
 
     //이미지 파일 열기
     @Override
@@ -95,15 +107,16 @@ public class ProjectAdd1Activity extends AppCompatActivity {
         }
     }
 
-    //권한 받기
     final int REQUESTCODE = 150;
+
     private void requestPermission(){
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
         if(permissionCheck != PackageManager.PERMISSION_GRANTED){
+            // if(ActivityCompat.)
             ActivityCompat.requestPermissions(this, REQUIRED_PERMISSIONS, REQUESTCODE);
         }
-    }
 
+    }
 
     //new 절대경로
     public String getPathEugene(Context context, Uri uri){
@@ -130,6 +143,21 @@ public class ProjectAdd1Activity extends AppCompatActivity {
     }
 
 
+    //이미지 스트링으로 변환
+    public String BitMapToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);    //bitmap compress
+        byte [] arr=baos.toByteArray();
+        String image= Base64.encodeToString(arr, Base64.DEFAULT);
+        String temp="";
+        try{
+            temp="&imagedevice="+ URLEncoder.encode(image,"utf-8");
+            return temp;
+        }catch (Exception e){
+            Log.e("exception",e.toString());
+            return e.toString();
+        }
+    }
 
 
     @Override
@@ -251,6 +279,9 @@ public class ProjectAdd1Activity extends AppCompatActivity {
                     intent.putExtra("endDate", term[1]);
                     intent.putExtra("content", etContent.getText().toString());
 
+                    //TODO: 이미지 어떻게 보내야 하는지 알아보기
+                    //sendImage();
+
                     startActivity(intent);
                 } catch (Exception e) {
                     Toast.makeText(getApplicationContext(), e.toString(), Toast.LENGTH_LONG).show();
@@ -261,7 +292,7 @@ public class ProjectAdd1Activity extends AppCompatActivity {
         });
     }
 
-    //이미지 전송
+    //이미지 전송하기
     private void sendImage(){
         //retrofilt2 연결
         service1 = RetrofitClient.getClient().create(RetrofitService.class);
