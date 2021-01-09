@@ -16,13 +16,15 @@ import android.widget.Toast;
 
 import com.example.timmo_songjas.R;
 
-public class Signup1Activity extends AppCompatActivity {
+public class SignUpActivity1 extends AppCompatActivity {
 
     private EditText email;
     private EditText password;
     private EditText emailAuth;
     private Button btn_signup1;
 
+    private boolean emailAuthEnd = true;     // TODO:false이 기본값 , 바꿔주기
+    //TODO:서버 내용 들어와야함
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,19 @@ public class Signup1Activity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up1);
 
         init();
+
+        btn_signup1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(emailAuthEnd & password.getText().toString().equals("")) { //필수항목 다 입력해야해
+                    Intent intent = new Intent(SignUpActivity1.this, SignUpActivity2.class);
+                    intent.putExtra("email", email.getText().toString());
+                    intent.putExtra("password", password.getText().toString());
+                    startActivity(intent);
+                }
+            }
+
+        } );
 
     }
 
