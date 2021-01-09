@@ -141,6 +141,7 @@ public class SignInActivity extends AppCompatActivity {
         //TODO:프로필 데이터에서 이름 받아와서 name에 설정
         USER_NAME_LOGGED_IN = SEVER_USERID_LOGGED_IN;
 
+
         FirebaseDatabase.getInstance().getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

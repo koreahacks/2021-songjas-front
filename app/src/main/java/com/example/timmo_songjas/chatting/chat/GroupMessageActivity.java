@@ -102,6 +102,7 @@ public class GroupMessageActivity extends AppCompatActivity {
         recyclerView = (RecyclerView)findViewById(R.id.rv_group_message);
         service = RetrofitClient.getClient().create(RetrofitService.class);
 
+
         send_btn.setActivated(false);
         iv_timmgle_upload.setActivated(false);
 

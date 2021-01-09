@@ -330,6 +330,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
 
                                         try {
 
+
                                             List<ProjectMembers> pmList = new ArrayList<>();
                                             pmList.add(new ProjectMembers(myId, timgle));
                                             for(int i =0; i < memberList.size(); i++){
