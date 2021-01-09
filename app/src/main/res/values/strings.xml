@@ -41,9 +41,7 @@
     <string name="next">다음</string>
     <string name="nickname">닉네임</string>
     <string name="nickname_input">닉네임을 입력해주세요.</string>
-    <string name="state">시/도</string>
     <string name="seoul">서울특별시</string>
-    <string name="county">시/군/구</string>
     <string name="yongsan">용산구</string>
     <string name="univ_input">대학교를 입력해주세요.</string>
     <string name="major">전공</string>
@@ -93,6 +91,23 @@
     <string name="team_member">팀원</string>
     <string name="apply_member">지원자</string>
     <string name="id">아이디</string>
+
+
+
+    <string name="time_mess_item">오후 10:00</string>
+    <string name="chat_item">챗 아이템</string>
+    <string name="hope_member_position">희망 팀원 포지션</string>
+    <string name="each_num_position">포지션 별 인원</string>
+    <string name="position_num_hint">포지션 별 인원을 입력해주세요.</string>
+    <string name="state">시/도</string>
+    <string name="county">시/군/구</string>
+    <string name="timmo_state">팀 활동 시/도</string>
+    <string name="team_county">팀 활동 시/군/구</string>
+    <string name="univ_limit">지원 대학 제한</string>
+    <string name="entire">전체</string>
+    <string name="same_univ">자대</string>
+    <string name="profile_edit">프로필 수정</string>
+    <string name="logout">로그아웃</string>
 
 
 </resources>

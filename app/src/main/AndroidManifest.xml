@@ -1,27 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.timmo_songjas">
 
+    <!--    allowback관련 링크 카카오워크에 추가해놓음 마지막에 보기-->
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TIMMO_SONGJAS">
+        android:theme="@style/Theme.TIMMO_SONGJAS"
+        android:allowBackup="false"
+        tools:ignore="AllowBackup">
         <activity
             android:name=".feature.project.ProjectDetailActivity"
             android:label="@string/title_activity_project_detail"
             android:theme="@style/Theme.TIMMO_SONGJAS.NoActionBar"></activity>
-        <activity android:name=".chatting.MessageActivity" />
-        <activity android:name=".feature.sign.Signup2Activity" />
-        <activity android:name=".feature.sign.Signup1Activity" />
-        <activity android:name=".feature.sign.SigninActivity" />
-        <activity android:name=".SplashActivity" />
-        <activity android:name=".MainActivity">
-        android:theme="@style/Theme.TIMMO_SONGJAS"
-        android:allowBackup="false"
-        tools:ignore="AllowBackup">
+
         <activity android:name=".chatting.MessageActivity"  android:windowSoftInputMode="adjustResize" />
         <activity android:name=".feature.sign.SignUpActivity2" />
         <activity android:name=".feature.sign.SignUpActivity1" />
@@ -30,12 +25,19 @@
         <activity android:name=".feature.project.ProjectAdd2Activity" />
         <activity android:name=".feature.project.ProjectAdd3Activity" />
         <activity android:name=".feature.profile.ProfileEditActivity" />
-        <activity android:name= ".SplashActivity" >
+        <activity android:name=".SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
     </application>
 

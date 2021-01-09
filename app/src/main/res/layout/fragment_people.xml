@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--팀협업 탭에 리스트위한 프레그-->
-
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
 
+<!--채팅 확인을 위해 추가 나중에 지울 예정-->
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_teamchat_frag"
+        android:id="@+id/rv_peoplefrag"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-</LinearLayout>
+        android:layout_height="match_parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

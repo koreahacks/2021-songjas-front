@@ -76,6 +76,7 @@
             android:text="@string/app_name" />
 
 
+
         <!--        나중에 초대 파트 구현 위해 리니어 추가-->
         <LinearLayout
             android:id="@+id/ll_center_messageItem"
