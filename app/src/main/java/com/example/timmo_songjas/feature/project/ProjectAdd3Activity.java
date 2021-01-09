@@ -308,6 +308,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                                         switch (btnCount){
                                             case 0:
                                             case 3:
+
                                                 positionNumInt.add(etNumber.getText().toString());
                                                 break;
                                             case 1:
