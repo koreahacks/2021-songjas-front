@@ -4,7 +4,6 @@
 
 <!--이 최상위 리니어는 자기 안의 컨텐츠를 오른쪽or왼쪽 정렬하는데 사용됨-->
 
-
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"

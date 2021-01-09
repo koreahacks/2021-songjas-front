@@ -11,14 +11,15 @@
         android:id="@+id/tv_univ_projectfind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLet="24dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="20dp"
         android:fontFamily="@font/noto_medium"
         android:includeFontPadding="false"
         android:textColor="@color/light_orange"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="24dp" />
 
     <TextView
         android:id="@+id/tv_loca_projectfind"

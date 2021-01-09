@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TIMMO_SONGJAS"
         tools:ignore="AllowBackup">
-        <activity android:name=".feature.PartyFindActivity"></activity>
+        <activity android:name=".feature.PartyFindActivity" />
         <activity android:name=".feature.FilterActivity" />
         <activity android:name=".feature.member.MemberDetailActivity" />
         <activity
@@ -19,7 +19,7 @@
             android:label="@string/title_activity_project_detail"
             android:theme="@style/Theme.TIMMO_SONGJAS.NoActionBar" />
         <activity
-            android:name=".chatting.MessageActivity"
+            android:name=".chatting.chat.MessageActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".feature.sign.SignUpActivity2" />
         <activity android:name=".feature.sign.SignUpActivity1" />
