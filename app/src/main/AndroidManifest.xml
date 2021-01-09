@@ -8,8 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Timmo_Songjas">
-        <activity android:name=".chatting.MessageActivity"></activity>
+        android:theme="@style/Theme.TIMMO_SONGJAS">
+        <activity android:name=".chatting.MessageActivity" />
         <activity android:name=".feature.sign.Signup2Activity" />
         <activity android:name=".feature.sign.Signup1Activity" />
         <activity android:name=".feature.sign.SigninActivity" />
