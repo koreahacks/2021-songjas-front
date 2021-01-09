@@ -279,8 +279,6 @@ public class ProjectAdd1Activity extends AppCompatActivity {
                     intent.putExtra("endDate", term[1]);
                     intent.putExtra("content", etContent.getText().toString());
 
-                    //TODO: 이미지 어떻게 보내야 하는지 알아보기
-                    //sendImage();
 
                     startActivity(intent);
                 } catch (Exception e) {
