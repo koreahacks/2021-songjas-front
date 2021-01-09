@@ -18,5 +18,40 @@
     <string name="open_or_not">공개 여부</string>
     <string name="open">공개</string>
     <string name="not_open">비공개</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="timmo">팀모</string>
+    <string name="timgle">팀글</string>
+    <string name="chatting">채팅</string>
+    <string name="MY">MY</string>
+
+    <string name="description_logo">LOGO</string>
+    <string name="email">이메일</string>
+    <string name="email_input">이메일을 입력해주세요.</string>
+    <string name="pwd">비밀번호</string>
+    <string name="pwd_input">비밀번호를 입력해주세요.</string>
+    <string name="not_member">회원이 아니신가요?</string>
+    <string name="singup">회원가입</string>
+    <string name="login">로그인</string>
+
+    <string name="slide">SLIDE</string>
+    <string name="confirmNum">인증번호</string>
+    <string name="confirmNum_input">인증번호를 입력하세요.</string>
+    <string name="next">다음</string>
+    <string name="nickname">닉네임</string>
+    <string name="nickname_input">닉네임을 입력해주세요.</string>
+    <string name="state">시/도</string>
+    <string name="seoul">서울특별시</string>
+    <string name="county">시/군/구</string>
+    <string name="yongsan">용산구</string>
+    <string name="univ_input">대학교를 입력해주세요.</string>
+    <string name="major">전공</string>
+    <string name="icemagicmajor">얼음마법학과</string>
+    <string name="grade">학년</string>
+    <string name="four">4</string>
     <string name="finish">완료</string>
+    <string name="univ">대학교</string>
+
+
 </resources>

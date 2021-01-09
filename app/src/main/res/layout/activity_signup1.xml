@@ -5,33 +5,53 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_singup1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/white"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="16sp"
+            android:textColor="@color/deep_black"
+            android:fontFamily="@font/noto_medium"
+            android:includeFontPadding="false"
+            android:text="@string/singup">
+        </TextView>
+    </androidx.appcompat.widget.Toolbar>
+
     <ImageView
-        android:id="@+id/iv_star_projectfind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="60dp"
-        android:src="@drawable/ic_logo_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/description_logo"
-        android:layout_marginLeft="24dp" />
+        android:src="@drawable/ic_bg_progress_1"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_singup1"
+        android:contentDescription="@string/slide"
+        android:layout_marginRight="24dp" />
 
     <TextView
-        android:id="@+id/tv_univ_projectfind"
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         android:text="@string/email"
-        android:textSize="14sp"
         android:textColor="@color/text_grey"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_star_projectfind"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_singup1"
         android:layout_marginLeft="24dp" />
 
     <EditText
-        android:id="@+id/et_email_signin"
+        android:id="@+id/et_email_signup1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -45,11 +65,42 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_univ_projectfind"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         android:autofillHints="" />
 
     <TextView
         android:id="@+id/tv_loca_projectfind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/confirmNum"
+        android:textColor="@color/text_grey"
+        android:textSize="14sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_email_signup1"
+        android:layout_marginStart="24dp" />
+
+    <EditText
+        android:id="@+id/tet_pw_signup1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/underline"
+        android:inputType="number"
+        android:hint="@string/confirmNum_input"
+        android:textColorHint="@color/hint_grey"
+        android:textColor="@color/deep_black"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_loca_projectfind"
+        android:autofillHints="" />
+
+    <TextView
+        android:id="@+id/tv_dday_projectfind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -58,11 +109,11 @@
         android:textColor="@color/text_grey"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_email_signin"
+        app:layout_constraintTop_toBottomOf="@+id/tet_pw_signup1"
         android:layout_marginLeft="24dp" />
 
     <EditText
-        android:id="@+id/et_pw_signin"
+        android:id="@+id/et_pw_signup1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -76,49 +127,23 @@
         android:hint="@string/pwd_input"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_loca_projectfind"
+        app:layout_constraintTop_toBottomOf="@+id/tv_dday_projectfind"
         android:autofillHints="" />
 
-    <TextView
-        android:id="@+id/tv_dday_projectfind"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="@string/not_member"
-        android:textColor="@color/text_grey"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/tx_signupbtn_signin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_pw_signin"
-        android:layout_marginLeft="24dp" />
-
-    <TextView
-        android:id="@+id/tx_signupbtn_signin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        android:text="@string/singup"
-        android:textColor="@color/deep_orange"
-        android:textSize="14sp"
-        android:layout_marginTop="12sp"
-        app:layout_constraintStart_toEndOf="@id/tv_dday_projectfind"
-        app:layout_constraintTop_toBottomOf="@+id/et_pw_signin"
-        />
-
     <Button
-        android:id="@+id/btn_login_signin"
+        android:id="@+id/btn_next_signup1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/button_rec"
-        android:text="@string/login"
+        android:text="@string/next"
         android:textColor="@color/white"
         android:textSize="14sp"
         app:backgroundTint="@color/light_orange"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
