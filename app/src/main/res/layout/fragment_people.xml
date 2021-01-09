@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
 <!--채팅 확인을 위해 추가 나중에 지울 예정-->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_peoplefrag"

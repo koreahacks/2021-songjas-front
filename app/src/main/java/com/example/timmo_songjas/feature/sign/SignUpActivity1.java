@@ -33,6 +33,7 @@ public class SignUpActivity1 extends AppCompatActivity {
 
         init();
 
+
         btn_signup1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

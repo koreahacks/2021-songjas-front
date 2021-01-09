@@ -23,17 +23,16 @@
             android:src="@drawable/ic_profile_24_dp"
             android:contentDescription="@string/description_logo" />
 
+
         <TextView
             android:id="@+id/textView_emailId_friendItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
-            android:text="@string/friend_id"
             android:layout_marginStart="10dp" />
 
 
-        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
+

@@ -35,6 +35,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+
     <EditText
         android:id="@+id/et_message"
         android:layout_width="0dp"
