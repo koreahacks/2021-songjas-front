@@ -1,14 +1,15 @@
 package com.example.timmo_songjas.feature.project;
 
 public class ProjectFindItem {
-    public String univ, loca, dday, title, type, field, hope_position;
+    public String univ, l_addr, s_addr, dday, title, type, field, hope_position;
 
     public int project_id;
 
-    public ProjectFindItem(int project_id, String univ, String loca, String dday, String title, String type, String field, String hope_position){
+    public ProjectFindItem(int project_id, String univ, String l_addr, String s_addr, String dday, String title, String type, String field, String hope_position){
         this.project_id = project_id;
         this.univ = univ;
-        this.loca = loca;
+        this.l_addr = l_addr;
+        this.s_addr = s_addr;
         this.dday = dday;
         this.title = title;
         this.type = type;

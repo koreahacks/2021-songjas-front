@@ -2,16 +2,17 @@ package com.example.timmo_songjas.feature.project;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.timmo_songjas.R;
-
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.timmo_songjas.R;
 
 import java.util.ArrayList;
 
@@ -38,10 +39,12 @@ public class ProjectFindAdapter extends RecyclerView.Adapter<ProjectFindAdapter.
     //만들어진 뷰 홀더에 data 삽입
     @Override
     public void onBindViewHolder(@NonNull ProjectFindViewHolder holder, int position) {
+
         ProjectFindAdapter.ProjectFindViewHolder viewHolder = (ProjectFindAdapter.ProjectFindViewHolder)holder;
         //My my = myList.get(position);
         viewHolder.univ.setText(mProject.get(position).univ);
-        viewHolder.loca.setText(mProject.get(position).loca);
+        viewHolder.l_addr.setText(mProject.get(position).l_addr);
+        viewHolder.s_addr.setText(mProject.get(position).s_addr);
         viewHolder.dday.setText(mProject.get(position).dday);
         viewHolder.title.setText(mProject.get(position).title);
         viewHolder.type.setText(mProject.get(position).type);
@@ -53,6 +56,7 @@ public class ProjectFindAdapter extends RecyclerView.Adapter<ProjectFindAdapter.
             public void onClick(View v) {
                 Intent intent = new Intent(context, ProjectDetailActivity.class);
                 intent.putExtra("project_id", mProject.get(position).project_id);
+                Log.e("idddddddddddadapter", Integer.toString(mProject.get(position).project_id));
                 context.startActivity(intent);
             }
         });
@@ -68,7 +72,7 @@ public class ProjectFindAdapter extends RecyclerView.Adapter<ProjectFindAdapter.
     public static class ProjectFindViewHolder extends RecyclerView.ViewHolder{
 
         public TextView univ;
-        public TextView loca;
+        public TextView l_addr, s_addr;
         public TextView dday;
         public TextView title;
         public TextView type;
@@ -81,7 +85,8 @@ public class ProjectFindAdapter extends RecyclerView.Adapter<ProjectFindAdapter.
         public ProjectFindViewHolder(@NonNull View itemView) {
             super(itemView);
             univ = (TextView) itemView.findViewById(R.id.tv_univ_projectfind);
-            loca = (TextView) itemView.findViewById(R.id.tv_loca_projectfind);
+            l_addr = (TextView) itemView.findViewById(R.id.tv_largeaddress_projectfind);
+            s_addr = (TextView) itemView.findViewById(R.id.tv_smalladdress_projectfind);
             dday = (TextView) itemView.findViewById(R.id.tv_dday_projectfind);
             title = (TextView) itemView.findViewById(R.id.tv_title_projectfind);
             type = (TextView) itemView.findViewById(R.id.tv_type_projectfind);

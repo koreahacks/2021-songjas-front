@@ -1,17 +1,8 @@
 package com.example.timmo_songjas.feature.project;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,14 +11,26 @@ import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.data.ProjectFindResponse;
 import com.example.timmo_songjas.data.TimmoFilterResponse;
 import com.example.timmo_songjas.feature.FilterActivity;
-import com.example.timmo_songjas.feature.sign.SignInActivity;
+import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -47,32 +50,120 @@ public class ProjectFindFragment extends Fragment {
     private RecyclerView recyclerView;
     private ProjectFindAdapter projectFindAdapter;
 
-    private ImageView filter_btn;
-    private ImageView subtitle_projectfind;
+    private int project_id;
+
+    //xml id
+    ImageView filter_btn;
+    ImageView subtitle_projectfind;
+
 
     private  String title;
 
-    private void initDataset() {
-        list.clear();
-        //레트로핏 정보 받아오는 곳. 일단은 dummy
-        list.add(new ProjectFindItem(1,
-                "자대", "나는 특별하다..","D-7",
-                "코리아 핵 해커톤 같이 할 사람 구합니다. \n" + "초심자도 환영입니다!",
-                "공모전","IT/소프트웨어","디자인 1명/개발자 2명"));
-    }
+    public String getDday(String target) {
+        try{
+            String[] arr = target.split("-");
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+            Calendar todayCal = Calendar.getInstance(); //현재 날짜 가져오기
+            Calendar ddayCal = Calendar.getInstance(); //디데이 초기화
+
+            int year = Integer.parseInt(arr[0]);
+            int moth = Integer.parseInt(arr[1]) -1;
+            int day = Integer.parseInt(arr[2]);
+            ddayCal.set(year, moth, day);
+
+            //밀리 초 -> 초로 변환
+            final int ONE_DAY = 24 * 60 * 60 * 1000;
+            long dday = ddayCal.getTimeInMillis()/ ONE_DAY;
+            long today = todayCal.getTimeInMillis()/ ONE_DAY;
+
+            long result = dday - today;
+
+            String mStrFormat;
+
+            if(result > 0)
+                mStrFormat = "D-%d";
+            else if(result == 0)
+                mStrFormat = "D-DAY";
+            else {
+                result *= -1;
+                mStrFormat = "D+%d";
+            }
+            return String.format(mStrFormat, result);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
+    @RequiresApi(api= Build.VERSION_CODES.LOLLIPOP)
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //팀모 목록 조회
+
+
+    }
+
+    @RequiresApi(api= Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @NonNull ViewGroup container,
                              @NonNull Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_project_find, container, false);
+
+        service = RetrofitClient.getClient().create(RetrofitService.class);
+        Call<ProjectFindResponse> call = service.projectFind(USER_TOKEN, "application/json");
+
+        call.enqueue(new Callback<ProjectFindResponse>() {
+            @Override
+            public void onResponse(Call<ProjectFindResponse> call, Response<ProjectFindResponse> response) {
+                if(response.isSuccessful()){
+                    ProjectFindResponse result = response.body();
+                    if (result.getStatus() == 200) {
+                        Toast.makeText(getActivity(), "팀모 목록 조회 성공", Toast.LENGTH_SHORT).show();
+                        List<ProjectFindResponse.Datum> project_list = result.getData();
+
+                        list.clear();
+                        Log.e("ckt1",list.toString());
+
+                        for(int i=0; i <project_list.size();i++){
+                            //변수에 결과 집어넣고. list.add
+
+                            int p_id = project_list.get(i).getId();
+                            String univ = project_list.get(i).getLimitUniv();
+                            String l_addr = project_list.get(i).getLargeAddress();
+                            String s_addr = project_list.get(i).getSmallAddress();
+                            String end_date = project_list.get(i).getEndDate();
+
+                            String d_day = getDday(end_date); //변수 타입
+                            String title = project_list.get(i).getTitle();
+                            String type = project_list.get(i).getType();
+                            String field = project_list.get(i).getField();
+
+                            String position ="";
+                            List<ProjectFindResponse.Datum.ProjectPositions> position_list = project_list.get(i).getProjectPositions();
+                            for(int j=0; j<position_list.size();j++) {
+                                position = position + position_list.get(j).getPosition() + " " + position_list.get(j).getHeadCount() + "명";
+                                if (j != position_list.size() - 1) position = position + " / ";
+                            }//pos에 포지션 목록이 들어갔는데
+
+                            list.add(new ProjectFindItem(p_id, univ, l_addr, s_addr, d_day, title, type, field, position));
+                        }
+
+                        //리싸이클러뷰 어댑터 만들고 추가
+                        recyclerView = view.findViewById(R.id.rv_projectfind);
+                        projectFindAdapter = new ProjectFindAdapter(list, getContext());
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+                        recyclerView.setAdapter(projectFindAdapter);
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<ProjectFindResponse> call, Throwable t) {
+                Toast.makeText(getActivity(), "그냥 실패", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //툴바영역
         Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar_1); //fragment xml 툴바 영역?
@@ -90,6 +181,7 @@ public class ProjectFindFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
                 Toast.makeText(getActivity(), query, Toast.LENGTH_SHORT).show();
+                //TODO: 검색 네트워킹
                 title =query;
                 //TODO: 네트워킹 필요
                 return true;
@@ -101,16 +193,9 @@ public class ProjectFindFragment extends Fragment {
             }
         });
 
-        //리싸이클러뷰 어댑터 만들고 추가
-        recyclerView = view.findViewById(R.id.rv_projectfind);
-        projectFindAdapter = new ProjectFindAdapter(list, getContext());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(projectFindAdapter);
-
 
         //필터 버튼
         filter_btn = (ImageView) toolbar.findViewById(R.id.filter_projectfind);
-
         filter_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

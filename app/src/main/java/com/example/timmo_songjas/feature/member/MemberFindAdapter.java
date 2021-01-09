@@ -49,7 +49,8 @@ public class MemberFindAdapter extends RecyclerView.Adapter<MemberFindAdapter.Me
                 .load(mProject.get(position).profile)
                 .apply(new RequestOptions().circleCrop())
                 .into(holder.image);
-        viewHolder.loca.setText(mProject.get(position).loca);
+        viewHolder.l_addr.setText(mProject.get(position).l_addr);
+        viewHolder.s_addr.setText(mProject.get(position).s_addr);
         viewHolder.title.setText(mProject.get(position).title);
         viewHolder.type.setText(mProject.get(position).type);
         viewHolder.field.setText(mProject.get(position).field);
@@ -76,7 +77,7 @@ public class MemberFindAdapter extends RecyclerView.Adapter<MemberFindAdapter.Me
 
         public ImageView image;
 
-        public TextView loca;
+        public TextView l_addr, s_addr;
         public TextView title;
         public TextView type;
         public TextView field;
@@ -89,7 +90,8 @@ public class MemberFindAdapter extends RecyclerView.Adapter<MemberFindAdapter.Me
             super(itemView);
 
             image = itemView.findViewById(R.id.pic_partyfind);
-            loca = (TextView) itemView.findViewById(R.id.tv_loca_memberfind);
+            l_addr = (TextView) itemView.findViewById(R.id.tv_largeaddress_memberfind);
+            s_addr =(TextView) itemView.findViewById(R.id.tv_smalladdress_memberfind);
             title = (TextView) itemView.findViewById(R.id.tv_title_memberfind);
             type = (TextView) itemView.findViewById(R.id.tv_type_memberfind);
             field = (TextView) itemView.findViewById(R.id.tv_field_memberfind);
