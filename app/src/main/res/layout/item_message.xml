@@ -84,7 +84,8 @@
             android:layout_marginTop="8dp"
             android:background="@drawable/bg_message"
             android:backgroundTint="@null"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:targetApi="lollipop">
             <!--        !!!!!!!!!!1텍스트 색도 자바에서 바꾸기-->
 
             <TextView
@@ -111,7 +112,7 @@
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/noto_medium"
                 android:includeFontPadding="false"
-                android:text="@string/sub_message"
+                android:text="@string/chat_item"
                 android:textColor="@color/text_grey"
                 android:textSize="12sp" />
 
