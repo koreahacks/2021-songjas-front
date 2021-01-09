@@ -1,5 +1,6 @@
 package com.example.timmo_songjas.feature.project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -20,14 +21,22 @@ import android.widget.Toast;
 
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.chatting.model.ChatModel;
 import com.example.timmo_songjas.data.ProjectAddData;
 import com.example.timmo_songjas.data.ProjectAddResponse;
 import com.example.timmo_songjas.data.ProjectMembers;
 import com.example.timmo_songjas.data.ProjectPositions;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -249,63 +258,113 @@ public class ProjectAdd3Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("userid",SEVER_USERID_LOGGED_IN); //팀장 userid
-                intent.putExtra("destinationRoom",roomkey); //룸키
-                //TODO:일단 얼랏해놓고 의견 물어보자자                //인원 입력 받기
-                switch (btnCount){
-                    case 0:
-                        positionNumInt.add(etNumber.getText().toString());
-                        break;
-                    case 1:
-                        positionNumInt.add(etNumber.getText().toString());
-                        positionNumInt.add(etPositionNum2.getText().toString());
-                        break;
-                    case 2:
-                        positionNumInt.add(etNumber.getText().toString());
-                        positionNumInt.add(etPositionNum2.getText().toString());
-                        positionNumInt.add(etPositionNum3.getText().toString());
-                        break;
+
+                roomkey="";
+                //TODO:아래 작업 팀 빌딩 채팅방 만든 후 진행해야함
+                ChatModel chatModels = new ChatModel(); //채팅방 정보
+                //TODO:상대방 id 스트링으로 서버에서 받은 팀원 아이디 넣기
+                chatModels.teamchatuserid = SEVER_USERID_LOGGED_IN;
+                chatModels.users.put(SEVER_USERID_LOGGED_IN,true);
+                chatModels.isTeamChat = true;//팀협업
+                for( Integer i : memberList){
+                    chatModels.users.put(String.valueOf(i),true);
                 }
+                FirebaseDatabase.getInstance().getReference()
+                        .child("chatrooms").push().setValue(chatModels)
+                        .addOnCompleteListener(new OnCompleteListener<Void>(){
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                Toast.makeText(getApplicationContext(),"단체채팅방이 생성되었습니다." , Toast.LENGTH_SHORT).show();
+                                //chatmodel 타임순으로 역순정렬 후
+                                FirebaseDatabase.getInstance().getReference().child("chatrooms").addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        List<ChatModel> chatModelList = new ArrayList<>();
+                                        List<String> key_string =new ArrayList<>();
+                                        for(DataSnapshot item : snapshot.getChildren()){
+                                            chatModelList.add(item.getValue(ChatModel.class));
+                                            key_string.add(item.getKey());
+                                        }
+                                        Collections.reverse(chatModelList);
+                                        Collections.reverse(key_string);
 
-                //시/시도, 시/군/구 입력
-                String state = etState.getText().toString();
-                String county = etCounty.getText().toString();
+                                        for(int i = 0 ; i < chatModelList.size() ; i++){
+                                            if(chatModelList.get(i).teamchatuserid.equals(SEVER_USERID_LOGGED_IN)){
+                                                roomkey = key_string.get(i);
+                                                Toast.makeText(getApplicationContext(),"방키찾음" , Toast.LENGTH_SHORT).show();
 
-                //라디오 버튼 입력 받기
-                int id = radioGroup.getCheckedRadioButtonId();
-                RadioButton rbUniv = (RadioButton) findViewById(id);
-                String univ = rbUniv.getText().toString();
-                boolean univType;
-                if(univ.equals("자대") ) univType=true;
-                else univType=false;
+                                                break;
+                                            }
+                                        }
 
-                try {
+                                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                                        intent.putExtra("userid",SEVER_USERID_LOGGED_IN); //팀장 userid
+//                                        intent.putExtra("destinationRoom",roomkey); //룸키
+                                        //TODO:일단 얼랏해놓고 의견 물어보자자                //인원 입력 받기
+                                        switch (btnCount){
+                                            case 0:
+                                                positionNumInt.add(etNumber.getText().toString());
+                                                break;
+                                            case 1:
+                                                positionNumInt.add(etNumber.getText().toString());
+                                                positionNumInt.add(etPositionNum2.getText().toString());
+                                                break;
+                                            case 2:
+                                                positionNumInt.add(etNumber.getText().toString());
+                                                positionNumInt.add(etPositionNum2.getText().toString());
+                                                positionNumInt.add(etPositionNum3.getText().toString());
+                                                break;
+                                        }
 
-                    List<ProjectMembers> pmList = new ArrayList<>();
-                    pmList.add(new ProjectMembers(myId, timgle));
-                    for(int i =0; i < memberList.size(); i++){
-                        pmList.add(new ProjectMembers(memberList.get(i), null));
-                    }
-                    List<ProjectPositions> ppList = new ArrayList<>();
-                    for(int i= 0;i < positioinStr.size(); i++){
-                        ppList.add(new ProjectPositions(positioinStr.get(i), Integer.parseInt(positionNumInt.get(i))));
-                    }
+                                        //시/시도, 시/군/구 입력
+                                        String state = etState.getText().toString();
+                                        String county = etCounty.getText().toString();
 
-                    ProjectAddData data = new ProjectAddData(
-                            image, roomkey, title, type, feild, startDate, endDate,
-                            content, port, morning, night, dawn, plan, focus, leader,
-                            follow, challenge, reality, state, county, univType, pmList, ppList);
-                    send(data);
-                    //TODO: 데이터 서버로 전송
-                    //TODO: 서버에 보낼 데이터 중 roomkey도 있음, 채팅방 ,룸키 값 받아왔으니 보내주기만하면됨
+                                        //라디오 버튼 입력 받기
+                                        int id = radioGroup.getCheckedRadioButtonId();
+                                        RadioButton rbUniv = (RadioButton) findViewById(id);
+                                        String univ = rbUniv.getText().toString();
+                                        boolean univType;
+                                        if(univ.equals("자대") ) univType=true;
+                                        else univType=false;
 
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
-                    intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    startActivity(intent);
-                } catch (Exception e){
-                    Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 입력해주세요.", Toast.LENGTH_LONG);
-                }
+                                        try {
+
+                                            List<ProjectMembers> pmList = new ArrayList<>();
+                                            pmList.add(new ProjectMembers(myId, timgle));
+                                            for(int i =0; i < memberList.size(); i++){
+                                                pmList.add(new ProjectMembers(memberList.get(i), null));
+                                            }
+                                            List<ProjectPositions> ppList = new ArrayList<>();
+                                            for(int i= 0;i < positioinStr.size(); i++){
+                                                ppList.add(new ProjectPositions(positioinStr.get(i), Integer.parseInt(positionNumInt.get(i))));
+                                            }
+
+                                            ProjectAddData data = new ProjectAddData(
+                                                    image, roomkey, title, type, feild, startDate, endDate,
+                                                    content, port, morning, night, dawn, plan, focus, leader,
+                                                    follow, challenge, reality, state, county, univType, pmList, ppList);
+                                            send(data);
+                                            //TODO: 데이터 서버로 전송
+                                            //TODO: 서버에 보낼 데이터 중 roomkey도 있음, 채팅방 ,룸키 값 받아왔으니 보내주기만하면됨
+
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
+                                            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                                            startActivity(intent);
+                                        } catch (Exception e){
+                                            Toast.makeText(getApplicationContext(), "모든 항목을 정확하게 입력해주세요.", Toast.LENGTH_LONG);
+                                        }
+
+
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                            }
+                        });
 
             }
         });
