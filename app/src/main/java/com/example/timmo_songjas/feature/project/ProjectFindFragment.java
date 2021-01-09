@@ -8,6 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +21,26 @@ import android.widget.Toast;
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
 
+import java.util.ArrayList;
+
 public class ProjectFindFragment extends Fragment {
 
 
+    public ArrayList<ProjectFindItem> list = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private ProjectFindAdapter projectFindAdapter;
+
     private ImageView filter_btn;
     private ImageView subtitle_projectfind;
+
+    private void initDataset() {
+        list.clear();
+        //레트로핏 정보 받아오는 곳. 일단은 dummy
+        list.add(new ProjectFindItem(1,
+                "자대", "나는 특별하다..","D-7",
+                "코리아 핵 해커톤 같이 할 사람 구합니다. \n" + "초심자도 환영입니다!",
+                "공모전","IT/소프트웨어","디자인 1명/개발자 2명"));
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,6 +82,11 @@ public class ProjectFindFragment extends Fragment {
         });
 
         //리싸이클러뷰 어댑터 만들고 추가
+        recyclerView = view.findViewById(R.id.rv_projectfind);
+        projectFindAdapter = new ProjectFindAdapter(list, getContext());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setAdapter(projectFindAdapter);
+
 
         //필터 버튼
         filter_btn = (ImageView) toolbar.findViewById(R.id.filter_projectfind);
