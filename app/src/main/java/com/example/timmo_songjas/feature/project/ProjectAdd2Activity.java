@@ -94,6 +94,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
         String startDate = intent.getStringExtra("startDate");
         String endDate = intent.getStringExtra("endDate");
         String content = intent.getStringExtra("content");
+        String image = intent.getStringExtra("image");
 
 
         //TODO: 서버에서 이력서 제목 받아와서 String 배열로 만들기
@@ -329,6 +330,7 @@ public class ProjectAdd2Activity extends AppCompatActivity {
                 try {
                     Toast.makeText(getApplicationContext(), timgleString, Toast.LENGTH_LONG).show();
                     //add1에서 받아온 데이터
+                    intent.putExtra("image", image);
                     intent.putExtra("title", title);
                     intent.putExtra("type", type);
                     intent.putExtra("feild", feild);

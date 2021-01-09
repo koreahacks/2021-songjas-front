@@ -77,6 +77,7 @@ public class ProjectAdd1Activity extends AppCompatActivity {
     Bitmap img;
     Uri imageUri;
     String imagePath;
+    String image;
 
     //이미지 파일 열기
     @Override
@@ -278,6 +279,7 @@ public class ProjectAdd1Activity extends AppCompatActivity {
                     intent.putExtra("startDate", term[0]);
                     intent.putExtra("endDate", term[1]);
                     intent.putExtra("content", etContent.getText().toString());
+                    intent.putExtra("image", image);
 
 
                     startActivity(intent);
@@ -311,17 +313,21 @@ public class ProjectAdd1Activity extends AppCompatActivity {
                     if (result.getStatus() == 201) {
                         Toast.makeText(getApplicationContext(), "성공", Toast.LENGTH_SHORT).show();
                         Log.d("plz complete", response.body().getData().getImg());
+                        image = response.body().getData().getImg();
                     }
                     else{
+                        image = null;
                         Toast.makeText(getApplicationContext(), result.getStatus().toString(), Toast.LENGTH_SHORT).show();
                         Log.d("error code", response.headers().toString());
                     }
                 }
                 else if(response == null){
+                    image = null;
                     Toast.makeText(getApplicationContext(), "널 값임", Toast.LENGTH_LONG).show();
                     Log.d("사진 없음",  response.headers().toString());
                 }
                 else {
+                    image = null;
                     Log.d("연결 실패",  response.headers().toString());
                     Log.d("연결 실패",  response.toString());
                 }
@@ -329,6 +335,7 @@ public class ProjectAdd1Activity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<ProjectAdd1Response> call, Throwable t) {
+                image = null;
                 Toast.makeText(getApplicationContext(), "그냥 실패", Toast.LENGTH_SHORT).show();
             }
         });

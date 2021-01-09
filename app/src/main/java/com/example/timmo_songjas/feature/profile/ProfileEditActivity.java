@@ -161,6 +161,8 @@ public class ProfileEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
 
+        requestPermission();
+
         //툴바
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar_profileedit);
         setSupportActionBar(mToolbar);

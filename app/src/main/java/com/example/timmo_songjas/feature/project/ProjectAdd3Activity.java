@@ -69,6 +69,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
 
         //add2에서 정보 받아오기
         Intent intent = getIntent();
+        String image = intent.getStringExtra("image");
         String title = intent.getStringExtra("title");
         String type = intent.getStringExtra("type");
         String feild = intent.getStringExtra("feild");
@@ -292,7 +293,7 @@ public class ProjectAdd3Activity extends AppCompatActivity {
                     }
 
                     ProjectAddData data = new ProjectAddData(
-                            null, roomkey, title, type, feild, startDate, endDate,
+                            image, roomkey, title, type, feild, startDate, endDate,
                             content, port, morning, night, dawn, plan, focus, leader,
                             follow, challenge, reality, state, county, univType, pmList, ppList);
                     send(data);
