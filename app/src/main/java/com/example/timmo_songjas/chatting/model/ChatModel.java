@@ -6,6 +6,7 @@ import java.util.Map;
 public class ChatModel {
     public boolean isTeamChat; // 팀협업 채팅인가 ㅇ아닌가? 팀빌딩은 false 협업은 true
 
+
     //채팅방의 유저들, destination과 userid 둘 다 가짐
     //해당 채팅방의 본인 포함 전체 유저들
     //userid 임!! uid 아니고!!

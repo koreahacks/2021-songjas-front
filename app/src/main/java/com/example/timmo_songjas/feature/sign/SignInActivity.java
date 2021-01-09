@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.UserManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +17,15 @@ import android.widget.Toast;
 
 import com.example.timmo_songjas.MainActivity;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.chatting.model.UserModel;
 import com.example.timmo_songjas.data.SigninData;
 import com.example.timmo_songjas.data.SigninResponse;
 import com.example.timmo_songjas.network.RetrofitClient;
 import com.example.timmo_songjas.network.RetrofitService;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -134,6 +140,22 @@ public class SignInActivity extends AppCompatActivity {
 
         //TODO:프로필 데이터에서 이름 받아와서 name에 설정
         USER_NAME_LOGGED_IN = SEVER_USERID_LOGGED_IN;
+
+
+        FirebaseDatabase.getInstance().getReference().child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot item : snapshot.getChildren()){
+                    if( item.getValue(UserModel.class).userid.equals(SEVER_USERID_LOGGED_IN) ){
+                        USER_NAME_LOGGED_IN = item.getValue(UserModel.class).userName;
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
     }
 

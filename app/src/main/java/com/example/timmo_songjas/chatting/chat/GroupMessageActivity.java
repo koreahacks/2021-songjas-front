@@ -94,13 +94,32 @@ public class GroupMessageActivity extends AppCompatActivity {
         destinationRoom_key = getIntent().getStringExtra("destinationRoom");
         //TODO:이력서 등록하는 프로젝트에드3에서 인텐트로 프로젝트 id 같이 보내야함!!
         projectid = -1;//getIntent().getIntExtra("projectId",-1);
-        team_userid = getIntent().getStringExtra("userid"); //팀장 userid
+
 
         editText = (EditText)findViewById(R.id.et_groupmessage);
         iv_timmgle_upload = (ImageView)findViewById(R.id.iv_extra_group_message);
         send_btn = (ImageButton)findViewById(R.id.ib_send_group_message);
         recyclerView = (RecyclerView)findViewById(R.id.rv_group_message);
         service = RetrofitClient.getClient().create(RetrofitService.class);
+
+
+        send_btn.setActivated(false);
+        iv_timmgle_upload.setActivated(false);
+
+        FirebaseDatabase.getInstance().getReference().child("chatromms").child(destinationRoom_key).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                team_userid = snapshot.getValue(ChatModel.class).teamchatuserid;
+                send_btn.setActivated(true);
+                iv_timmgle_upload.setActivated(true);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
         send_btn.setOnClickListener(new View.OnClickListener() {

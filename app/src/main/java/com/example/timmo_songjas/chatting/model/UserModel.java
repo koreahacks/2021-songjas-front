@@ -8,6 +8,7 @@ public class UserModel {
     //string으로 변환한값이다. 그니까 서버에서 받은 id 값을 string으로 변환해서 firebase에 넣어서 그 값 받아온것
 
 
+
     public String getUserName() {
         return userName;
     }

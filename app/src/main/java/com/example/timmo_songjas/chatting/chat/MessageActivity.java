@@ -359,6 +359,7 @@ public class MessageActivity extends AppCompatActivity {
             messageViewHolder.tv_dest_timestamp.setText(time);
             messageViewHolder.tv_my_timestamp.setText(time);
 
+
             if(comments.get(position).isBtn){ // 버튼 이라면
 
                 if(!comments.get(position).userid.equals(destinatonUserid)){ //내가 보낸거면 버튼 기능 안넣음
