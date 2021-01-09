@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".feature.PartyFindActivity">
+    tools:context=".feature.project.PartyFindActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_partyfind"
@@ -30,7 +30,8 @@
                 android:src="@drawable/ic_arrow_left_24_dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:contentDescription="TODO" />
 
             <androidx.appcompat.widget.SearchView
                 android:id="@+id/search_view_partyfind"

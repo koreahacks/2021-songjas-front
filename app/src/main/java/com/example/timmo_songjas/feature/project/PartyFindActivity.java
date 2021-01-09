@@ -1,4 +1,4 @@
-package com.example.timmo_songjas.feature;
+package com.example.timmo_songjas.feature.project;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.timmo_songjas.R;
+import com.example.timmo_songjas.network.RetrofitService;
 
 
 public class PartyFindActivity extends AppCompatActivity {
@@ -29,6 +30,11 @@ public class PartyFindActivity extends AppCompatActivity {
     ConstraintLayout result_partyfind_true;
     TextView result_partyfind_false;
 
+
+    //레트로핏
+    RetrofitService service;
+
+    @RequiresApi(api= Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,7 +66,7 @@ public class PartyFindActivity extends AppCompatActivity {
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {  //키워드 입력 후 엔터 입력
-                //Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_SHORT).show();
                 //load(query);
                 return true;
             }
@@ -78,5 +84,7 @@ public class PartyFindActivity extends AppCompatActivity {
         tv_name_partyfind = (TextView) findViewById(R.id.tv_name_partyfind);
         tv_email_partyfind = findViewById(R.id.tv_email_partyfind);
     }
+
+    //TODO: 네트워킹 부분 load(query);
 
 }
