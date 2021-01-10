@@ -96,13 +96,13 @@ public class SignUpActivity2 extends AppCompatActivity {
             public void onResponse(@NonNull Call<SignupResponse> call, @NonNull Response<SignupResponse> response) {
                 if(response.isSuccessful()){
                     SignupResponse result = response.body();
-                    Toast.makeText(SignUpActivity2.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    ///Toast.makeText(SignUpActivity2.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                     id = result.getData().getId();
                     putDataToFirebase(id);
                     //firebase에서 데이터 넣기 성공하면 intent 넘긴다.
                 }
                 else{
-                    Toast.makeText(SignUpActivity2.this, "onResponse 실패" + response.errorBody(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SignUpActivity2.this, "onResponse 실패" + response.errorBody(),Toast.LENGTH_LONG).show();
 
                 }
             }
@@ -110,7 +110,7 @@ public class SignUpActivity2 extends AppCompatActivity {
             @Override
             public void onFailure( @NonNull Call<SignupResponse> call, @NonNull Throwable t) {
 
-                Toast.makeText(SignUpActivity2.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SignUpActivity2.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
                 //showProgress(false);
@@ -130,7 +130,7 @@ public class SignUpActivity2 extends AppCompatActivity {
         Toast.makeText(SignUpActivity2.this, "firebase 데이터 넣는 중", Toast.LENGTH_SHORT).show();
 
         FirebaseDatabase.getInstance().getReference().child("users").push().setValue(userModel).addOnSuccessListener(aVoid -> { // 데이터 넣기 성공하면
-            Toast.makeText(SignUpActivity2.this, "firebase 데이터 넣기 성공", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(SignUpActivity2.this, "firebase 데이터 넣기 성공", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(SignUpActivity2.this, SignInActivity.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP );
             intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);

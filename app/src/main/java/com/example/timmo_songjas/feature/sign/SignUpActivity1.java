@@ -107,13 +107,13 @@ public class SignUpActivity1 extends AppCompatActivity {
                     clickEmailAuth = true;
                 }
                 else{
-                    Toast.makeText(SignUpActivity1.this, " 인증 실패 : " + response.errorBody(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SignUpActivity1.this, " 인증 실패 : " + response.errorBody(),Toast.LENGTH_LONG).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<EmailAuthResponse> call, @NonNull Throwable t) {
-                Toast.makeText(SignUpActivity1.this, "이메일 인증 에러 발생", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SignUpActivity1.this, "이메일 인증 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("인증 에러 발생", t.getMessage());
                 t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
                 //showProgress(false);

@@ -83,7 +83,7 @@ public class SignInActivity extends AppCompatActivity {
 
                     SigninResponse result = response.body();
 
-                    Toast.makeText(SignInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(SignInActivity.this, result.getMessage(), Toast.LENGTH_SHORT).show();
                     Log.d("signin 나와라", response.headers().toString());
 
                     USER_TOKEN = result.getData().getAccessToken();
@@ -96,14 +96,14 @@ public class SignInActivity extends AppCompatActivity {
 
                 }
                 else{
-                    Toast.makeText(SignInActivity.this, "onResponse 실패" + response.errorBody(),Toast.LENGTH_LONG).show();
+                    //Toast.makeText(SignInActivity.this, "onResponse 실패" + response.errorBody(),Toast.LENGTH_LONG).show();
                 }
 
             }
 
             @Override
             public void onFailure(@NonNull Call<SigninResponse> call,@NonNull Throwable t) {
-                Toast.makeText(SignInActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(SignInActivity.this, "로그인 에러 발생", Toast.LENGTH_SHORT).show();
                 Log.e("로그인 에러 발생", t.getMessage());
                 t.printStackTrace(); // 에러 발생시 에러 발생 원인 단계별로 출력해줌
                 //showProgress(false);
@@ -128,7 +128,7 @@ public class SignInActivity extends AppCompatActivity {
         editor.putString("EMAIL",et_email.getText().toString());
         editor.putString("PW",et_pw.getText().toString());
 
-        Toast.makeText(SignInActivity.this, "saveData : "+ USER_TOKEN, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(SignInActivity.this, "saveData : "+ USER_TOKEN, Toast.LENGTH_SHORT).show();
 
         editor.apply();
     }
@@ -165,7 +165,7 @@ public class SignInActivity extends AppCompatActivity {
         email = preferences.getString("EMAIL", "");
         USER_TOKEN = preferences.getString("ACCESS_TOKEN", "");
         pw = preferences.getString("PW", "");
-        Toast.makeText(SignInActivity.this, "load : "+ USER_TOKEN, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(SignInActivity.this, "load : "+ USER_TOKEN, Toast.LENGTH_SHORT).show();
 
     }
 
