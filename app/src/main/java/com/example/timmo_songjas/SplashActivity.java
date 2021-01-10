@@ -49,8 +49,7 @@ public class SplashActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                         } else {
-                            Toast.makeText(SplashActivity.this, "Fetch failed",
-                                    Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(SplashActivity.this, "Fetch failed",Toast.LENGTH_SHORT).show();
                         }
                         displayMessage();
                     }
