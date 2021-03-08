@@ -10,7 +10,7 @@
 
 <br>
 
-## 🤩 [TIMMO Notion](https://www.notion.so/tnsy/f75a5d26ba13465494153144a3ca8005)
+## 🤩 [TIMMO Notion](https://www.notion.so/Korea-Hacks-TIMMO-22e3b279811f47e58d6d3091cba49ba3)
 
 <br>
 
